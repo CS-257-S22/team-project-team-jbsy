@@ -1,5 +1,5 @@
 # H-1B Employer Data Hub
-H-1B Visa is a nonimmigrant visa that allows U.S. employers to hire foreigners for jobs that require a bachelor’s degree or equivalent. We aim to create a project that acts as a data hub of H-1B statistics from 2018 to 2022. The project will provide a clear presentation of data and helpful features to aid the user. 
+H-1B Visa is a nonimmigrant visa that allows U.S. employers to hire foreigners for jobs that require a bachelor’s degree or equivalent. We aim to create a project that acts as a data hub of H-1B statistics from 2018 to 2022. The project will provide a clear presentation of data and helpful features to aid the user!
  
 # Dataset
 For this project, we will use CSV files that contain the relevant records of H-1B Visa for numerous companies that apply on behalf of non-US citizens in the United States. The CSV file is arranged by fiscal year, employer name, initial approval, initial denial, continuing approval, continuing denial, NAICS (North American Industry Classification System Code), Tax ID, State, City, and ZIP. The link below is the link we used to download all the files and find descriptions of the dataset. 
