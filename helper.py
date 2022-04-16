@@ -39,9 +39,21 @@ def createDataByYear(lineData):
     # Return a list that has data by fiscal year
     return [fiscalYear, dataByYear]
 
-def printData(dataToPrint):
-    for x in dataToPrint:
-        print(x + "\n")
+def printMinAndMaxData(data):
+    maxCompanies = data["maxList"]
+    minCompanies = data["minList"]
+    mostRecentYear = data["mostRecentYear"]
+    columnName = data["columnName"]
+
+    print("\nHere is the list of Companies with Maximum Number of " + columnName + " with " + columnName.lower() + " of " + maxCompanies[0]["data"][mostRecentYear][columnName] + ":\n")
+    for x in maxCompanies:
+        print(x["companyName"])
+
+    print("\nHere is the list of Companies with Minimum Number of " + columnName + " with " + columnName.lower() +" of " + minCompanies[0]["data"][mostRecentYear][columnName] + ":\n")
+    for x in minCompanies:
+        print(x["companyName"])
+
+
 
 def readFile(filePath):
     # open file
@@ -76,7 +88,8 @@ def readFile(filePath):
                 else:
                     visaData[companyName][fiscalYear] = companyDataByYear
 
-        print(visaData["REDDY GI ASSOCIATES"]["2020"]["Initial Approvals"])
+        # print(visaData["REDDY GI ASSOCIATES"])
+        # printData(visaData)
         return [visaData, mostRecentYear]
 
 
