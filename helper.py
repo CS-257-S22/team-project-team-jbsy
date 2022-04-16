@@ -48,6 +48,7 @@ def readFile(filePath):
     with open(filePath, 'r') as file:
         reader = csv.reader(file)
         lineCount = 0
+        mostRecentYear = "2018"
 
         # Dictionary for Overall Data
         visaData = {}
@@ -60,6 +61,11 @@ def readFile(filePath):
             else:
                 lineCount+=1
                 companyName = line[1]
+                fiscalYear = line[0]
+
+                if int(mostRecentYear) < int(fiscalYear):
+                    mostRecentYear = fiscalYear
+
                 companyData = createDataByYear(line)
 
                 fiscalYear = companyData[0]
@@ -70,8 +76,9 @@ def readFile(filePath):
                 else:
                     visaData[companyName][fiscalYear] = companyDataByYear
 
-        print(visaData["REDDY GI ASSOCIATES"])
-        return visaData
+        print(visaData["REDDY GI ASSOCIATES"]["2020"]["Initial Approvals"])
+        return [visaData, mostRecentYear]
+
 
 # readFile("dummyData.csv")
 
