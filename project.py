@@ -1,4 +1,7 @@
-filepath = 'dummyData.csv';
+import sys
+from helper import readFile
+
+filepath = 'h1b_datahubexport-2018.csv';
 database = open(filepath,"r");
 
 # method to get the names of companies within the input state
@@ -29,8 +32,7 @@ def getStatByCompanies(company):
             print("City => " + databaseInfo[9]);
             print("ZIP => " + databaseInfo[10]);
 
-# method to get the names of companies with the input number of initial approval
-def getCompaniesByMinInitApproval(initApproval):
+def getCompaniesByMinInitApproval(initApproval, target):
     substring = initApproval;
     database.readline();
     for i in range(60):
@@ -39,6 +41,40 @@ def getCompaniesByMinInitApproval(initApproval):
         if(int(databaseInfo[2].replace("\"",""))>=initApproval):
             print("Employer => " + databaseInfo[1]);
 
-# getStatByCompanies("FUNKTRONIC LABS");
-# print(getCompaniesByState("CA"));
-# getCompaniesByMinInitApproval(1);
+def initiateCommand(command, target):
+    if "company" in command:
+        #call getStatByCompanies
+    elif "state" in command:
+        # call getCompaniesByState
+    elif "initApproval" in command:
+        # call minimum and maximum then print
+    elif "ContinuingApprovals" in command:
+        # call minimum and maximum then print
+    else:
+        print("Please input a command that is valid\n")
+
+def readCommandLine():
+    # Read the commandline as arg
+    arg = sys.argv
+
+    # Todo: Verify if arg data is correct
+
+    fileData = readFile(arg[1])
+    visaData = fileData[0]
+    mostRecentYear = fileData[1]
+    
+    command = arg[2]
+    target = arg[-1]
+
+    # Todo: Verify if target relevant (company name exists, or column name exists, etc)
+    
+    initiateCommand(command, target)
+
+# project.py dummyData.csv --company "Google"
+
+# Commandline example
+# python3 project.py dummyData.csv --company "Google"
+
+#getStatByCompanies("CVE TECHNOLOGY GROUP INC");
+# print(getCompaniesByState("SD"));
+#getCompaniesByMinInitApproval(2);
