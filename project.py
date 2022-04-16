@@ -3,20 +3,22 @@ from helper import readFile
 
 filepath = 'h1b_datahubexport-2018.csv';
 database = open(filepath,"r");
+database.readline();
+approvalPercentages = [];
 
 # method to get the names of companies within the input state
 def getCompaniesByState(state):
-    substring = "\"" + state + "\"";
-    for i in range(60):
-        lineData = database.readline()
-        databaseInfo = lineData.split(",");
-        if(databaseInfo[8]==substring):
-            print(databaseInfo[1]);
+   substring = "\"" + state + "\"";
+   for i in range(60):
+       lineData = database.readline()
+       databaseInfo = lineData.split(",");
+       if(databaseInfo[8]==substring):
+         return databaseInfo[1];
 
 # method to get the statistics of the input company
 def getStatByCompanies(company):
-    substring = "\"" + company + "\"";
-    for i in range(60):
+     substring = "\"" + company + "\"";
+     for i in range(60):
         lineData = database.readline()
         databaseInfo = lineData.split(",");
         if(databaseInfo[1]==substring):
@@ -76,5 +78,9 @@ def readCommandLine():
 # python3 project.py dummyData.csv --company "Google"
 
 #getStatByCompanies("CVE TECHNOLOGY GROUP INC");
-# print(getCompaniesByState("SD"));
-#getCompaniesByMinInitApproval(2);
+#print(getCompaniesByState("SD"));
+#print(getCompaniesByMinInitApproval(1));
+#print(getCompaniesByMinContinuingApproval(1));
+#top10VisaApprovalRatesByYear();
+approvalRatesByCompany("SAN JOSE STATE UNIVERSISTY");
+#approvalPercentage()
