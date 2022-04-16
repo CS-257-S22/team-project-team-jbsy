@@ -1,5 +1,5 @@
 import sys
-from helper import readFile
+import helper
 
 filePath = 'dummyData.csv';
 database = open(filePath,"r");
