@@ -1,17 +1,19 @@
-filepath = 'h1b_datahubexport-2018.csv';
+filepath = 'dummyData.csv';
 database = open(filepath,"r");
 
+# method to get the names of companies within the input state
 def getCompaniesByState(state):
-   substring = "\"" + state + "\"";
-   for i in range(1000):
-       lineData = database.readline()
-       databaseInfo = lineData.split(",");
-       if(databaseInfo[8]==substring):
-         return databaseInfo[1];
+    substring = "\"" + state + "\"";
+    for i in range(60):
+        lineData = database.readline()
+        databaseInfo = lineData.split(",");
+        if(databaseInfo[8]==substring):
+            print(databaseInfo[1]);
 
+# method to get the statistics of the input company
 def getStatByCompanies(company):
-     substring = "\"" + company + "\"";
-     for i in range(1000):
+    substring = "\"" + company + "\"";
+    for i in range(60):
         lineData = database.readline()
         databaseInfo = lineData.split(",");
         if(databaseInfo[1]==substring):
@@ -27,18 +29,16 @@ def getStatByCompanies(company):
             print("City => " + databaseInfo[9]);
             print("ZIP => " + databaseInfo[10]);
 
+# method to get the names of companies with the input number of initial approval
 def getCompaniesByMinInitApproval(initApproval):
     substring = initApproval;
     database.readline();
-    for i in range(10000):
+    for i in range(60):
         lineData = database.readline()
         databaseInfo = lineData.split(",");
         if(int(databaseInfo[2].replace("\"",""))>=initApproval):
             print("Employer => " + databaseInfo[1]);
 
-
-         
-
-#getStatByCompanies("CVE TECHNOLOGY GROUP INC");
-# print(getCompaniesByState("SD"));
-#getCompaniesByMinInitApproval(2);
+# getStatByCompanies("FUNKTRONIC LABS");
+# print(getCompaniesByState("CA"));
+# getCompaniesByMinInitApproval(1);
