@@ -62,6 +62,7 @@ def getCompaniesByMinContinuingApproval(continuingApproval):
         for i in years:
          if(int(visaData[j][i]["Continuing Approvals"])>=continuingApproval):
             companies = companies + visaData[j][i]["Employer"] + " in Year " + visaData[j][i]["Fiscal Year"] + "\n";
+    return companies;
 
 def approvalRatesByCompany(company):
     approvalRates();
@@ -101,14 +102,6 @@ def top10VisaApprovalRatesByYear():
             print("City => " + databaseInfo[9]);
             print("ZIP => " + databaseInfo[10]);
 
-def getCompaniesByMinInitApproval(initApproval, target):
-    substring = initApproval;
-    database.readline();
-    for i in range(60):
-        lineData = database.readline()
-        databaseInfo = lineData.split(",");
-        if(int(databaseInfo[2].replace("\"",""))>=initApproval):
-            print("Employer => " + databaseInfo[1]);
 
 def initiateCommand(command, target):
     if "company" in command:
@@ -139,16 +132,7 @@ def readCommandLine():
     
     initiateCommand(command, target)
 
-# project.py dummyData.csv --company "Google"
-
-def getCompaniesByMinInitApproval(initApproval):
-    companies  = "";
-    years = {"2018","2019","2020"}
-    for j in visaData:
-        for i in years:
-            if(int(visaData[j][i]["Initial Approvals"]) >= initApproval):
-                companies = companies + visaData[j][i]["Employer"] + " in Year " + visaData[j][i]["Fiscal Year"] + "\n";
-    return companies;            
+# project.py dummyData.csv --company "Google"           
 
         
 #print(helper.readFile(filePath));
