@@ -56,13 +56,12 @@ def getCompaniesByMinInitApproval(initApproval):
     return companies; 
   
 def getCompaniesByMinContinuingApproval(continuingApproval):
-    #substring = continuingApproval;
-    database.readline();
-    for i in range(60):
-        lineData = database.readline();
-        databaseInfo = lineData.split(",");
-        if(int(databaseInfo[4].replace("\"",""))>=continuingApproval):
-            print("Employer => " + databaseInfo[1]);
+    companies = "";
+    years = {"2018","2019","2020"}
+    for j in visaData:
+        for i in years:
+         if(int(visaData[j][i]["Continuing Approvals"])>=continuingApproval):
+            companies = companies + visaData[j][i]["Employer"] + " in Year " + visaData[j][i]["Fiscal Year"] + "\n";
 
 def approvalRatesByCompany(company):
     approvalRates();
