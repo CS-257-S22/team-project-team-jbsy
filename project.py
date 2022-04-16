@@ -64,7 +64,7 @@ def readCommandLine():
     fileData = readFile(arg[1])
     visaData = fileData[0]
     mostRecentYear = fileData[1]
-    
+
     command = arg[2]
     target = arg[-1]
 
@@ -82,5 +82,5 @@ def readCommandLine():
 #print(getCompaniesByMinInitApproval(1));
 #print(getCompaniesByMinContinuingApproval(1));
 #top10VisaApprovalRatesByYear();
-approvalRatesByCompany("SAN JOSE STATE UNIVERSISTY");
+# approvalRatesByCompany("SAN JOSE STATE UNIVERSISTY");
 #approvalPercentage()
