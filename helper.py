@@ -79,7 +79,6 @@ def readFile(filePath):
         print(visaData["REDDY GI ASSOCIATES"]["2020"]["Initial Approvals"])
         return [visaData, mostRecentYear]
 
-
 # readFile("dummyData.csv")
 
 
