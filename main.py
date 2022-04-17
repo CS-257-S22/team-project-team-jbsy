@@ -13,15 +13,18 @@ def readCommandLine():
     visaData = fileData[0]
     mostRecentYear = fileData[1]
     command = arg[2]
-    # the last element in the command
-    target = arg[-1]
+    # the last elements in the command
+    target = ' '.join(arg[3:])
 
     # Todo: Verify if target relevant (company name exists, or column name exists, etc)
     initiateCommand({"command": command, "visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
     
 readCommandLine()
 
-# project.py dummyData.csv --company "Google"
 
 # Commandline example
-# python3 project.py dummyData.csv --company "Google"
+
+# python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
+# python3 main.py dummyData.csv --state CA
+# python3 main.py dummyData.csv --initApproval
+# python3 main.py dummyData.csv --continuingApproval

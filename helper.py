@@ -53,7 +53,41 @@ def printMinAndMaxData(data):
     for x in minCompanies:
         print(x["companyName"])
 
+def printCompanies(companiesList, state):
+    if len(companiesList) == 0:
+        print("No companies exist in a given state")
+    else:     
+        print("\nCompanies located in " + state +":\n")
 
+        companiesName = ""
+        for name in companiesList:
+            companiesName += name["companyName"] + "\n"
+        
+        print(companiesName)
+
+def printCompany(companyData):
+    if companyData == {}:
+        print("Company does not exist in dataset")
+    else:
+        print("\nStatistic for " +companyData["companyName"]+": \n")
+
+        statsForCompany = ""
+        companyStat = companyData["data"]
+
+        for year in companyStat:
+            statsForCompany = statsForCompany + "Fiscal Year => " + companyStat[year]["Fiscal Year"]  + "\n"
+            # statsForCompany = statsForCompany + "Employer => " + companyStat[year]["Employer"]  + "\n"
+            statsForCompany = statsForCompany + "Initial Approvals => " + companyStat[year]["Initial Approvals"] + "\n"
+            statsForCompany = statsForCompany + "Initial Denials => " + companyStat[year]["Initial Denials"] + "\n"
+            statsForCompany = statsForCompany + "Continuing Approvals => " + companyStat[year]["Continuing Approvals"] + "\n"
+            statsForCompany = statsForCompany + "Continuing Denials => " + companyStat[year]["Continuing Denials"] + "\n"
+            statsForCompany = statsForCompany + "NAICS => " + companyStat[year]["NAICS"] + "\n"
+            statsForCompany = statsForCompany + "Tax ID => " + companyStat[year]["Tax ID"] + "\n"
+            statsForCompany = statsForCompany + "State => " +companyStat[year]["State"] + "\n"
+            statsForCompany = statsForCompany + "City => " + companyStat[year]["City"] + "\n"
+            statsForCompany = statsForCompany + "ZIP => " + companyStat[year]["ZIP"] + "\n\n"
+        
+        print(statsForCompany)
 
 def readFile(filePath):
     # open file

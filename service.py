@@ -1,31 +1,30 @@
-from helper import printMinAndMaxData
+from helper import printMinAndMaxData, printCompanies, printCompany
 
-def getCompaniesByState(state):
-   substring = "\"" + state + "\"";
-   for i in range(60):
-       lineData = database.readline()
-       databaseInfo = lineData.split(",");
-       if(databaseInfo[8]==substring):
-         return databaseInfo[1];
+# method to get the names of companies within the input state
+def getCompaniesByState(arguments):
+   state = arguments["target"] 
+   visaData = arguments["visaData"]
+   mostRecentYear = arguments["mostRecentYear"]
 
-def getStatByCompanies(company):
-     substring = "\"" + company + "\"";
-     for i in range(60):
-        lineData = database.readline()
-        databaseInfo = lineData.split(",");
-        if(databaseInfo[1]==substring):
-            print("Fiscal Year => " + databaseInfo[0]);
-            print("Employer => " + databaseInfo[1]);
-            print("Initial Approvals => " + databaseInfo[2]);
-            print("Initial Denials => " + databaseInfo[3]);
-            print("Continuing Approvals => " + databaseInfo[4]);
-            print("Continuing Denials => " + databaseInfo[5]);
-            print("NAICS => " + databaseInfo[6]);
-            print("Tax ID => " + databaseInfo[7]);
-            print("State => " + databaseInfo[8]);
-            print("City => " + databaseInfo[9]);
-            print("ZIP => " + databaseInfo[10]);
+   companyList = []
 
+   for j in visaData:
+        if(visaData[j][mostRecentYear]["State"]==state):
+            companyList.append({"companyName": j, "data": visaData[j]})
+            
+   return companyList    
+        
+# method to get the statistics of the input company
+def getStatByCompany(arguments):
+    company = arguments["target"]
+    visaData = arguments["visaData"]
+
+    if company in visaData:
+        return {"companyName": company, "data": visaData[company]}
+    else:
+        return {}
+
+# method to get minimum and maximum of given column
 def getCompaniesByColumn(arguments):
     visaData = arguments["visaData"]
     columnName = arguments["columnName"]
@@ -96,11 +95,16 @@ def initiateCommand(argument):
     target = argument["target"]
     mostRecentYear = argument["mostRecentYear"]
     
+    # Give stat for a company
     if "company" in command:
-        print("company?")
-        #call getStatByCompanies
-    # elif "state" in command:
-    #     # call getCompaniesByState
+        company = getStatByCompany({"visaData": visaData, "target": target})
+        printCompany(company)
+
+    # Give companies in a state
+    elif "state" in command:
+        companyList = getCompaniesByState({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
+        printCompanies(companyList, target)
+
     # call minimum and maximum then print
     elif "initApproval" in command:
         result = getCompaniesByColumn({"visaData": visaData, "columnName": "Initial Approvals", "mostRecentYear": mostRecentYear})
@@ -109,6 +113,7 @@ def initiateCommand(argument):
         maxCompanies = result[1]
 
         printMinAndMaxData({"maxList": maxCompanies, "minList": minCompanies, "mostRecentYear": mostRecentYear, "columnName": "Initial Approvals"})
+    
     # call minimum and maximum then print
     elif "continuingApproval" in command:
         result = getCompaniesByColumn({"visaData": visaData, "columnName": "Continuing Approvals", "mostRecentYear": mostRecentYear})
