@@ -54,6 +54,21 @@ def printMinAndMaxData(data):
     for x in minCompanies:
         print(x["companyName"])
 
+ #prints list of companies with initial approval above a certian threshold
+def printMinInitApproval(companiesList):
+    initApproval = "3";
+    if len(companiesList) == 0:
+        print("No companies exist with Initial Approval above " + initApproval)
+    else:     
+        print("\nCompanies with minimum Initial Approval of " + initApproval +":\n")
+
+        companiesName = ""
+        for name in companiesList:
+            companiesName += name["companyName"] + "\n"
+        
+        print(companiesName)
+
+
 # Print list of companies in a state
 def printCompaniesInState(companiesList, state):
     if len(companiesList) == 0:
