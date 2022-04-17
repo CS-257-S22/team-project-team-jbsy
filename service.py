@@ -1,4 +1,4 @@
-from helper import printMinAndMaxData, printCompanies, printCompany
+from helper import printMinAndMaxData, printCompaniesInState, printCompany
 
 # method to get the names of companies within the input state
 def getCompaniesByState(arguments):
@@ -8,6 +8,7 @@ def getCompaniesByState(arguments):
 
    companyList = []
 
+   # add companies in a state to a list
    for j in visaData:
         if(visaData[j][mostRecentYear]["State"]==state):
             companyList.append({"companyName": j, "data": visaData[j]})
@@ -19,6 +20,7 @@ def getStatByCompany(arguments):
     company = arguments["target"]
     visaData = arguments["visaData"]
 
+    # Find and return company with the matching name
     if company in visaData:
         return {"companyName": company, "data": visaData[company]}
     else:
@@ -103,7 +105,7 @@ def initiateCommand(argument):
     # Give companies in a state
     elif "state" in command:
         companyList = getCompaniesByState({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
-        printCompanies(companyList, target)
+        printCompaniesInState(companyList, target)
 
     # call minimum and maximum then print
     elif "initApproval" in command:

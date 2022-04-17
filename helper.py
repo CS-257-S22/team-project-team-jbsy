@@ -1,5 +1,6 @@
 import csv
 
+# Returns column name by the index of array
 def getColumnNameByIndex(index):
     if index == 0:
         return "Fiscal Year"
@@ -24,8 +25,8 @@ def getColumnNameByIndex(index):
     else:
         return "ZIP"
 
+# Creates a formatted arrary with data by fiscal year
 def createDataByYear(lineData):
-
     # Which year is it
     fiscalYear = lineData[0]
 
@@ -35,10 +36,10 @@ def createDataByYear(lineData):
         columnName = getColumnNameByIndex(i)
         dataByYear[columnName] = lineData[i]
 
-    
     # Return a list that has data by fiscal year
     return [fiscalYear, dataByYear]
 
+# Prints list of companies with minimum and maximum column value
 def printMinAndMaxData(data):
     maxCompanies = data["maxList"]
     minCompanies = data["minList"]
@@ -53,7 +54,8 @@ def printMinAndMaxData(data):
     for x in minCompanies:
         print(x["companyName"])
 
-def printCompanies(companiesList, state):
+# Print list of companies in a state
+def printCompaniesInState(companiesList, state):
     if len(companiesList) == 0:
         print("No companies exist in a given state")
     else:     
@@ -65,6 +67,7 @@ def printCompanies(companiesList, state):
         
         print(companiesName)
 
+# Print statistics of a company
 def printCompany(companyData):
     if companyData == {}:
         print("Company does not exist in dataset")
@@ -89,6 +92,7 @@ def printCompany(companyData):
         
         print(statsForCompany)
 
+# Reads a csv file and organizes data
 def readFile(filePath):
     # open file
     with open(filePath, 'r') as file:
