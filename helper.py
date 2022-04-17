@@ -29,6 +29,11 @@ def getColumnNameByIndex(index):
 
 # Creates a formatted arrary with data by fiscal year
 def createDataByYear(lineData):
+
+    # If no line is read, return an empty list
+    if len(lineData) == 0:
+        return []
+
     # Which year is it
     fiscalYear = lineData[0]
 
@@ -41,27 +46,12 @@ def createDataByYear(lineData):
     # Return a list that has data by fiscal year
     return [fiscalYear, dataByYear]
 
-# Prints list of companies with minimum and maximum column value
-def printMinAndMaxData(data):
-    maxCompanies = data["maxList"]
-    minCompanies = data["minList"]
-    mostRecentYear = data["mostRecentYear"]
-    columnName = data["columnName"]
-
-    print("\nHere is the list of Companies with Maximum Number of " + columnName + " with " + columnName.lower() + " of " + maxCompanies[0]["data"][mostRecentYear][columnName] + ":\n")
-    for x in maxCompanies:
-        print(x["companyName"])
-
-    print("\nHere is the list of Companies with Minimum Number of " + columnName + " with " + columnName.lower() +" of " + minCompanies[0]["data"][mostRecentYear][columnName] + ":\n")
-    for x in minCompanies:
-        print(x["companyName"])
-
  #prints list of companies with initial approval above a certian threshold
 def printMinInitApproval(data):
     companiesList = data["companiesList"]
     initApproval = data["target"]
     mostRecentYear = data["mostRecentYear"]
-    
+
     if len(companiesList) == 0:
         print("No companies exist with Initial Approval above " + initApproval)
     else:     
@@ -72,7 +62,6 @@ def printMinInitApproval(data):
             companiesName += name["companyName"] + "\n"
         
         print(companiesName)
-
 
 # Print list of companies in a state
 def printCompaniesInState(companiesList, state):
@@ -137,6 +126,10 @@ def readFile(filePath):
                     mostRecentYear = fiscalYear
 
                 companyData = createDataByYear(line)
+
+                # If no data, continue
+                if len(companyData) == 0:
+                    continue 
 
                 fiscalYear = companyData[0]
                 companyDataByYear = companyData[1]

@@ -1,4 +1,4 @@
-from helper import printMinAndMaxData, printCompaniesInState, printCompany, printMinInitApproval
+from helper import printCompaniesInState, printCompany, printMinInitApproval
 
 # method to get the names of companies within the input state
 def getCompaniesByState(arguments):
@@ -25,62 +25,25 @@ def getStatByCompany(arguments):
         return {"companyName": company, "data": visaData[company]}
     else:
         return {}
-# method to get companies with a minimum threshold initial approval
 
+# method to get companies with a minimum threshold initial approval
 def getCompaniesByMinInitApproval(arguments):
+    if "target" not in arguments or "visaData" not in arguments or "mostRecentYear" not in arguments:
+        print("Need all the data in argument")
+        # raise ValueError
+        return []
+        
+
     initApproval  = arguments["target"]
     visaData = arguments["visaData"]
     mostRecentYear = arguments["mostRecentYear"]
+
     companyList = []
     for j in visaData:
         if(int(visaData[j][mostRecentYear]["Initial Approvals"]) >= int(initApproval)):
             #  companyList.append(visaData[j][mostRecentYear]["Employer"] + " in Year " + visaData[j][mostRecentYear]["Fiscal Year"] + "\n");
             companyList.append({"companyName": j, "data": visaData[j][mostRecentYear]})        
     return companyList;      
-
-# method to get minimum and maximum of given column
-def getCompaniesByColumn(arguments):
-    visaData = arguments["visaData"]
-    columnName = arguments["columnName"]
-    mostRecentYear = arguments["mostRecentYear"]
-
-    listOfMinCompanies = []
-    listOfMaxCompanies = []
-
-    for companyName in visaData:
-        # First company in data
-        if len(listOfMinCompanies) == 0 and len(listOfMaxCompanies) == 0:
-            listOfMinCompanies.append({"companyName": companyName, "data": visaData[companyName]})
-            listOfMaxCompanies.append({"companyName": companyName, "data": visaData[companyName]})
-        else:
-            # first company in min and max list
-            targetMinCompany = listOfMinCompanies[0]
-            targetMaxCompany = listOfMaxCompanies[0]
-
-            # get value at column
-            targetMin = targetMinCompany["data"][mostRecentYear][columnName]
-            targetMax = targetMaxCompany["data"][mostRecentYear][columnName]
-            currValue = visaData[companyName][mostRecentYear][columnName]
-
-            # For minimum
-            # If less, replace
-            if int(currValue) < int(targetMin):
-                listOfMinCompanies = []
-                listOfMinCompanies.append({"companyName": companyName, "data": visaData[companyName]})
-            # If the same, append to the list
-            elif int(currValue) == int(targetMin):
-                listOfMinCompanies.append({"companyName": companyName, "data": visaData[companyName]})
-            
-            # For maximum
-            # If more, replace
-            if int(currValue) > int(targetMax):
-                listOfMaxCompanies = []
-                listOfMaxCompanies.append({"companyName": companyName, "data": visaData[companyName]})
-            # If the same, append to the list
-            elif int(currValue) == int(targetMax):
-                listOfMaxCompanies.append({"companyName": companyName, "data": visaData[companyName]})
-            
-    return [listOfMinCompanies, listOfMaxCompanies]
 
 def approvalRatesByCompany(company):
     approvalRates();
