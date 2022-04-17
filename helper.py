@@ -57,8 +57,11 @@ def printMinAndMaxData(data):
         print(x["companyName"])
 
  #prints list of companies with initial approval above a certian threshold
-def printMinInitApproval(companiesList):
-    initApproval = "3";
+def printMinInitApproval(data):
+    companiesList = data["companiesList"]
+    initApproval = data["target"]
+    mostRecentYear = data["mostRecentYear"]
+    
     if len(companiesList) == 0:
         print("No companies exist with Initial Approval above " + initApproval)
     else:     

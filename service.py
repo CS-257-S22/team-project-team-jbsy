@@ -28,13 +28,14 @@ def getStatByCompany(arguments):
 # method to get companies with a minimum threshold initial approval
 
 def getCompaniesByMinInitApproval(arguments):
-    initApproval  = arguments["target"];
+    initApproval  = arguments["target"]
     visaData = arguments["visaData"]
     mostRecentYear = arguments["mostRecentYear"]
     companyList = []
     for j in visaData:
         if(int(visaData[j][mostRecentYear]["Initial Approvals"]) >= int(initApproval)):
-             companyList.append(visaData[j][mostRecentYear]["Employer"] + " in Year " + visaData[j][mostRecentYear]["Fiscal Year"] + "\n");
+            #  companyList.append(visaData[j][mostRecentYear]["Employer"] + " in Year " + visaData[j][mostRecentYear]["Fiscal Year"] + "\n");
+            companyList.append({"companyName": j, "data": visaData[j][mostRecentYear]})        
     return companyList;      
 
 # method to get minimum and maximum of given column
@@ -126,12 +127,13 @@ def initiateCommand(argument):
         maxCompanies = result[1]
 
         printMinAndMaxData({"maxList": maxCompanies, "minList": minCompanies, "mostRecentYear": mostRecentYear, "columnName": "Initial Approvals"})
+    
     elif "minInitApproval" in command:
         result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
 
-        companyList = result[0]
+        # companyList = result[0]
 
-        printMinInitApproval(companyList);
+        printMinInitApproval({"companiesList":result, "target": target, "mostRecentYear": mostRecentYear})
     
     # call minimum and maximum then print
     elif "continuingApproval" in command:
