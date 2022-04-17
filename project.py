@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 filepath = 'dummyData.csv';
-=======
-import sys
-from helper import readFile
-
-filepath = 'h1b_datahubexport-2018.csv';
->>>>>>> 10e59e15fb3469bf2e23a9acda989760ccdaa3a4
 database = open(filepath,"r");
 database.readline();
 approvalPercentages = [];
@@ -36,13 +29,8 @@ def getStatByCompanies(company):
             print("City => " + databaseInfo[9]);
             print("ZIP => " + databaseInfo[10]);
 
-<<<<<<< HEAD
-def getCompaniesByMinInitApproval(initApproval):
-    #substring = initApproval;
-=======
 def getCompaniesByMinInitApproval(initApproval, target):
     substring = initApproval;
->>>>>>> 10e59e15fb3469bf2e23a9acda989760ccdaa3a4
     database.readline();
     for i in range(60):
         lineData = database.readline()
@@ -50,7 +38,6 @@ def getCompaniesByMinInitApproval(initApproval, target):
         if(int(databaseInfo[2].replace("\"",""))>=initApproval):
             print("Employer => " + databaseInfo[1]);
 
-<<<<<<< HEAD
 def getCompaniesByMinContinuingApproval(continuingApproval):
     #substring = continuingApproval;
     database.readline();
@@ -81,7 +68,6 @@ def top10VisaApprovalRatesByYear():
     approvalPercentages.sort(reverse=True);
     for i in range(10):
      print(approvalPercentages[i][1] + " => " + str(approvalPercentages[i][0]));
-=======
 def initiateCommand(command, target):
     if "company" in command:
         #call getStatByCompanies
@@ -117,7 +103,6 @@ def readCommandLine():
 
 # Commandline example
 # python3 project.py dummyData.csv --company "Google"
->>>>>>> 10e59e15fb3469bf2e23a9acda989760ccdaa3a4
 
 #getStatByCompanies("CVE TECHNOLOGY GROUP INC");
 #print(getCompaniesByState("SD"));
