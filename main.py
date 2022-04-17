@@ -18,9 +18,10 @@ def readCommandLine():
     # the last elements in the command, either the target value we want to reach
     target = ' '.join(arg[3:])
 
+
     # Todo: Verify if target relevant (company name exists, or column name exists, etc)
     initiateCommand({"command": command, "visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
-    
+   
 readCommandLine()
 
 
