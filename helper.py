@@ -22,8 +22,10 @@ def getColumnNameByIndex(index):
         return "State"
     elif index == 9:
         return "City"
-    else:
+    elif index == 10:
         return "ZIP"
+    else:
+        return ""
 
 # Creates a formatted arrary with data by fiscal year
 def createDataByYear(lineData):
