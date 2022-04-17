@@ -1,7 +1,8 @@
 import unittest
 import helper
+from service import getCompaniesByMinInitApproval
 
-class TestHelper(unittest.TestCase):
+class UnitTestHelper(unittest.TestCase):
     
     # Test on getting column name by index
     def testGetColumnNameByIndex(self):
@@ -16,10 +17,15 @@ class TestHelper(unittest.TestCase):
         self.assertEqual(helper.getColumnNameByIndex(8), "State")
         self.assertEqual(helper.getColumnNameByIndex(9), "City")
         self.assertEqual(helper.getColumnNameByIndex(10), "ZIP")
+        # Edge Case
         self.assertEqual(helper.getColumnNameByIndex(11), "")
 
     # Test on creating company data by year
     def testCreateDataByYear(self):
+
+        # Edge Case to handle empty list
+        self.assertEqual(helper.createDataByYear([]), [])
+
         testLine = ['2018', 'REDDY GI ASSOCIATES', '0', '0', '0', '1', '99', '', 'AZ', 'MESA', '85209']
         checkResult = helper.createDataByYear(testLine)
 
@@ -28,23 +34,23 @@ class TestHelper(unittest.TestCase):
 
         fiscalYear = checkResult[0]
 
+        # Check if the fiscal year is correct 
+        self.assertEqual(fiscalYear, "2018")
+
         companyDataByYear = checkResult[1]
         resultWeWant = {'City': 'MESA', 'Continuing Approvals': '0', 'Continuing Denials': '1', 'Employer': 'REDDY GI ASSOCIATES', 
         'Fiscal Year': '2018','Initial Approvals': '0','Initial Denials': '0','NAICS': '99','State': 'AZ','Tax ID': '','ZIP': '85209'}
 
-        # Check if the fiscal year is correct 
-        self.assertEqual(fiscalYear, "2018")
-
         # Check if the function created the dictionary we want
         self.assertDictEqual(companyDataByYear, resultWeWant)
 
-    
+    # Make Test for Print
 
     # Test on reading csv file
     def testReadFile(self):
         dummyData = "dummyData.csv"
 
-        # Check if the function returns an error when the file is not found??
+        # Edge Case: Check if the function returns an error when the file is not found??
 
         readFileResult = helper.readFile(dummyData)
         mostRecentYear = readFileResult[1]
@@ -69,7 +75,41 @@ class TestHelper(unittest.TestCase):
         
         self.assertDictEqual(testOneVisaData["2018"], dataWeWant)
 
+class UnitTestService(unittest.TestCase):
 
+    def testGetCompaniesByMinInitApproval(self):
+        dummyData = "dummyData.csv"
+        readFileResult = helper.readFile(dummyData)
+        mostRecentYear = readFileResult[1]
+        testVisaData = readFileResult[0]
+        testArgument = {"target": "2", "mostRecentYear": mostRecentYear, "visaData": testVisaData}
+
+        # Edge Case: return an empty list if all the data in arguments are not passed in
+        # self.assertEqual(getCompaniesByMinInitApproval({}), ValueError)
+        self.assertEqual(getCompaniesByMinInitApproval({}), [])
+
+        testResult = getCompaniesByMinInitApproval(testArgument)
+
+        # Todo: Check if the function is returning a list
+
+        # Return a non-empty list 
+        self.assertNotEqual(len(testResult), 0)
+
+        testCompanyInList = testResult[0]
+
+        # Check if necessary elements are in company
+        self.assertIn("companyName", testCompanyInList)
+        self.assertIn("data", testCompanyInList)
+
+        testCompanyName = testCompanyInList["companyName"]
+        testCompanyData = testCompanyInList["data"]
+
+        #Check Company name
+        self.assertEqual(testCompanyName, "REDDY GI ASSOCIATES")
+
+        #Check Company Data
+        dataWeWant = {'City': 'MESA','Continuing Approvals': '2','Continuing Denials': '1','Employer': 'REDDY GI ASSOCIATES','Fiscal Year': '2020','Initial Approvals': '5','Initial Denials': '0','NAICS': '93','State': 'AZ','Tax ID': '','ZIP': '85209'}
+        self.assertDictEqual(testCompanyData, dataWeWant)
 
         
 
