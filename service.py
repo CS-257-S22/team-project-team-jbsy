@@ -1,4 +1,6 @@
-from helper import printMinAndMaxData, printCompaniesInState, printCompany
+from helper import printMinAndMaxData, printCompaniesInState, printCompany, readFile
+
+approvalPercentages = []
 
 # method to get the names of companies within the input state
 def getCompaniesByState(arguments):
@@ -75,6 +77,8 @@ def approvalRatesByCompany(company):
     for i in range(60):
         if (approvalPercentages[i][1]==company):
             print(str(approvalPercentages[i][0]));
+
+approvalRatesByCompany("REDDY GI ASSOCIATES")
 
 def approvalRates():
     for i in range(60):
