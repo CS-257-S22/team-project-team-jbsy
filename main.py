@@ -12,8 +12,12 @@ def readCommandLine():
 
     # Check if the command includes enough arguments
     if not commandLen(arg):
-        print("Invalid Command : Need more arguments")
-        return
+        # command line to run test
+        if len(arg) == 1:
+            return
+        else:
+            print("Invalid Command : Need more arguments")
+            return
 
 
     fileData = readFile(arg[1])
