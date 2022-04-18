@@ -13,7 +13,7 @@ def getCompaniesByState(arguments):
         if(visaData[j][mostRecentYear]["State"]==state):
             companyList.append({"companyName": j, "data": visaData[j]})
             
-   return companyList    
+   return companyList  
         
 # method to get the statistics of the input company
 def getStatByCompany(arguments):
