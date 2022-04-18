@@ -36,15 +36,15 @@ PULMONICS PLUS PLLC
 
 -----------------------------
 
-## 2. Getting a detailed H1b-Visa Information for a specific Company
+## 2. Getting a detailed H-1b Visa Information for a specific Company
 
 ### Syntax: 
 
-* python3 main.py dummyData.csv --company "comapny name"
+* python3 main.py dummyData.csv --company "company name"
 ### Parameters
 * dummyData.csv is the database the contains all the H1-b visa information that is used by the program
 
-* "comapany name" can be replaced by the user with a specific company name to obtain information about H1b-visa for that comp
+* "company name" can be replaced by the user with a specific company name to obtain information about H1b-visa for that comp
 
 ### Example:
 ---------------------------------
@@ -99,8 +99,7 @@ ZIP => 20036
 
 ### Example:
 ---------------------------------
-$ python3 main.py dummyData.csv --minInitAppro
-val 3
+$ python3 main.py dummyData.csv --minInitApproval 3
 
 Companies with minimum Initial Approval of 3:
 

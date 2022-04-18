@@ -1,10 +1,14 @@
+
+from io import StringIO
 import unittest
+from unittest.mock import patch
 import helper
+from main import initiateCommand
 from service import getCompaniesByMinInitApproval
 
 class UnitTestHelper(unittest.TestCase):
     
-    # Test on getting column name by index
+    # Unit Test on getting column name by index
     def testGetColumnNameByIndex(self):
         self.assertEqual(helper.getColumnNameByIndex(0), "Fiscal Year")
         self.assertEqual(helper.getColumnNameByIndex(1), "Employer")
@@ -20,7 +24,7 @@ class UnitTestHelper(unittest.TestCase):
         # Edge Case
         self.assertEqual(helper.getColumnNameByIndex(11), "")
 
-    # Test on creating company data by year
+    # Unit Test on creating company data by year
     def testCreateDataByYear(self):
 
         # Edge Case to handle empty list
@@ -44,9 +48,72 @@ class UnitTestHelper(unittest.TestCase):
         # Check if the function created the dictionary we want
         self.assertDictEqual(companyDataByYear, resultWeWant)
 
-    # Make Test for Print
+    # Unit Test on printing list of companies with minimum initial approval
+    def testPrintMinInitApproval(self):
+        # When there are no companies
+        with patch('sys.stdout', new = StringIO()) as fake_out1:
+            helper.printMinInitApproval({"companiesList": [], "target": "2"})
 
-    # Test on reading csv file
+            # Check if it prints the wanted result
+            self.assertEqual("No companies exist with Initial Approval above 2\n", fake_out1.getvalue())
+
+        # When there are list of companies
+        with patch('sys.stdout', new = StringIO()) as fake_out2:            
+            helper.printMinInitApproval({"companiesList": [{"companyName": "Carleton College", "data": {}}, {"companyName": "St.Olaf", "data": {}}], "target": "2"})
+
+            # Check if it prints the wanted result
+            self.assertIn("Carleton College", fake_out2.getvalue())
+            self.assertIn("St.Olaf", fake_out2.getvalue())
+            self.assertIn("\nCompanies with minimum Initial Approval of 2", fake_out2.getvalue())
+
+    # Unit Test on printing a company statistic
+    def testPrintCompany(self):
+        # When there is no company
+        with patch('sys.stdout', new = StringIO()) as fake_out1:
+            helper.printCompany({})
+
+            # Check if it prints the wanted result
+            self.assertEqual("Company does not exist in dataset\n", fake_out1.getvalue())
+
+        testCompanyData = {"companyName": 'REDDY GI ASSOCIATES', 'data': {"2020" : {'Fiscal Year': '2020', 'Employer': 'REDDY GI ASSOCIATES', 'Initial Approvals': '5', 'Initial Denials': '0', 'Continuing Approvals': '2', 'Continuing Denials': '1', 'NAICS': '93', 'Tax ID': '', 'State': 'AZ', 'City': 'MESA', 'ZIP': '85209'}}}
+
+        # When there is a company
+        with patch('sys.stdout', new = StringIO()) as fake_out2:            
+            helper.printCompany(testCompanyData)
+
+            # Check if it prints the wanted result
+            self.assertIn("Statistic for REDDY GI ASSOCIATES:", fake_out2.getvalue())
+            self.assertIn("Fiscal Year => 2020", fake_out2.getvalue())
+            self.assertIn("Initial Approvals => 5", fake_out2.getvalue())
+            self.assertIn("Initial Denials => 0", fake_out2.getvalue())
+            self.assertIn("Continuing Approvals => 2", fake_out2.getvalue())
+            self.assertIn("Continuing Denials => 1", fake_out2.getvalue())
+            self.assertIn("NAICS => 93", fake_out2.getvalue())
+            self.assertIn("Tax ID =>", fake_out2.getvalue())
+            self.assertIn("State => AZ", fake_out2.getvalue())
+            self.assertIn("City => MESA", fake_out2.getvalue())
+            self.assertIn("ZIP => 85209", fake_out2.getvalue())
+
+    # Unit Test on printing list of companies in State
+    def testPrintCompaniesInState(self):
+
+        # When there are no companies
+        with patch('sys.stdout', new = StringIO()) as fake_out1:
+            helper.printCompaniesInState([], "CA")
+
+            # Check if it prints the wanted result
+            self.assertEqual("No companies exist in a given state\n", fake_out1.getvalue())
+
+        # When there are list of companies
+        with patch('sys.stdout', new = StringIO()) as fake_out2:            
+            helper.printCompaniesInState([{"companyName": "Carleton College", "data": {}}, {"companyName": "St.Olaf", "data": {}}], "MN")
+
+            # Check if it prints the wanted result
+            self.assertIn("Carleton College", fake_out2.getvalue())
+            self.assertIn("St.Olaf", fake_out2.getvalue())
+            self.assertIn("Companies located in MN:", fake_out2.getvalue())
+
+    # Unit Test on reading csv file
     def testReadFile(self):
         dummyData = "dummyData.csv"
 
@@ -77,6 +144,7 @@ class UnitTestHelper(unittest.TestCase):
 
 class UnitTestService(unittest.TestCase):
 
+    # Unit Test for MinInitApproval
     def testGetCompaniesByMinInitApproval(self):
         dummyData = "dummyData.csv"
         readFileResult = helper.readFile(dummyData)
@@ -90,7 +158,8 @@ class UnitTestService(unittest.TestCase):
 
         testResult = getCompaniesByMinInitApproval(testArgument)
 
-        # Todo: Check if the function is returning a list
+        # Check if the function is returning a list
+        self.assertIsInstance(testResult, list)
 
         # Return a non-empty list 
         self.assertNotEqual(len(testResult), 0)
@@ -111,7 +180,29 @@ class UnitTestService(unittest.TestCase):
         dataWeWant = {'City': 'MESA','Continuing Approvals': '2','Continuing Denials': '1','Employer': 'REDDY GI ASSOCIATES','Fiscal Year': '2020','Initial Approvals': '5','Initial Denials': '0','NAICS': '93','State': 'AZ','Tax ID': '','ZIP': '85209'}
         self.assertDictEqual(testCompanyData, dataWeWant)
 
-        
+class IntegrationTestService(unittest.TestCase):
+
+    # Integration Test for MinInitApproval
+    def integrationMinInitApproval(self):
+        testCommand = "--minInitApproval"
+        testTarget = "2"
+        dummyData = "dummyData.csv"
+        readFileResult = helper.readFile(dummyData)
+        mostRecentYear = readFileResult[1]
+        testVisaData = readFileResult[0]
+        testArgument = {"command":testCommand, "target": testTarget, "mostRecentYear": mostRecentYear, "visaData": testVisaData}
+
+        # check Print
+        expectedCompany1 = "EMERALD HEALTH PHARMACEUTICALS INC"
+        expectedCompany2 = "STATE OF CA SECY OF STATE S OFFICE"
+
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            # Initate Command
+            initiateCommand(testArgument)
+
+            # Check if it prints the wanted result
+            self.assertIn(expectedCompany1, fake_out.getvalue())
+            self.assertIn(expectedCompany2, fake_out.getvalue())
 
 
 

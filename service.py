@@ -1,7 +1,6 @@
 from helper import printCompaniesInState, printCompany, printMinInitApproval, printUsage
 
 # method to get the names of companies within the input state
-
 def getCompaniesByState(arguments):
     
    state = arguments["target"] 
@@ -65,8 +64,10 @@ def initiateCommand(argument):
     elif "minInitApproval" in command:
         result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
         printMinInitApproval({"companiesList":result, "target": target, "mostRecentYear": mostRecentYear})
+    
     elif "usage" in command:
-        printUsage();
+        printUsage()
+
     else:
         print("Please input a command that is valid\n")
 
