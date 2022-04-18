@@ -1,7 +1,15 @@
 import csv
 
-# Returns column name by the index of array
 def getColumnNameByIndex(index):
+    """Returns column name by the index of array
+
+    Arguments:
+    index -- the index of the column array (integer)
+
+    Returns:
+    string -- the relevant column name
+    """
+
     if index == 0:
         return "Fiscal Year"
     elif index == 1:
@@ -27,8 +35,15 @@ def getColumnNameByIndex(index):
     else:
         return ""
 
-# Creates a formatted arrary with data by fiscal year
 def createDataByYear(lineData):
+    """Creates a formatted arrary with data by fiscal year
+
+    Arguments:
+    lineData -- data that holds yearly data (list)
+
+    Returns:
+    list -- a list that has fiscal year as first element (string) and data of that fiscal year as second element (dict)
+    """
 
     # If no line is read, return an empty list
     if len(lineData) == 0:
@@ -47,11 +62,16 @@ def createDataByYear(lineData):
     return [fiscalYear, dataByYear]
 
 def printUsage():
+   """Print usage document""" 
    usageText = open("usage.txt","r")
    print(usageText.read())
 
-#prints list of companies with initial approval above a certian threshold
 def printMinInitApproval(data):
+    """Prints list of companies with initial approval above a certian threshold
+
+    Arguments:
+    data -- list of companies (list)
+    """
     companiesList = data["companiesList"]
     initApproval = data["target"]
     # mostRecentYear = data["mostRecentYear"]
@@ -67,8 +87,14 @@ def printMinInitApproval(data):
         
         print(companiesName)
 
-# Print list of companies in a state
 def printCompaniesInState(companiesList, state):
+    """Print list of companies in a state
+
+    Arguments:
+    companiesList -- list of companies (list)
+    state -- target state user put in (string)
+    """
+    
     if len(companiesList) == 0:
         print("No companies exist in a given state")
     else:     
@@ -80,8 +106,14 @@ def printCompaniesInState(companiesList, state):
         
         print(companiesName)
 
-# Print statistics of a company
 def printCompany(companyData):
+    """Print statistics of a company
+
+    Arguments:
+    companyData -- statistic of a company (dict)
+    """
+
+
     if companyData == {}:
         print("Company does not exist in dataset")
     else:
@@ -105,47 +137,58 @@ def printCompany(companyData):
         
         print(statsForCompany)
 
-# Reads a csv file and organizes data
 def readFile(filePath):
+    """Reads a csv file and organizes data
+
+    Arguments:
+    filePath -- file path of a csv file to read (string)
+
+    Returns:
+    list -- a list that has visa data as first element (dict) and the most recent year as second element (string)
+    """
+    
+    # Catch possible file open error
+    try:
     # open file
-    with open(filePath, 'r') as file:
-        reader = csv.reader(file)
-        lineCount = 0
-        mostRecentYear = "2018"
+        with open(filePath, 'r') as file:
+            reader = csv.reader(file)
+            lineCount = 0
+            mostRecentYear = "2018"
 
-        # Dictionary for Overall Data
-        visaData = {}
+            # Dictionary for Overall Data
+            visaData = {}
 
-        for line in reader:
-            # Skip First line in csv file
-            if lineCount == 0:
-            # column = line.split(",")
-                lineCount+=1
-            else:
-                lineCount+=1
-                companyName = line[1]
-                fiscalYear = line[0]
-
-                if int(mostRecentYear) < int(fiscalYear):
-                    mostRecentYear = fiscalYear
-
-                companyData = createDataByYear(line)
-
-                # If no data, continue
-                if len(companyData) == 0:
-                    continue 
-
-                fiscalYear = companyData[0]
-                companyDataByYear = companyData[1]
-
-                if companyName not in visaData:
-                    visaData[companyName] = {fiscalYear: companyDataByYear}
+            for line in reader:
+                # Skip First line in csv file
+                if lineCount == 0:
+                # column = line.split(",")
+                    lineCount+=1
                 else:
-                    visaData[companyName][fiscalYear] = companyDataByYear
+                    lineCount+=1
+                    companyName = line[1]
+                    fiscalYear = line[0]
 
-        # print(visaData["REDDY GI ASSOCIATES"])
-        # printData(visaData)
-        return [visaData, mostRecentYear]
+                    if int(mostRecentYear) < int(fiscalYear):
+                        mostRecentYear = fiscalYear
+
+                    companyData = createDataByYear(line)
+
+                    # If no data, continue
+                    if len(companyData) == 0:
+                        continue 
+
+                    fiscalYear = companyData[0]
+                    companyDataByYear = companyData[1]
+
+                    if companyName not in visaData:
+                        visaData[companyName] = {fiscalYear: companyDataByYear}
+                    else:
+                        visaData[companyName][fiscalYear] = companyDataByYear
+
+            return [visaData, mostRecentYear]
+    except:
+        print("Please input a valid file")
+        return False
 
 
 
