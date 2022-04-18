@@ -11,23 +11,27 @@ class TestSOMETHING(unittest.TestCase):
        # self.assertEqual(test("7CINFO COM INC"),"1");
        # self.assertEqual(test("ACORNS GROW INCORPORATED"),"0");
 
+# Class to test the input of the user.
+# written by Sunny
+class TestInput(unittest.TestCase):
     # Test whether the input is in an integer
-    def inputYear_Valid(self, input):
-        self.assertTrue(type(input) == int)
+    def inputYear_Valid(self):
+        self.assertTrue(type(self) == int)
         
     # Test whether the input is in a string
-    def inputCompanyName_Valid(self, input):
-        self.assertTrue(type(input) == str)
+    def inputCompanyName_Valid(self):
+        self.assertTrue(type(self) == str)
 
-    # Test whether the input exists
-    def existInput(self, input):
-        self.assertNotEqual(input == "")
+    # Test whether column name input exists in the data
+    def existCol(self):
+        colName = ["Fiscal Year", "Employer", "Initial Approvals", "Initial Denials", "Continuing Approvals", "Continuing Denials", "NAICS", "Tax ID", "State", "City", "ZIP"] 
+        self.assertIn(colName)
 
-    # Test whether column name exists in the data
-    def existCol(self, input, filename):
-        self.assertTrue(verification.columnTest(input,filename))
+    # Test whether the input is empty or not (Edge Case)
+    def existInput(self):
+        self.assertNotEqual(self, "")
+
 
 if __name__ == '__main__':
-      print(service.getCompaniesByState("SD"));
-      unittest.main()
+    unittest.main()
 
