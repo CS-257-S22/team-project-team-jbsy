@@ -38,9 +38,11 @@ def columnExist(input, filename):
 # Check if command includes integer
 def containsNumber(value):
     for character in value:
-        if character.isdigit():
-            return True
-    return False
+        if character == " ":
+            return False
+        elif character.isdigit() is False:
+            return False
+    return True
 
 # Check if command line has the correct length
 def commandLen(arg):
