@@ -56,7 +56,6 @@ def inputValid(input, command):
         return True
     elif (("state" in command) and (type(input) == str)):
         return True
-    # Todo: Create Error when "python3 main.py dummyData.csv --minInitApproval 5 7"
     elif (("minInitApproval" in command) and containsNumber(input)):
         return True
     else:
