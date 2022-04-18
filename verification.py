@@ -53,7 +53,8 @@ def columnExist(input, filename):
     else:
         return False
 
-def containsNumber(value):
+# Check if command only includes an integer
+def containsNum(value):
     """Check if command includes string integer when necessary
 
     Arguments:
@@ -61,7 +62,8 @@ def containsNumber(value):
 
     Boolean -- whether the command has integer string or not
     """
-
+    if type(value) is not str:
+        return False
     for character in value:
         if character == " ":
             return False
@@ -77,27 +79,29 @@ def commandLen(arg):
 
     Boolean -- whether the command line is long enough or not
     """
-
+    if type(arg) is not list:
+        return False
     if len(arg) >= 4:
         return True
     else:
         return False
 
-def inputValid(input, command):
+# Check if target is valid (int/str depending on the commandline)
+
+def inputValid(target, command):
     """Check if input is valid (int/str depending on the commandline)
 
     Arguments:
-    input -- target value user put in (string)
+    target -- target value user put in (string)
     command -- command keyword user put in (string)
 
     Boolean -- whether the input command is valid or not
     """
-
-    if (("company" in command) and (type(input) == str)):
+    if (("company" in command) and (type(target) == str)):
         return True
-    elif (("state" in command) and (type(input) == str)):
+    elif (("state" in command) and (type(target) == str)):
         return True
-    elif (("minInitApproval" in command) and containsNumber(input)):
+    elif (("minInitApproval" in command) and containsNum(target)):
         return True
     else:
         return False
