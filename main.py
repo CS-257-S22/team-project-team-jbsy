@@ -1,7 +1,7 @@
 import sys
 from helper import readFile 
 from service import initiateCommand
-from verification import columnTest, companyExist, commandLen, inputValid
+from verification import columnExist, companyExist, commandLen, inputValid
 
 # main function that reads command line
 def readCommandLine():
@@ -30,7 +30,7 @@ def readCommandLine():
         return
 
     # if input command is not a valid command, print error message
-    if (columnTest(command[2:], visaData) == False):
+    if (columnExist(command[2:], visaData) == False):
         print("Invalid Command : command is not in column")
         return
     
