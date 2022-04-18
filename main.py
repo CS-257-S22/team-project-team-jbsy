@@ -33,18 +33,18 @@ def readCommandLine():
     target = ' '.join(arg[3:])
 
     # if input command does not match with the target value, print error message
-    if (inputValid(target, command) == False):
+    if not inputValid(target, command):
         print("Invalid Input : command does not match with target")
         return
 
     # if input command is not a valid command, print error message
-    if (columnExist(command[2:], visaData) == False):
+    if not columnExist(command[2:], visaData):
         print("Invalid Command : command is not in column")
         return
     
     # when searching for company, if the company does not exist, print error message
     if ("company" in command):
-        if (companyExist(target, arg[1]) == False):
+        if not companyExist(target, arg[1]):
             print("Invalid Company : Input company does not exist")
             return
 
