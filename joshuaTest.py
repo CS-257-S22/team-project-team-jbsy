@@ -33,6 +33,7 @@ class UnitTestHelper(unittest.TestCase):
 
     def test_returnVal_testCreateDataByYear(self):
         """Test return value for CreateDataByYear"""
+
         testLine = ['2018', 'REDDY GI ASSOCIATES', '0', '0', '0', '1', '99', '', 'AZ', 'MESA', '85209']
         checkResult = helper.createDataByYear(testLine)
 
@@ -184,9 +185,13 @@ class UnitTestService(unittest.TestCase):
     def test_emptyList_GetCompaniesByMinInitApproval(self):
         """Test empty list for GetCompaniesByMinInitApproval"""
 
-        # Edge Case: return an empty list if all the data in arguments are not passed in
-        self.assertEqual(getCompaniesByMinInitApproval({}), [])
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            # Edge Case: return an empty list if all the data in arguments are not passed in
+            self.assertEqual(getCompaniesByMinInitApproval({}), [])
 
+            # Check if it prints the wanted result
+            self.assertIn("Need all the data in argument", fake_out.getvalue())
+            
     def test_returnList_GetCompaniesByMinInitApproval(self):
         """Test return list for GetCompaniesByMinInitApproval"""
 
