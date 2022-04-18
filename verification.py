@@ -1,8 +1,17 @@
 import helper
 
 
-# Test whether company name exists in the data
 def companyExist(input, filename):
+    """Test whether company name exists in the data
+
+    Arguments:
+    input -- name of company (string)
+    filename -- designated file to read (string)
+
+    Returns:
+    Boolean -- whether the company exists or not
+    """
+
     data = helper.readFile(filename)
     compData = data[0]
     if input in compData:
@@ -10,8 +19,17 @@ def companyExist(input, filename):
     else:
         return False
 
-# Check whether column name exists in the data
 def columnExist(input, filename):
+    """Check whether column name exists in the data
+
+    Arguments:
+    input -- name of data column (string)
+    filename -- designated file to read (string)
+
+    Returns:
+    Boolean -- whether the column exists or not
+    """
+
     yearByData = list(filename.values())
     input = input.lower()
 
@@ -35,8 +53,15 @@ def columnExist(input, filename):
     else:
         return False
 
-# Check if command includes integer
 def containsNumber(value):
+    """Check if command includes string integer when necessary
+
+    Arguments:
+    value -- the target value user put in (string)
+
+    Boolean -- whether the command has integer string or not
+    """
+
     for character in value:
         if character == " ":
             return False
@@ -44,15 +69,30 @@ def containsNumber(value):
             return False
     return True
 
-# Check if command line has the correct length
 def commandLen(arg):
+    """Check if command line has the correct length
+
+    Arguments:
+    arg -- the command line user put in (list)
+
+    Boolean -- whether the command line is long enough or not
+    """
+
     if len(arg) >= 4:
         return True
     else:
         return False
 
-# Check if input is valid (int/str depending on the commandline)
 def inputValid(input, command):
+    """Check if input is valid (int/str depending on the commandline)
+
+    Arguments:
+    input -- target value user put in (string)
+    command -- command keyword user put in (string)
+
+    Boolean -- whether the input command is valid or not
+    """
+
     if (("company" in command) and (type(input) == str)):
         return True
     elif (("state" in command) and (type(input) == str)):
@@ -61,7 +101,3 @@ def inputValid(input, command):
         return True
     else:
         return False
-
-# print(companyExist('REDDY GI ASSOCIATE', "dummyData.csv"))
-# print(columnTest('City', "dummyData.csv"))
-# print(companyExist('REDDY GI ASSOCIATES', testLine))
