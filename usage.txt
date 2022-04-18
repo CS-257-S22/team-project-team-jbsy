@@ -1,0 +1,17 @@
+Command Line Design 
+DataSet: H1-B Employer Data
+
+Interesting Columns:
+
+Employer Name
+State 
+
+CLI Design:
+
+#1) List company by State
+#2) Search company name
+
+Function Signature:
+
+#1) getCompaniesByState
+#2) getStatsByCompany
