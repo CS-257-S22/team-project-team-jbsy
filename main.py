@@ -1,11 +1,17 @@
 import sys
 from helper import readFile 
 from service import initiateCommand
+from verification import columnTest, companyExist, commandLen, inputValid
 
 # main function that reads command line
 def readCommandLine():
     # Read the commandline as arg
     arg = sys.argv
+
+    # Check if the command includes enough arguments
+    if not commandLen(arg):
+        print("Invalid Command : Need more arguments")
+        return
 
     # Todo: Verify if arg data is correct
     fileData = readFile(arg[1])
@@ -18,15 +24,28 @@ def readCommandLine():
     # the last elements in the command, either the target value we want to reach
     target = ' '.join(arg[3:])
 
+    # if input command does not match with the target value, print error message
+    if (inputValid(target, command) == False):
+        print("Invalid Input : command does not match with target")
+        return
 
-    # Todo: Verify if target relevant (company name exists, or column name exists, etc)
+    # if input command is not a valid command, print error message
+    if (columnTest(command[2:], visaData) == False):
+        print("Invalid Command : command is not in column")
+        return
+    
+    # when searching for company, if the company does not exist, print error message
+    if ("company" in command):
+        if (companyExist(target, arg[1]) == False):
+            print("Invalid Company : Input company does not exist")
+            return
+
     initiateCommand({"command": command, "visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
-   
-readCommandLine()
 
+readCommandLine()
 
 # Commandline example
 
 # python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
-# python3 main.py dummyData.csv --state CA
+# python3 main.py dummyData.csv --state AAA
 # python3 main.py dummyData.csv --minInitApproval 2

@@ -82,15 +82,6 @@ def initiateCommand(argument):
         companyList = getCompaniesByState({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
         printCompaniesInState(companyList, target)
 
-    # call minimum and maximum then print
-    elif "initApproval" in command:
-        result = getCompaniesByColumn({"visaData": visaData, "columnName": "Initial Approvals", "mostRecentYear": mostRecentYear})
-
-        minCompanies = result[0]
-        maxCompanies = result[1]
-
-        printMinAndMaxData({"maxList": maxCompanies, "minList": minCompanies, "mostRecentYear": mostRecentYear, "columnName": "Initial Approvals"})
-    
     elif "minInitApproval" in command:
         result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
 
