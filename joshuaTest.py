@@ -7,9 +7,10 @@ from main import initiateCommand
 from service import getCompaniesByMinInitApproval
 
 class UnitTestHelper(unittest.TestCase):
+    """Unit Test for Helper Functions"""
     
-    def testGetColumnNameByIndex(self):
-        """Unit Test on getting column name by index"""
+    def test_GetColumnNameByIndex(self):
+        """Test GetColumnNameByIndex"""
         self.assertEqual(helper.getColumnNameByIndex(0), "Fiscal Year")
         self.assertEqual(helper.getColumnNameByIndex(1), "Employer")
         self.assertEqual(helper.getColumnNameByIndex(2), "Initial Approvals")
@@ -24,11 +25,14 @@ class UnitTestHelper(unittest.TestCase):
         # Edge Case
         self.assertEqual(helper.getColumnNameByIndex(11), "")
 
-    def testCreateDataByYear(self):
-        """Unit Test on creating company data by year"""
+    def test_emptyList_testCreateDataByYear(self):
+        """Test empty list for CreateDataByYear"""
 
         # Edge Case to handle empty list
         self.assertEqual(helper.createDataByYear([]), [])
+
+    def test_returnVal_testCreateDataByYear(self):
+        """Test return value for CreateDataByYear"""
 
         testLine = ['2018', 'REDDY GI ASSOCIATES', '0', '0', '0', '1', '99', '', 'AZ', 'MESA', '85209']
         checkResult = helper.createDataByYear(testLine)
@@ -47,9 +51,9 @@ class UnitTestHelper(unittest.TestCase):
 
         # Check if the function created the dictionary we want
         self.assertDictEqual(companyDataByYear, resultWeWant)
-
-    def testPrintMinInitApproval(self):
-        """Unit Test on printing list of companies with minimum initial approval"""
+    
+    def test_noCompanies_PrintMinInitApproval(self):
+        """Test PrintMinInitApproval for empty list"""
 
         # When there are no companies
         with patch('sys.stdout', new = StringIO()) as fake_out1:
@@ -57,6 +61,9 @@ class UnitTestHelper(unittest.TestCase):
 
             # Check if it prints the wanted result
             self.assertEqual("No companies exist with Initial Approval above 2\n", fake_out1.getvalue())
+
+    def test_Companies_PrintMinInitApproval(self):
+        """Test PrintMinInitApproval for list of companies"""
 
         # When there are list of companies
         with patch('sys.stdout', new = StringIO()) as fake_out2:            
@@ -67,8 +74,8 @@ class UnitTestHelper(unittest.TestCase):
             self.assertIn("St.Olaf", fake_out2.getvalue())
             self.assertIn("\nCompanies with Minimum Initial Approval of 2", fake_out2.getvalue())
 
-    def testPrintCompany(self):
-        """Unit Test on printing a company statistic"""
+    def test_noCompany_PrintCompany(self):
+        """Test PrintCompany empty dict"""
 
         # When there is no company
         with patch('sys.stdout', new = StringIO()) as fake_out1:
@@ -76,6 +83,9 @@ class UnitTestHelper(unittest.TestCase):
 
             # Check if it prints the wanted result
             self.assertEqual("Company does not exist in dataset\n", fake_out1.getvalue())
+
+    def test_Company_PrintCompany(self):
+        """Test PrintCompany for a Company"""
 
         testCompanyData = {"companyName": 'REDDY GI ASSOCIATES', 'data': {"2020" : {'Fiscal Year': '2020', 'Employer': 'REDDY GI ASSOCIATES', 'Initial Approvals': '5', 'Initial Denials': '0', 'Continuing Approvals': '2', 'Continuing Denials': '1', 'NAICS': '93', 'Tax ID': '', 'State': 'AZ', 'City': 'MESA', 'ZIP': '85209'}}}
 
@@ -96,8 +106,8 @@ class UnitTestHelper(unittest.TestCase):
             self.assertIn("City => MESA", fake_out2.getvalue())
             self.assertIn("ZIP => 85209", fake_out2.getvalue())
 
-    def testPrintCompaniesInState(self):
-        """Unit Test on printing list of companies in State"""
+    def test_noCompanies_PrintCompaniesInState(self):
+        """Test PrintCompaniesInState for empty list"""
 
         # When there are no companies
         with patch('sys.stdout', new = StringIO()) as fake_out1:
@@ -105,6 +115,9 @@ class UnitTestHelper(unittest.TestCase):
 
             # Check if it prints the wanted result
             self.assertEqual("No companies exist in a given state\n", fake_out1.getvalue())
+
+    def test_PrintCompaniesInState(self):
+        """Test PrintCompaniesInState"""
 
         # When there are list of companies
         with patch('sys.stdout', new = StringIO()) as fake_out2:            
@@ -115,8 +128,8 @@ class UnitTestHelper(unittest.TestCase):
             self.assertIn("St.Olaf", fake_out2.getvalue())
             self.assertIn("Companies located in MN:", fake_out2.getvalue())
 
-    def testReadFile(self):
-        """Unit Test on reading csv file"""
+    def test_fileError_testReadFile(self):
+        """Test File error in testReadFile"""
 
         dummyData = "dummyData.csv"
 
@@ -128,6 +141,11 @@ class UnitTestHelper(unittest.TestCase):
             self.assertEqual("Please input a valid file\n", fake_out1.getvalue())
             self.assertFalse(result)
 
+    def test_return_Format_testReadFile(self):
+        """Test return format testReadFile"""
+
+        dummyData = "dummyData.csv"
+
         readFileResult = helper.readFile(dummyData)
         mostRecentYear = readFileResult[1]
         testVisaData = readFileResult[0]
@@ -138,6 +156,15 @@ class UnitTestHelper(unittest.TestCase):
         # Check if the Visa Data is a dictionary
         self.assertIsInstance(testVisaData, dict)
 
+    def test_return_Validity_testReadFile(self):
+        """Test return validity for testReadFile"""
+
+        dummyData = "dummyData.csv"
+
+        readFileResult = helper.readFile(dummyData)
+        mostRecentYear = readFileResult[1]
+        testVisaData = readFileResult[0]
+
         testOneVisaData = testVisaData["REDDY GI ASSOCIATES"]
 
         # Check if the data of all the years are in the company
@@ -145,26 +172,34 @@ class UnitTestHelper(unittest.TestCase):
         self.assertIn("2019", testOneVisaData)
         self.assertIn("2020", testOneVisaData)
 
-        # Check if the data of one year is in the correct format
         dataWeWant = {'City': 'MESA', 'Continuing Approvals': '0','Continuing Denials': '1','Employer': 'REDDY GI ASSOCIATES',
         'Fiscal Year': '2018','Initial Approvals': '0','Initial Denials': '0','NAICS': '99','State': 'AZ','Tax ID': '','ZIP': '85209'}
-        
+
+        # Check if the data of one year is in the correct format
         self.assertDictEqual(testOneVisaData["2018"], dataWeWant)
 
 class UnitTestService(unittest.TestCase):
+    """Unit Test for Service Functions"""
 
-    def testGetCompaniesByMinInitApproval(self):
-        """Unit Test for MinInitApproval"""
+    """Unit Tests for GetCompaniesByMinInitApproval"""
+    def test_emptyList_GetCompaniesByMinInitApproval(self):
+        """Test empty list for GetCompaniesByMinInitApproval"""
+
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            # Edge Case: return an empty list if all the data in arguments are not passed in
+            self.assertEqual(getCompaniesByMinInitApproval({}), [])
+
+            # Check if it prints the wanted result
+            self.assertIn("Need all the data in argument", fake_out.getvalue())
+            
+    def test_returnList_GetCompaniesByMinInitApproval(self):
+        """Test return list for GetCompaniesByMinInitApproval"""
 
         dummyData = "dummyData.csv"
         readFileResult = helper.readFile(dummyData)
         mostRecentYear = readFileResult[1]
         testVisaData = readFileResult[0]
         testArgument = {"target": "2", "mostRecentYear": mostRecentYear, "visaData": testVisaData}
-
-        # Edge Case: return an empty list if all the data in arguments are not passed in
-        # self.assertEqual(getCompaniesByMinInitApproval({}), ValueError)
-        self.assertEqual(getCompaniesByMinInitApproval({}), [])
 
         testResult = getCompaniesByMinInitApproval(testArgument)
 
@@ -174,12 +209,33 @@ class UnitTestService(unittest.TestCase):
         # Return a non-empty list 
         self.assertNotEqual(len(testResult), 0)
 
+    def test_resultElementsValidity_GetCompaniesByMinInitApproval(self):
+        """Test result element validity for GetCompaniesByMinInitApproval"""
+
+        dummyData = "dummyData.csv"
+        readFileResult = helper.readFile(dummyData)
+        mostRecentYear = readFileResult[1]
+        testVisaData = readFileResult[0]
+        testArgument = {"target": "2", "mostRecentYear": mostRecentYear, "visaData": testVisaData}
+
+        testResult = getCompaniesByMinInitApproval(testArgument)
         testCompanyInList = testResult[0]
 
         # Check if necessary elements are in company
         self.assertIn("companyName", testCompanyInList)
         self.assertIn("data", testCompanyInList)
 
+    def test_resultValidity_GetCompaniesByMinInitApproval(self):
+        """Test result validity for GetCompaniesByMinInitApproval"""
+
+        dummyData = "dummyData.csv"
+        readFileResult = helper.readFile(dummyData)
+        mostRecentYear = readFileResult[1]
+        testVisaData = readFileResult[0]
+        testArgument = {"target": "2", "mostRecentYear": mostRecentYear, "visaData": testVisaData}
+
+        testResult = getCompaniesByMinInitApproval(testArgument)
+        testCompanyInList = testResult[0]
         testCompanyName = testCompanyInList["companyName"]
         testCompanyData = testCompanyInList["data"]
 
@@ -191,6 +247,7 @@ class UnitTestService(unittest.TestCase):
         self.assertDictEqual(testCompanyData, dataWeWant)
 
 class IntegrationTestService(unittest.TestCase):
+    """Integration Test for Service Functions"""
 
     def integrationMinInitApproval(self):
         """Integration Test for MinInitApproval"""
@@ -216,7 +273,10 @@ class IntegrationTestService(unittest.TestCase):
             self.assertIn(expectedCompany2, fake_out.getvalue())
 
 
+def main():
+    # unittest.main(verbosity=2)
+    unittest.main()
 
 if __name__ == '__main__':
-    unittest.main()
+    main()
 

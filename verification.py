@@ -78,8 +78,10 @@ def commandLen(arg):
 
     Boolean -- whether the command line is long enough or not
     """
-    if "usage" in arg[2] and len(arg) == 3:
-        return True
+    # command for usage
+    if type(arg) is list and len(arg) == 3:
+        if "usage" in arg[2]:
+            return True
     if type(arg) is not list:
         return False
     if len(arg) >= 4:

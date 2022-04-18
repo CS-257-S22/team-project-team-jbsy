@@ -10,13 +10,19 @@ def readCommandLine():
     # Read the commandline as arg
     arg = sys.argv
 
+    # Check if the command includes enough arguments
+    if not commandLen(arg):
+        # command line to run test
+        if len(arg) == 1:
+            return
+        else:
+            print("Invalid Command : Need more arguments")
+            return
+
+
     fileData = readFile(arg[1])
     if fileData == False:
         return
-
-    # if not commandLen(arg):
-    #     print("Invalid command : Need more arguments")
-    #     return
 
     # all the H-1B data of company 
     visaData = fileData[0]
