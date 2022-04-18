@@ -3,8 +3,10 @@ from helper import readFile
 from service import initiateCommand
 from verification import columnExist, companyExist, commandLen, inputValid
 
-# main function that reads command line
+
 def readCommandLine():
+    """Main function that reads command line"""
+
     # Read the commandline as arg
     arg = sys.argv
 
@@ -13,7 +15,10 @@ def readCommandLine():
         print("Invalid Command : Need more arguments")
         return
 
+   
     fileData = readFile(arg[1])
+    if fileData == False:
+        return
 
     # all the H-1B data of company 
     visaData = fileData[0]

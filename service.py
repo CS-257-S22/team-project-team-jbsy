@@ -1,7 +1,17 @@
 from helper import printCompaniesInState, printCompany, printMinInitApproval, printUsage
 
-# method to get the names of companies within the input state
 def getCompaniesByState(arguments):
+   """Get a list of companies within the input state
+
+    Arguments:
+    arguments -- dict for function arguments (dict)
+        target -- state put in via command line (string)
+        visaData -- all the statistics of companies (dict)
+        mostRecentYear -- the fiscal year to find data in (string)
+
+    Returns:
+    list -- a list that has all the companies (dict) that are within the state
+    """
     
    state = arguments["target"] 
    visaData = arguments["visaData"]
@@ -16,8 +26,18 @@ def getCompaniesByState(arguments):
             
    return companyList  
         
-# method to get the statistics of the input company
 def getStatByCompany(arguments):
+    """Get a company that matches the given name
+
+    Arguments:
+    arguments -- dict for function arguments (dict)
+        target -- state put in via command line (string)
+        visaData -- all the statistics of companies (dict)
+
+    Returns:
+    dict -- data of company
+    """
+
     company = arguments["target"]
     visaData = arguments["visaData"]
 
@@ -27,8 +47,19 @@ def getStatByCompany(arguments):
     else:
         return {}
 
-# method to get companies with a minimum threshold initial approval
 def getCompaniesByMinInitApproval(arguments):
+    """Get companies with a minimum threshold initial approval
+
+    Arguments:
+    arguments -- dict for function arguments (dict)
+        target -- state put in via command line (string)
+        visaData -- all the statistics of companies (dict)
+        mostRecentYear -- the fiscal year to find data in (string)
+
+    Returns:
+    list -- a list that has all the companies (dict) that have at least certain number of minimum initial approvals
+    """
+
     if "target" not in arguments or "visaData" not in arguments or "mostRecentYear" not in arguments:
         print("Need all the data in argument")
         # raise ValueError
@@ -41,11 +72,20 @@ def getCompaniesByMinInitApproval(arguments):
     companyList = []
     for j in visaData:
         if(int(visaData[j][mostRecentYear]["Initial Approvals"]) >= int(initApproval)):
-            #  companyList.append(visaData[j][mostRecentYear]["Employer"] + " in Year " + visaData[j][mostRecentYear]["Fiscal Year"] + "\n");
             companyList.append({"companyName": j, "data": visaData[j][mostRecentYear]})        
     return companyList;      
 
 def initiateCommand(argument):
+    """General function that interprets command and initates relevant function
+
+    Arguments:
+    arguments -- dict for function arguments (dict)
+        command -- command line keyword user put in (string)
+        target -- state put in via command line (string)
+        visaData -- all the statistics of companies (dict)
+        mostRecentYear -- the fiscal year to find data in (string)
+    """
+
     command = argument["command"]
     visaData = argument["visaData"]
     target = argument["target"]

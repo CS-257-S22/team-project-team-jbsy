@@ -1,8 +1,17 @@
 import helper
 
 
-# Test whether company name exists in the data
 def companyExist(input, filename):
+    """Test whether company name exists in the data
+
+    Arguments:
+    input -- name of company (string)
+    filename -- designated file to read (string)
+
+    Returns:
+    Boolean -- whether the company exists or not
+    """
+
     data = helper.readFile(filename)
     compData = data[0]
     if input in compData:
@@ -10,8 +19,17 @@ def companyExist(input, filename):
     else:
         return False
 
-# Check whether column name exists in the data
 def columnExist(input, filename):
+    """Check whether column name exists in the data
+
+    Arguments:
+    input -- name of data column (string)
+    filename -- designated file to read (string)
+
+    Returns:
+    Boolean -- whether the column exists or not
+    """
+
     yearByData = list(filename.values())
     input = input.lower()
 
@@ -37,6 +55,13 @@ def columnExist(input, filename):
 
 # Check if command only includes an integer
 def containsNumber(value):
+    """Check if command includes string integer when necessary
+
+    Arguments:
+    value -- the target value user put in (string)
+
+    Boolean -- whether the command has integer string or not
+    """
     if type(value) is not str:
         return False
     for character in value:
@@ -46,8 +71,14 @@ def containsNumber(value):
             return False
     return True
 
-# Check if command line has the correct length
 def commandLen(arg):
+    """Check if command line has the correct length
+
+    Arguments:
+    arg -- the command line user put in (list)
+
+    Boolean -- whether the command line is long enough or not
+    """
     if type(arg) is not list:
         return False
     if len(arg) >= 4:
@@ -56,7 +87,16 @@ def commandLen(arg):
         return False
 
 # Check if target is valid (int/str depending on the commandline)
+
 def inputValid(target, command):
+    """Check if input is valid (int/str depending on the commandline)
+
+    Arguments:
+    input -- target value user put in (string)
+    command -- command keyword user put in (string)
+
+    Boolean -- whether the input command is valid or not
+    """
     if (("company" in command) and (type(target) == str)):
         return True
     elif (("state" in command) and (type(target) == str)):
@@ -64,5 +104,4 @@ def inputValid(target, command):
     elif (("minInitApproval" in command) and containsNumber(target)):
         return True
     else:
-        print(target, command)
         return False

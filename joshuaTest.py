@@ -8,8 +8,8 @@ from service import getCompaniesByMinInitApproval
 
 class UnitTestHelper(unittest.TestCase):
     
-    # Unit Test on getting column name by index
     def testGetColumnNameByIndex(self):
+        """Unit Test on getting column name by index"""
         self.assertEqual(helper.getColumnNameByIndex(0), "Fiscal Year")
         self.assertEqual(helper.getColumnNameByIndex(1), "Employer")
         self.assertEqual(helper.getColumnNameByIndex(2), "Initial Approvals")
@@ -24,8 +24,8 @@ class UnitTestHelper(unittest.TestCase):
         # Edge Case
         self.assertEqual(helper.getColumnNameByIndex(11), "")
 
-    # Unit Test on creating company data by year
     def testCreateDataByYear(self):
+        """Unit Test on creating company data by year"""
 
         # Edge Case to handle empty list
         self.assertEqual(helper.createDataByYear([]), [])
@@ -48,8 +48,9 @@ class UnitTestHelper(unittest.TestCase):
         # Check if the function created the dictionary we want
         self.assertDictEqual(companyDataByYear, resultWeWant)
 
-    # Unit Test on printing list of companies with minimum initial approval
     def testPrintMinInitApproval(self):
+        """Unit Test on printing list of companies with minimum initial approval"""
+
         # When there are no companies
         with patch('sys.stdout', new = StringIO()) as fake_out1:
             helper.printMinInitApproval({"companiesList": [], "target": "2"})
@@ -64,10 +65,11 @@ class UnitTestHelper(unittest.TestCase):
             # Check if it prints the wanted result
             self.assertIn("Carleton College", fake_out2.getvalue())
             self.assertIn("St.Olaf", fake_out2.getvalue())
-            self.assertIn("\nCompanies with minimum Initial Approval of 2", fake_out2.getvalue())
+            self.assertIn("\nCompanies with Minimum Initial Approval of 2", fake_out2.getvalue())
 
-    # Unit Test on printing a company statistic
     def testPrintCompany(self):
+        """Unit Test on printing a company statistic"""
+
         # When there is no company
         with patch('sys.stdout', new = StringIO()) as fake_out1:
             helper.printCompany({})
@@ -94,8 +96,8 @@ class UnitTestHelper(unittest.TestCase):
             self.assertIn("City => MESA", fake_out2.getvalue())
             self.assertIn("ZIP => 85209", fake_out2.getvalue())
 
-    # Unit Test on printing list of companies in State
     def testPrintCompaniesInState(self):
+        """Unit Test on printing list of companies in State"""
 
         # When there are no companies
         with patch('sys.stdout', new = StringIO()) as fake_out1:
@@ -113,11 +115,18 @@ class UnitTestHelper(unittest.TestCase):
             self.assertIn("St.Olaf", fake_out2.getvalue())
             self.assertIn("Companies located in MN:", fake_out2.getvalue())
 
-    # Unit Test on reading csv file
     def testReadFile(self):
+        """Unit Test on reading csv file"""
+
         dummyData = "dummyData.csv"
 
-        # Edge Case: Check if the function returns an error when the file is not found??
+        # Edge Case: Check if the function prints an error and returns
+        with patch('sys.stdout', new = StringIO()) as fake_out1:
+            result = helper.readFile(dummyData[::-1])
+
+            # Check if it prints the wanted result
+            self.assertEqual("Please input a valid file\n", fake_out1.getvalue())
+            self.assertFalse(result)
 
         readFileResult = helper.readFile(dummyData)
         mostRecentYear = readFileResult[1]
@@ -144,8 +153,9 @@ class UnitTestHelper(unittest.TestCase):
 
 class UnitTestService(unittest.TestCase):
 
-    # Unit Test for MinInitApproval
     def testGetCompaniesByMinInitApproval(self):
+        """Unit Test for MinInitApproval"""
+
         dummyData = "dummyData.csv"
         readFileResult = helper.readFile(dummyData)
         mostRecentYear = readFileResult[1]
@@ -182,8 +192,9 @@ class UnitTestService(unittest.TestCase):
 
 class IntegrationTestService(unittest.TestCase):
 
-    # Integration Test for MinInitApproval
     def integrationMinInitApproval(self):
+        """Integration Test for MinInitApproval"""
+
         testCommand = "--minInitApproval"
         testTarget = "2"
         dummyData = "dummyData.csv"
