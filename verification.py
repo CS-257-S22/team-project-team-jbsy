@@ -5,15 +5,15 @@ import helper
 def companyExist(input, filename):
     data = helper.readFile(filename)
     compData = data[0]
-    # print(compData)
     if input in compData:
         return True
     else:
         return False
 
 # Check whether column name exists in the data
-def columnTest(input, filename):
+def columnExist(input, filename):
     yearByData = list(filename.values())
+    input = input.lower()
 
     for i in range(len(yearByData)):
         yearData = yearByData[i]
@@ -32,7 +32,6 @@ def columnTest(input, filename):
         return True
 
     else:
-        # print(colDataList)
         return False
 
 # Check if command includes integer
@@ -44,7 +43,7 @@ def containsNumber(value):
 
 # Check if command line has the correct length
 def commandLen(arg):
-    if len(arg) > 4:
+    if len(arg) >= 4:
         return True
     else:
         return False
@@ -55,7 +54,7 @@ def inputValid(input, command):
         return True
     elif (("state" in command) and (type(input) == str)):
         return True
-    # Todo: Create Error when "python3 main.py dummyData.csv --minInitApproval 6 7"
+    # Todo: Create Error when "python3 main.py dummyData.csv --minInitApproval 5 7"
     elif (("minInitApproval" in command) and containsNumber(input)):
         return True
     else:
@@ -63,3 +62,4 @@ def inputValid(input, command):
 
 # print(companyExist('REDDY GI ASSOCIATE', "dummyData.csv"))
 # print(columnTest('City', "dummyData.csv"))
+# print(companyExist('REDDY GI ASSOCIATES', testLine))

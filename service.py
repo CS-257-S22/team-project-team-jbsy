@@ -61,11 +61,7 @@ def initiateCommand(argument):
     elif "state" in command:
         companyList = getCompaniesByState({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
         printCompaniesInState(companyList, target)
-<<<<<<< HEAD
-
-=======
     
->>>>>>> a85f35b2bb269ef25fc9a91aa3318dfcb47aa665
     elif "minInitApproval" in command:
         result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
         printMinInitApproval({"companiesList":result, "target": target, "mostRecentYear": mostRecentYear})

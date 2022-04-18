@@ -148,7 +148,7 @@ def readFile(filePath):
         # printData(visaData)
         return [visaData, mostRecentYear]
 
-# readFile("dummyData.csv")
+# print(readFile("dummyData.csv"))
 
 
             
