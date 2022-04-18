@@ -22,8 +22,10 @@ def getColumnNameByIndex(index):
         return "State"
     elif index == 9:
         return "City"
-    else:
+    elif index == 10:
         return "ZIP"
+    else:
+        return ""
 
 # Creates a formatted arrary with data by fiscal year
 def createDataByYear(lineData):
@@ -53,6 +55,24 @@ def printMinAndMaxData(data):
     print("\nHere is the list of Companies with Minimum Number of " + columnName + " with " + columnName.lower() +" of " + minCompanies[0]["data"][mostRecentYear][columnName] + ":\n")
     for x in minCompanies:
         print(x["companyName"])
+
+ #prints list of companies with initial approval above a certian threshold
+def printMinInitApproval(data):
+    companiesList = data["companiesList"]
+    initApproval = data["target"]
+    mostRecentYear = data["mostRecentYear"]
+    
+    if len(companiesList) == 0:
+        print("No companies exist with Initial Approval above " + initApproval)
+    else:     
+        print("\nCompanies with minimum Initial Approval of " + initApproval +":\n")
+
+        companiesName = ""
+        for name in companiesList:
+            companiesName += name["companyName"] + "\n"
+        
+        print(companiesName)
+
 
 # Print list of companies in a state
 def printCompaniesInState(companiesList, state):

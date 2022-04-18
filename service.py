@@ -1,6 +1,4 @@
-from helper import printMinAndMaxData, printCompaniesInState, printCompany, readFile
-
-approvalPercentages = []
+from helper import printMinAndMaxData, printCompaniesInState, printCompany, printMinInitApproval
 
 # method to get the names of companies within the input state
 def getCompaniesByState(arguments):
@@ -15,7 +13,7 @@ def getCompaniesByState(arguments):
         if(visaData[j][mostRecentYear]["State"]==state):
             companyList.append({"companyName": j, "data": visaData[j]})
             
-   return companyList    
+   return companyList  
         
 # method to get the statistics of the input company
 def getStatByCompany(arguments):
@@ -27,6 +25,18 @@ def getStatByCompany(arguments):
         return {"companyName": company, "data": visaData[company]}
     else:
         return {}
+# method to get companies with a minimum threshold initial approval
+
+def getCompaniesByMinInitApproval(arguments):
+    initApproval  = arguments["target"]
+    visaData = arguments["visaData"]
+    mostRecentYear = arguments["mostRecentYear"]
+    companyList = []
+    for j in visaData:
+        if(int(visaData[j][mostRecentYear]["Initial Approvals"]) >= int(initApproval)):
+            #  companyList.append(visaData[j][mostRecentYear]["Employer"] + " in Year " + visaData[j][mostRecentYear]["Fiscal Year"] + "\n");
+            companyList.append({"companyName": j, "data": visaData[j][mostRecentYear]})        
+    return companyList;      
 
 # method to get minimum and maximum of given column
 def getCompaniesByColumn(arguments):
@@ -78,8 +88,6 @@ def approvalRatesByCompany(company):
         if (approvalPercentages[i][1]==company):
             print(str(approvalPercentages[i][0]));
 
-approvalRatesByCompany("REDDY GI ASSOCIATES")
-
 def approvalRates():
     for i in range(60):
         companyInfo = [];
@@ -119,6 +127,13 @@ def initiateCommand(argument):
         maxCompanies = result[1]
 
         printMinAndMaxData({"maxList": maxCompanies, "minList": minCompanies, "mostRecentYear": mostRecentYear, "columnName": "Initial Approvals"})
+    
+    elif "minInitApproval" in command:
+        result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
+
+        # companyList = result[0]
+
+        printMinInitApproval({"companiesList":result, "target": target, "mostRecentYear": mostRecentYear})
     
     # call minimum and maximum then print
     elif "continuingApproval" in command:

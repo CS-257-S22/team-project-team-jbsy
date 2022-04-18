@@ -1,17 +1,30 @@
+from multiprocessing.sharedctypes import Array
 import unittest
-from service import approvalRatesByCompany
+import helper
 
-from production import sample_production
+from service import getCompaniesByState
+class Tests(unittest.TestCase):
 
-class TestSOMETHING(unittest.TestCase):
-    def test_Abs(self):
-      self.assertEqual('1', '1')
-     
-    def test_approvalRatesByCompany(self):
-        self.assertEqual(approvalRatesByCompany("REDDY GI ASSOCIATES", "") 
+    # Test function to get companies by state
+    def test_getCompaniesByState(self):
+        dummyData = "dummyData.csv"
 
-        #   probably using self.assertEqual(something, something_else)
+        testReadFile = helper.readFile(dummyData)
+        testVisaData = testReadFile[0]
+        testMostRecentYear = testReadFile[1] 
+        testState = "CA"
     
+        testArgument = {"visaData": testVisaData, "target": testState, "mostRecentYear": testMostRecentYear}
+        testResult = getCompaniesByState(testArgument)
+
+        # Check if the companies are stored in a list
+        self.assertIsInstance(testResult, list)
+
+        # Check if the company list is not empty
+        self.assertTrue(testResult)
+
+        # Check if the most recent year is 2020
+        self.assertEqual(testMostRecentYear, "2020" )
 
 if __name__ == '__main__':
       unittest.main()

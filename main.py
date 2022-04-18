@@ -30,3 +30,4 @@ readCommandLine()
 # python3 main.py dummyData.csv --state CA
 # python3 main.py dummyData.csv --initApproval
 # python3 main.py dummyData.csv --continuingApproval
+# python3 main.py dummyData.csv --minInitApproval 2
