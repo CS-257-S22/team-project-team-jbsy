@@ -13,7 +13,6 @@ def readCommandLine():
         print("Invalid Command : Need more arguments")
         return
 
-    # Todo: Verify if arg data is correct
     fileData = readFile(arg[1])
 
     # all the H-1B data of company 
@@ -47,5 +46,5 @@ readCommandLine()
 # Commandline example
 
 # python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
-# python3 main.py dummyData.csv --state AAA
+# python3 main.py dummyData.csv --state CA
 # python3 main.py dummyData.csv --minInitApproval 2

@@ -15,6 +15,7 @@ def columnExist(input, filename):
     yearByData = list(filename.values())
     input = input.lower()
 
+
     for i in range(len(yearByData)):
         yearData = yearByData[i]
         colData = list(yearData.values())

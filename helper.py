@@ -46,21 +46,20 @@ def createDataByYear(lineData):
     # Return a list that has data by fiscal year
     return [fiscalYear, dataByYear]
 
- #prints list of companies with initial approval above a certian threshold
-
 def printUsage():
-   usageText = open("usage.txt","r");
-   print(usageText.read());
+   usageText = open("usage.txt","r")
+   print(usageText.read())
 
+#prints list of companies with initial approval above a certian threshold
 def printMinInitApproval(data):
     companiesList = data["companiesList"]
     initApproval = data["target"]
-    mostRecentYear = data["mostRecentYear"]
+    # mostRecentYear = data["mostRecentYear"]
 
     if len(companiesList) == 0:
         print("No companies exist with Initial Approval above " + initApproval)
     else:     
-        print("\nCompanies with minimum Initial Approval of " + initApproval +":\n")
+        print("\nCompanies with Minimum Initial Approval of " + initApproval +":\n")
 
         companiesName = ""
         for name in companiesList:
@@ -148,7 +147,6 @@ def readFile(filePath):
         # printData(visaData)
         return [visaData, mostRecentYear]
 
-# print(readFile("dummyData.csv"))
 
 
             
