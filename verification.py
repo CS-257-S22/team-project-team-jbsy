@@ -35,8 +35,10 @@ def columnExist(input, filename):
     else:
         return False
 
-# Check if command includes integer
+# Check if command only includes an integer
 def containsNumber(value):
+    if type(value) is not str:
+        return False
     for character in value:
         if character == " ":
             return False
@@ -46,22 +48,21 @@ def containsNumber(value):
 
 # Check if command line has the correct length
 def commandLen(arg):
+    if type(arg) is not list:
+        return False
     if len(arg) >= 4:
         return True
     else:
         return False
 
-# Check if input is valid (int/str depending on the commandline)
-def inputValid(input, command):
-    if (("company" in command) and (type(input) == str)):
+# Check if target is valid (int/str depending on the commandline)
+def inputValid(target, command):
+    if (("company" in command) and (type(target) == str)):
         return True
-    elif (("state" in command) and (type(input) == str)):
+    elif (("state" in command) and (type(target) == str)):
         return True
-    elif (("minInitApproval" in command) and containsNumber(input)):
+    elif (("minInitApproval" in command) and containsNumber(target)):
         return True
     else:
+        print(target, command)
         return False
-
-# print(companyExist('REDDY GI ASSOCIATE', "dummyData.csv"))
-# print(columnTest('City', "dummyData.csv"))
-# print(companyExist('REDDY GI ASSOCIATES', testLine))
