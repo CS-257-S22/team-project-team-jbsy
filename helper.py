@@ -47,6 +47,11 @@ def createDataByYear(lineData):
     return [fiscalYear, dataByYear]
 
  #prints list of companies with initial approval above a certian threshold
+
+def printUsage():
+   usageText = open("usage.txt","r");
+   print(usageText.read());
+
 def printMinInitApproval(data):
     companiesList = data["companiesList"]
     initApproval = data["target"]
