@@ -13,5 +13,3 @@ This is a repo for team F in CS 257.
 
 ### python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
 ### python3 main.py dummyData.csv --state CA
-### python3 main.py dummyData.csv --initApproval
-### python3 main.py dummyData.csv --continuingApproval
