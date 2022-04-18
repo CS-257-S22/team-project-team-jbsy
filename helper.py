@@ -60,7 +60,7 @@ def printMinInitApproval(data):
     if len(companiesList) == 0:
         print("No companies exist with Initial Approval above " + initApproval)
     else:     
-        print("\nCompanies with minimum Initial Approval of " + initApproval +":\n")
+        print("\nCompanies with Minimum Initial Approval of " + initApproval +":\n")
 
         companiesName = ""
         for name in companiesList:

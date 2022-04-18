@@ -15,6 +15,7 @@ def columnExist(input, filename):
     yearByData = list(filename.values())
     input = input.lower()
 
+
     for i in range(len(yearByData)):
         yearData = yearByData[i]
         colData = list(yearData.values())
@@ -28,7 +29,7 @@ def columnExist(input, filename):
     if input in colDataList:
         return True
 
-    elif input == "company" or input == "minInitApproval":
+    elif input == "company" or input == "mininitapproval":
         return True
 
     else:
@@ -54,7 +55,6 @@ def inputValid(input, command):
         return True
     elif (("state" in command) and (type(input) == str)):
         return True
-    # Todo: Create Error when "python3 main.py dummyData.csv --minInitApproval 5 7"
     elif (("minInitApproval" in command) and containsNumber(input)):
         return True
     else:
