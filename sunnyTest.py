@@ -5,8 +5,9 @@ import main
 
 # Class to test the command line input.
 class UnitTestHelper(unittest.TestCase):
-    # Unit Test to check if companyExist method works
+
     def testCompanyExist(self):
+        """Unit Test to check if companyExist method works"""
 
         # Edge Case : file name does not end in csv
         dummyData = "dummyData.c"
@@ -20,8 +21,18 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(verification.companyExist('REDDY GI ASSOCIATES', dummyData))
         self.assertFalse(verification.companyExist('NO SUCH COMPANY', dummyData))
 
-    # Unit Test to check if columnExist method works
+    def integrationColumnExist(self):
+        """Integration Test for ColumnExist"""
+        dummyData = "dummyData.csv"
+        data = helper.readFile(dummyData)
+        command = "--state"
+        target = "CA"
+        visaData = data[0]
+        
+        pass
+
     def testColumnExist(self):
+        """Unit Test to check if columnExistt method works"""
 
         # Get dummyData and testVisaData for the test
         dummyData = "dummyData.csv"
@@ -34,9 +45,9 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(verification.columnExist("NAICS", testVisaData))
         self.assertFalse(verification.columnExist("None", testVisaData))
 
-    # Unit Test to check if containsNumber method works
     def testContainsNum(self):
-        
+        """Unit Test to check if containsNumber method works"""
+
         # Edge case : arg is not string
         testArgList = [193]
         self.assertFalse(verification.commandLen(testArgList))
@@ -55,9 +66,8 @@ class UnitTestHelper(unittest.TestCase):
         self.assertFalse(verification.containsNum("Yes"))
         self.assertFalse(verification.containsNum("he11o"))
     
-    # Unit Test to check if commandLen method works
     def testcommandLen(self):
-        
+        """Unit Test to check if commandLen method works"""
         # Edge case : arg is not list
         testArgStr = "python3 main.py dummyData.csv --company PULMONICS PLUS PLLC"
         self.assertFalse(verification.commandLen(testArgStr))
@@ -76,8 +86,8 @@ class UnitTestHelper(unittest.TestCase):
         self.assertFalse(verification.commandLen(["main.py", "dummyData.csv"]))
         self.assertFalse(verification.commandLen(["main.py", "dummyData.csv", "--minInitApproval"]))
     
-    # Unit Test to check if inputValid method works
     def testInputValid(self):
+        """Unit Test to check if inputValid method works"""
 
         # No need to check for empty commands because we check the command line len before 
         # Sample cases to see if the method returns the correct booleans
@@ -85,6 +95,9 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(verification.inputValid("CA", "--state"))
         self.assertTrue(verification.inputValid("2", "--minInitApproval"))
         self.assertFalse(verification.inputValid("None", "--minInitApproval"))
+
+    
+
 
 if __name__ == '__main__':
     unittest.main()
