@@ -28,7 +28,7 @@ def columnExist(input, filename):
     if input in colDataList:
         return True
 
-    elif input == "company" or input == "minInitApproval":
+    elif input == "company" or input == "mininitapproval":
         return True
 
     else:
@@ -37,9 +37,11 @@ def columnExist(input, filename):
 # Check if command includes integer
 def containsNumber(value):
     for character in value:
-        if character.isdigit():
-            return True
-    return False
+        if character == " ":
+            return False
+        elif character.isdigit() is False:
+            return False
+    return True
 
 # Check if command line has the correct length
 def commandLen(arg):
