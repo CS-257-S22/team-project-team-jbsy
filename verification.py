@@ -33,7 +33,6 @@ def columnExist(input, filename):
     yearByData = list(filename.values())
     input = input.lower()
 
-
     for i in range(len(yearByData)):
         yearData = yearByData[i]
         colData = list(yearData.values())
@@ -47,7 +46,7 @@ def columnExist(input, filename):
     if input in colDataList:
         return True
 
-    elif input == "company" or input == "mininitapproval":
+    elif input in ["company", "mininitapproval", "usage"]:
         return True
 
     else:
@@ -79,6 +78,8 @@ def commandLen(arg):
 
     Boolean -- whether the command line is long enough or not
     """
+    if "usage" in arg[2] and len(arg) == 3:
+        return True
     if type(arg) is not list:
         return False
     if len(arg) >= 4:
@@ -102,6 +103,8 @@ def inputValid(target, command):
     elif (("state" in command) and (type(target) == str)):
         return True
     elif (("minInitApproval" in command) and containsNum(target)):
+        return True
+    if "usage" in command:
         return True
     else:
         return False

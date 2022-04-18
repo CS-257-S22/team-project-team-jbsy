@@ -15,7 +15,7 @@ def readCommandLine():
         print("Invalid Command : Need more arguments")
         return
 
-   
+
     fileData = readFile(arg[1])
     if fileData == False:
         return
@@ -53,3 +53,4 @@ readCommandLine()
 # python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
 # python3 main.py dummyData.csv --state CA
 # python3 main.py dummyData.csv --minInitApproval 2
+# python3 main.py dummyData.csv --usage

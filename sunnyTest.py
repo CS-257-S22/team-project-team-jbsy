@@ -1,6 +1,7 @@
 import unittest
 import helper
 import verification
+import main
 
 # Class to test the command line input.
 class UnitTestHelper(unittest.TestCase):
@@ -34,7 +35,7 @@ class UnitTestHelper(unittest.TestCase):
         self.assertFalse(verification.columnExist("None", testVisaData))
 
     # Unit Test to check if containsNumber method works
-    def testContainsNumber(self):
+    def testContainsNum(self):
         
         # Edge case : arg is not string
         testArgList = [193]
@@ -48,11 +49,11 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(type(testStr) == str)
 
         # Sample cases to see if the method returns the correct booleans
-        self.assertTrue(verification.containsNumber(testStr))
-        self.assertTrue(verification.containsNumber("19"))
-        self.assertFalse(verification.containsNumber("1 9"))
-        self.assertFalse(verification.containsNumber("Yes"))
-        self.assertFalse(verification.containsNumber("he11o"))
+        self.assertTrue(verification.containsNum(testStr))
+        self.assertTrue(verification.containsNum("19"))
+        self.assertFalse(verification.containsNum("1 9"))
+        self.assertFalse(verification.containsNum("Yes"))
+        self.assertFalse(verification.containsNum("he11o"))
     
     # Unit Test to check if commandLen method works
     def testcommandLen(self):
@@ -78,14 +79,12 @@ class UnitTestHelper(unittest.TestCase):
     # Unit Test to check if inputValid method works
     def testInputValid(self):
 
-        
-
         # No need to check for empty commands because we check the command line len before 
         # Sample cases to see if the method returns the correct booleans
-        self.assertTrue(verification.inputValid("--company", "PULMONICS PLUS PLLC"))
-        self.assertTrue(verification.inputValid("--state", "CA"))
-        # self.assertTrue(verification.columnExist("NAICS", testVisaData))
-        # self.assertFalse(verification.columnExist("None", testVisaData))
+        self.assertTrue(verification.inputValid("PULMONICS PLUS PLLC", "--company"))
+        self.assertTrue(verification.inputValid("CA", "--state"))
+        self.assertTrue(verification.inputValid("2", "--minInitApproval"))
+        self.assertFalse(verification.inputValid("None", "--minInitApproval"))
 
 if __name__ == '__main__':
     unittest.main()
