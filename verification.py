@@ -54,7 +54,7 @@ def columnExist(input, filename):
         return False
 
 # Check if command only includes an integer
-def containsNumber(value):
+def containsNum(value):
     """Check if command includes string integer when necessary
 
     Arguments:
@@ -92,7 +92,7 @@ def inputValid(target, command):
     """Check if input is valid (int/str depending on the commandline)
 
     Arguments:
-    input -- target value user put in (string)
+    target -- target value user put in (string)
     command -- command keyword user put in (string)
 
     Boolean -- whether the input command is valid or not
@@ -101,7 +101,7 @@ def inputValid(target, command):
         return True
     elif (("state" in command) and (type(target) == str)):
         return True
-    elif (("minInitApproval" in command) and containsNumber(target)):
+    elif (("minInitApproval" in command) and containsNum(target)):
         return True
     else:
         return False
