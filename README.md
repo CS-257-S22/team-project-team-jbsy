@@ -15,7 +15,7 @@ This program allows users to gather information about H1b-Visa administered by t
 - Yeabsira Gebreegziabher
 
 ## Usage
-## 1. Getting H1b-Visa Information for All Companies Within a Specified State
+## 1. Getting H-1B Visa Information for All Companies Within a Specified State
 
 ### Syntax: 
 
@@ -36,7 +36,7 @@ PULMONICS PLUS PLLC
 
 -----------------------------
 
-## 2. Getting a detailed H-1b Visa Information for a specific Company
+## 2. Getting a detailed H-1B Visa Information for a specific Company
 
 ### Syntax: 
 
