@@ -18,9 +18,10 @@ def readCommandLine():
     # the last elements in the command, either the target value we want to reach
     target = ' '.join(arg[3:])
 
+
     # Todo: Verify if target relevant (company name exists, or column name exists, etc)
     initiateCommand({"command": command, "visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
-    
+   
 readCommandLine()
 
 
@@ -28,6 +29,4 @@ readCommandLine()
 
 # python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
 # python3 main.py dummyData.csv --state CA
-# python3 main.py dummyData.csv --initApproval
-# python3 main.py dummyData.csv --continuingApproval
 # python3 main.py dummyData.csv --minInitApproval 2
