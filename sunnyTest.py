@@ -5,8 +5,8 @@ import helper
 import verification
 import main
 
-# Class to test the command line input.
 class UnitTestHelper(unittest.TestCase):
+    """Unit Test for readCommandLine() and Verification"""
 
     def testCompanyExist(self):
         """Unit Test to check if companyExist method works"""
@@ -104,10 +104,8 @@ class IntegrationTest(unittest.TestCase):
                 
                 # Check if it prints an error
                 self.assertEqual("Invalid Command : Need more arguments\n", fake_out.getvalue())
-
-
     
-    def test_Verification_IntegrationTest(self):
+    def test_Verification_IntegrationTestCompany(self):
         """Integration Test for Verification to check if results are printed out correctly"""
 
         testArg = ["main.py", "dummyData.csv", "--company", "PULMONICS", "PLUS", "PLLC"]
@@ -124,8 +122,61 @@ class IntegrationTest(unittest.TestCase):
                 self.assertIn(expectedValue1, fake_out.getvalue())
                 self.assertIn(expectedValue2, fake_out.getvalue())
                 self.assertIn(expectedValue3, fake_out.getvalue())
-        
 
+    def test_Verification_IntegrationTestState(self):
+        """Integration Test for Verification to check if results are printed out correctly"""
+
+        testArg = ["main.py", "dummyData.csv", "--state", "CA"]
+
+        with patch("sys.argv", testArg):
+            with patch('sys.stdout', new = StringIO()) as fake_out:
+                main.readCommandLine()
+
+                expectedValue1 = "CALLAWAY GOLF SALES COMPANY"
+                expectedValue2 = "A T KEARNEY"
+                expectedValue3 = "FUNKTRONIC LABS"
+
+                # Check if it passes the verification test and give the result we want
+                self.assertIn(expectedValue1, fake_out.getvalue())
+                self.assertIn(expectedValue2, fake_out.getvalue())
+                self.assertIn(expectedValue3, fake_out.getvalue())
+        
+        def test_Verification_IntegrationTestState(self):
+            """Integration Test for Verification to check if results are printed out correctly"""
+
+        testArg = ["main.py", "dummyData.csv", "--state", "CA"]
+
+        with patch("sys.argv", testArg):
+            with patch('sys.stdout', new = StringIO()) as fake_out:
+                main.readCommandLine()
+
+                expectedValue1 = "CALLAWAY GOLF SALES COMPANY"
+                expectedValue2 = "A T KEARNEY"
+                expectedValue3 = "FUNKTRONIC LABS"
+
+                # Check if it passes the verification test and give the result we want
+                self.assertIn(expectedValue1, fake_out.getvalue())
+                self.assertIn(expectedValue2, fake_out.getvalue())
+                self.assertIn(expectedValue3, fake_out.getvalue())
+
+    def test_Verification_IntegrationTestMinInitApproval(self):
+        """Integration Test for Verification to check if results are printed out correctly"""
+
+        testArg = ["main.py", "dummyData.csv", "--minInitApproval", "2"]
+
+        with patch("sys.argv", testArg):
+            with patch('sys.stdout', new = StringIO()) as fake_out:
+                main.readCommandLine()
+
+                expectedValue1 = "REDDY GI ASSOCIATES"
+                expectedValue2 = "STATE OF CA SECY OF STATE S OFFICE"
+                expectedValue3 = "CANCER TREATMENT CTRS OF AMERICA G"
+
+                # Check if it passes the verification test and give the result we want
+                self.assertIn(expectedValue1, fake_out.getvalue())
+                self.assertIn(expectedValue2, fake_out.getvalue())
+                self.assertIn(expectedValue3, fake_out.getvalue())
+        
 
 if __name__ == '__main__':
     unittest.main()
