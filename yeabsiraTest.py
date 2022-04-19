@@ -111,8 +111,6 @@ class TestSOMETHING(unittest.TestCase):
         self.assertEqual(rawData20, correctResult20)
 
 
-
-
 if __name__ == '__main__':
       unittest.main()
 
