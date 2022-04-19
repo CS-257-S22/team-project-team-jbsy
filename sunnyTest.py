@@ -1,4 +1,6 @@
+from io import StringIO
 import unittest
+from unittest.mock import patch
 import helper
 import verification
 import main
@@ -21,14 +23,6 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(verification.companyExist('REDDY GI ASSOCIATES', dummyData))
         self.assertFalse(verification.companyExist('NO SUCH COMPANY', dummyData))
 
-    def integrationColumnExist(self):
-        """Integration Test for ColumnExist"""
-        dummyData = "dummyData.csv"
-        data = helper.readFile(dummyData)
-        command = "--state"
-        target = "CA"
-        visaData = data[0]
-        
         pass
 
     def testColumnExist(self):
@@ -96,7 +90,41 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(verification.inputValid("2", "--minInitApproval"))
         self.assertFalse(verification.inputValid("None", "--minInitApproval"))
 
+class IntegrationTest(unittest.TestCase):
+    """Integration Test for readCommandLine() and Verification"""
     
+    def test_Error_Verification_IntegrationTest(self):
+        """Integration Test for Verification to check if errors are printed out correctly"""
+        
+        testArg = ["main.py", "dummyData.csv", "--company"]
+
+        with patch("sys.argv", testArg):
+            with patch('sys.stdout', new = StringIO()) as fake_out:
+                main.readCommandLine()
+                
+                # Check if it prints an error
+                self.assertEqual("Invalid Command : Need more arguments\n", fake_out.getvalue())
+
+
+    
+    def test_Verification_IntegrationTest(self):
+        """Integration Test for Verification to check if results are printed out correctly"""
+
+        testArg = ["main.py", "dummyData.csv", "--company", "PULMONICS", "PLUS", "PLLC"]
+
+        with patch("sys.argv", testArg):
+            with patch('sys.stdout', new = StringIO()) as fake_out:
+                main.readCommandLine()
+
+                expectedValue1 = "Fiscal Year => 2020"
+                expectedValue2 = "City => WASHINGTON"
+                expectedValue3 = "ZIP => 20036"
+
+                # Check if it passes the verification test and give the result we want
+                self.assertIn(expectedValue1, fake_out.getvalue())
+                self.assertIn(expectedValue2, fake_out.getvalue())
+                self.assertIn(expectedValue3, fake_out.getvalue())
+        
 
 
 if __name__ == '__main__':
