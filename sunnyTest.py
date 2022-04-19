@@ -83,7 +83,7 @@ class UnitTestHelper(unittest.TestCase):
     def testInputValid(self):
         """Unit Test to check if inputValid method works"""
 
-        # No need to check for empty commands because we check the command line len before 
+        # No need to check for empty commands because we check the command line length before 
         # Sample cases to see if the method returns the correct booleans
         self.assertTrue(verification.inputValid("PULMONICS PLUS PLLC", "--company"))
         self.assertTrue(verification.inputValid("CA", "--state"))
@@ -98,18 +98,20 @@ class IntegrationTest(unittest.TestCase):
         
         testArg = ["main.py", "dummyData.csv", "--company"]
 
+        # When there are less arguments in the command line.
         with patch("sys.argv", testArg):
             with patch('sys.stdout', new = StringIO()) as fake_out:
                 main.readCommandLine()
                 
                 # Check if it prints an error
                 self.assertEqual("Invalid Command : Need more arguments\n", fake_out.getvalue())
-    
+
     def test_Verification_IntegrationTestCompany(self):
-        """Integration Test for Verification to check if results are printed out correctly"""
+        """Integration Test for --Company & Verification to check if results are printed out correctly"""
 
         testArg = ["main.py", "dummyData.csv", "--company", "PULMONICS", "PLUS", "PLLC"]
 
+        # When the command line argument is looking for companies
         with patch("sys.argv", testArg):
             with patch('sys.stdout', new = StringIO()) as fake_out:
                 main.readCommandLine()
@@ -124,10 +126,11 @@ class IntegrationTest(unittest.TestCase):
                 self.assertIn(expectedValue3, fake_out.getvalue())
 
     def test_Verification_IntegrationTestState(self):
-        """Integration Test for Verification to check if results are printed out correctly"""
+        """Integration Test for --State & Verification to check if results are printed out correctly"""
 
         testArg = ["main.py", "dummyData.csv", "--state", "CA"]
 
+        # When the command line argument is looking for states
         with patch("sys.argv", testArg):
             with patch('sys.stdout', new = StringIO()) as fake_out:
                 main.readCommandLine()
@@ -160,10 +163,11 @@ class IntegrationTest(unittest.TestCase):
                 self.assertIn(expectedValue3, fake_out.getvalue())
 
     def test_Verification_IntegrationTestMinInitApproval(self):
-        """Integration Test for Verification to check if results are printed out correctly"""
+        """Integration Test for --minInitApproval & Verification to check if results are printed out correctly"""
 
         testArg = ["main.py", "dummyData.csv", "--minInitApproval", "2"]
 
+        # When the command line argument is looking for minimum initial approval
         with patch("sys.argv", testArg):
             with patch('sys.stdout', new = StringIO()) as fake_out:
                 main.readCommandLine()
