@@ -118,7 +118,7 @@ CANCER TREATMENT CTRS OF AMERICA G
 * python3 test.py (To test the all the function of the program)
 * python3 yeabsiraTest.py (To test part of the program)
 * python3 joshuaTest.py (To test part of the program)
-* python3 benner_test.py (To test part of the program)
+* python3 bennet_test.py (To test part of the program)
 * python3 sunnyTest.py (To test part of the program)
 
 ### Example:
