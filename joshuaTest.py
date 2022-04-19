@@ -8,7 +8,7 @@ from service import getCompaniesByMinInitApproval
 
 class UnitTestHelper(unittest.TestCase):
     """Unit Test for Helper Functions"""
-    
+
     def test_GetColumnNameByIndex(self):
         """Test GetColumnNameByIndex"""
         self.assertEqual(helper.getColumnNameByIndex(0), "Fiscal Year")
@@ -249,7 +249,7 @@ class UnitTestService(unittest.TestCase):
 class IntegrationTestService(unittest.TestCase):
     """Integration Test for Service Functions"""
 
-    def integrationMinInitApproval(self):
+    def test_integrationMinInitApproval(self):
         """Integration Test for MinInitApproval"""
 
         testCommand = "--minInitApproval"
