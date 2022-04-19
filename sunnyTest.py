@@ -23,8 +23,6 @@ class UnitTestHelper(unittest.TestCase):
         self.assertTrue(verification.companyExist('REDDY GI ASSOCIATES', dummyData))
         self.assertFalse(verification.companyExist('NO SUCH COMPANY', dummyData))
 
-        pass
-
     def testColumnExist(self):
         """Unit Test to check if columnExistt method works"""
 
