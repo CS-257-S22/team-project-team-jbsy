@@ -13,7 +13,7 @@ class UnitTestHelper(unittest.TestCase):
 
         # Edge Case : file name does not end in csv
         dummyData = "dummyData.c"
-        self.assertFalse(dummyData[-3:] == ".v")
+        self.assertFalse(dummyData[-3:] == ".csv")
 
         # Check if file name ends in csv
         dummyData = "dummyData.csv"
