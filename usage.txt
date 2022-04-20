@@ -98,3 +98,29 @@ EMERALD HEALTH PHARMACEUTICALS INC
 CANCER TREATMENT CTRS OF AMERICA G
 
 -----------------------------
+
+Errors:
+
+When incorrect arguments are used when executing the program, then an error message would pop up
+like the examples below
+
+Example-1: When an incorrect feature identifier is used
+
+-----------------------------------------------------
+$python3 main.py dummyData.csv --someIncorrectFeature
+Invalid Command : command is not in column
+------------------------------------------------------
+
+Example-2: When an incorrect datafile is referenced
+
+------------------------------------------------------
+$python3 main.py incorrectDataFile.csv --state "MN"
+Please input a valid file
+-----------------------------------------------------
+
+Example-3: When an incorrect python file is referenced
+
+---------------------------------------------------------
+$python3 incorrectPythonFile.py dummmyData.csv --usage
+python3: can't open file 'incorrectPythonFile.py': [Errno 2] No such file or directory
+----------------------------------------------------------
