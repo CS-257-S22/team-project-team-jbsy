@@ -44,9 +44,6 @@ class UnitTestService(unittest.TestCase):
         # Check if the most recent year is of companies in the list is 2020
         self.assertEqual(testMostRecentYear, "2020")
 
-        # Edge case: check if the most recent year of the companies in the list is 2019
-        self.assertEqual(testMostRecentYear, "2019")
-
         # Checking validity for the element tag representing a company name in the list
         self.assertIn("companyName", companyInfo)
 
@@ -76,10 +73,6 @@ class UnitTestService(unittest.TestCase):
         self.assertEqual(testResult[9]["companyName"], "LIN ZHI INTERNATIONAL INC")
         self.assertEqual(testResult[10]["companyName"], "FUNKTRONIC LABS")
         self.assertEqual(testResult[11]["companyName"], "ELM EAST LLC")
-
-        # Edge case to check if the company, "ST OLAF", is in the list for CA
-        self.assertIn("ST OLAF", testResult)
-
 class IntegrationTestService(unittest.TestCase):
     """Integration Tests for service functions"""
 
