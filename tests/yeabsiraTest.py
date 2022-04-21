@@ -18,10 +18,7 @@ class TestSOMETHING(unittest.TestCase):
         
         #edge case
         self.assertDictEqual(getStatByCompany({"visaData": visaData[0], "target": company0}), correctResult0)
-
-        
-       
-        
+  
     def test_getStatsbyCompany1(self):
 
         """unit test for typical case for getStatsbyCompany"""
