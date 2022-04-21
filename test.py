@@ -90,7 +90,6 @@ class UnitTestVerification(unittest.TestCase):
         self.assertTrue(verification.inputValid("2", "--minInitApproval"))
         self.assertFalse(verification.inputValid("None", "--minInitApproval"))
 
-
 class UnitTestHelper(unittest.TestCase):
     """Unit Test for Helper Functions"""
 
@@ -275,7 +274,7 @@ class UnitTestService(unittest.TestCase):
             self.assertEqual(getCompaniesByState({}), [])
 
             # Check if it prints the wanted result
-            self.assertIn("Invalid Command: Need more arguments", fake_out.getvalue())
+            self.assertIn("Need all the data in argument\n", fake_out.getvalue())
 
     def test_returnList_getCompaniesByState(self):
         """Test return list for getCompaniesByState"""
@@ -337,7 +336,7 @@ class UnitTestService(unittest.TestCase):
         """unit test for edge case for getStatsbyCompany"""
 
         filePath = 'dummyData.csv'
-        visaData = helper.helper.readFile(filePath)
+        visaData = helper.readFile(filePath)
 
         company0 = "CARLETON COLLEGE"
 
@@ -352,7 +351,7 @@ class UnitTestService(unittest.TestCase):
         """unit test for typical case for getStatsbyCompany"""
 
         filePath = 'dummyData.csv'
-        visaData = helper.helper.readFile(filePath)
+        visaData = helper.readFile(filePath)
 
         company1 = "REDDY GI ASSOCIATES"
 
@@ -365,7 +364,7 @@ class UnitTestService(unittest.TestCase):
         """unit test for typical case for getStatsbyCompany"""
 
         filePath = 'dummyData.csv'
-        visaData = helper.helper.readFile(filePath)
+        visaData = helper.readFile(filePath)
 
         company2 = "FUNKTRONIC LABS"
 
@@ -380,7 +379,7 @@ class UnitTestService(unittest.TestCase):
         """unit test for typical case for getStatsbyCompany"""
 
         filePath = 'dummyData.csv'
-        visaData = helper.helper.readFile(filePath)
+        visaData = helper.readFile(filePath)
 
         company3 = "CANCER TREATMENT CTRS OF AMERICA G"
 
@@ -499,7 +498,6 @@ class UnitTestService(unittest.TestCase):
         rawData20 = getCompaniesByMinInitApproval({"visaData": visaData[0], "target": "20", "mostRecentYear":"2020"})
         
         self.assertEqual(rawData20, correctResult20)
-
 
 class IntegrationTestService(unittest.TestCase):
     """Integration Test for Service Functions"""
@@ -645,8 +643,6 @@ class IntegrationTestVerification(unittest.TestCase):
                 self.assertIn(expectedValue2, fake_out.getvalue())
                 self.assertIn(expectedValue3, fake_out.getvalue())
  
-
-
 
 def main():
     # unittest.main(verbosity=2)
