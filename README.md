@@ -111,22 +111,18 @@ CANCER TREATMENT CTRS OF AMERICA G
 
 -----------------------------
 
-## 3. Using Test suits to check individual functions
+## 3. Using Test suite to check individual functions
 
 ### Syntax: 
 
 * python3 test.py (To test the all the function of the program)
-* python3 yeabsiraTest.py (To test part of the program)
-* python3 joshuaTest.py (To test part of the program)
-* python3 bennet_test.py (To test part of the program)
-* python3 sunnyTest.py (To test part of the program)
 
 ### Example:
 ---------------------------------
-$  python3 yeabsiraTest.py
+$  python3 test.py
 ......
 ----------------------------------------------------------------------
-Ran 6 tests in 0.038s
+Ran 36 tests in 0.007s
 
 OK
 
