@@ -12,7 +12,11 @@ def getCompaniesByState(arguments):
     Returns:
     list -- a list that has all the companies (dict) that are within the state
     """
-    
+   if "target" not in arguments or "visaData" not in arguments or "mostRecentYear" not in arguments:
+        print("Need all the data in argument")
+        # raise ValueError
+        return []
+
    state = arguments["target"] 
    visaData = arguments["visaData"]
    mostRecentYear = arguments["mostRecentYear"]
@@ -37,7 +41,6 @@ def getStatByCompany(arguments):
     Returns:
     dict -- data of company
     """
-
     company = arguments["target"]
     visaData = arguments["visaData"]
 

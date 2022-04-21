@@ -19,7 +19,7 @@ class UnitTestService(unittest.TestCase):
             self.assertEqual(getCompaniesByState({}), [])
 
             # Check if it prints the wanted result
-            self.assertIn("Invalid Command: Need more arguments", fake_out.getvalue())
+            self.assertIn("Need all the data in argument", fake_out.getvalue())
 
     def test_returnList_getCompaniesByState(self):
         """Test return list for getCompaniesByState"""
