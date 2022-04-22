@@ -46,7 +46,7 @@ Each team member has his or her strengths that we are confident in bringing to t
 
 - Yeabsira has a solid background in programming and using Unix terminals which will be helpful in any step of the project. He is also good at debugging code and generally following a good programming practise.
 
-# capitalising on our individual strength
+# Capitalising on our individual strength
 
 Each team member haa a unique experience and background to programming which will allow us to learn different programming techniques and practises from one another. Some member are generally more good at communication than others which provides ground for us to improve our team skills through the extensive interaction we have in building and discussing projects. Joshua knowledge about Github will allow other members to readily learn about the inner workings of this system for facilitating our team projects. Finally, the diversity of skills and attributes that exist within out team will allow us to deliver a quality final project.
 
