@@ -34,7 +34,7 @@ These functions of our project will be useful in addition to the organized displ
 - Delivering a relevant and refined final project for our class
 
 
-## Strength our members
+## Strength of our members
 
 Each team member has his or her strengths that we are confident in bringing to the project.
 
