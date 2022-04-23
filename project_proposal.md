@@ -1,6 +1,6 @@
 # H-1B Employer Data Hub
 
-By : Joshua Song / Beneet Tefu / Sunny Kim / Yeabsira Gebreegziabher 
+By : Joshua Song / Bennet Tefu / Sunny Kim / Yeabsira Gebreegziabher 
 
 ## Project Overview
 H-1B Visa is a nonimmigrant visa that allows U.S. employers to hire foreigners for jobs that require a bachelor’s degree or equivalent. We aim to create a project that acts as a data hub of H-1B statistics from 2018 to 2022. The project will provide a clear presentation of data and helpful features to aid the user!
@@ -29,7 +29,7 @@ H-1B Employer Data Hub Files | USCIS. 8 Jan. 2021, https://www.uscis.gov/tools/r
 - FY 2018 H-1B Employer Data (CSV, 4.57 MB)
 
 2. Customizing data for our project
-- We will be merging / combining all five CSV files to create one big CSV file in order to upload it to out database. 
+- We will be merging / combining all five CSV files to create one big CSV file in order to upload it to our database. 
 
 3. Sample Data
 - We will be creating a short dummyData.csv file which contains a small part from all five databases just to save time during the process of running our code while developing.
@@ -102,7 +102,7 @@ Test Suites and writing of the proposal are a shared responsibility of all team 
 **9. What are the rules for dealing with a teammate who hasn't been communicating? How frequently should team members communicate / check in?**
 
 - We will make sure to tag each other just in case one missed a notification. 
-- If the member of the team still does not reply, we will asked to provide a reason for not replying during the next meeting.
+- If the member of the team still does not reply, we will ask the person to provide a reason for not replying during the next meeting.
 - If a member misses a meeting and does not respond continuously, we will be asking Anya for help.
 
 **10. What technologies will you use to support team meetings and work? (Google Drive, Hangouts, Zoom, Facetime, etc)**
@@ -110,7 +110,7 @@ Test Suites and writing of the proposal are a shared responsibility of all team 
 - Visual Studio Code : primary IDE when undertaking a programming task
 - Slack : team communication app
 - Github : host and manage all our projects
-- Google Drive : word processor when writing and discussing documents / Sharing files
+- Google Docs : word processor when writing and discussing documents / Sharing files
 
 **11. How will you make decisions? (Unanimous, consensus, majority rule, by assigned roles, rock-paper-scissors, etc)**
 
