@@ -81,7 +81,7 @@ Each team member has his or her strengths that we are confident in bringing to t
 
 Test Suites and writing of the proposal are a shared responsibility of all team members.
 
-**6. How will you communicate with each other? (to share work, to ask questions, notify the group if someone is running late or if someone will miss a meeting, etc)
+**6. How will you communicate with each other? (to share work, to ask questions, notify the group if someone is running late or if someone will miss a meeting, etc)**
 
 - Slack will be our platform for communication
 - Make sure to check slack once a day and tag each other if the teammates do not answer
