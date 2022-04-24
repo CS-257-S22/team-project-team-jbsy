@@ -118,11 +118,11 @@ Test Suites and writing of the proposal are a shared responsibility of all team 
 
 **12. How will you divide the work?**
 
-- Joshua: Design and program the helper functions for the independent features / Design the Object-Oriented structure of the program.
+- Joshua: Design and program the helper functions for the independent features / Make sure that single responsibility principle is followed in the program.
 -	Sunny: Design and program the data parser, verification of user input, and command-line arguments.
 -	Bennet: Design and program additional independent features / Leading discussions about HTML and CSS / Collaborate with Yeabsira to make sure they have similar styles and no overlaps
--	Yeabsira: Design and program the functions that execute the independent features of our final project / Collaborate with Bennet to make sure they have similar style and no overlaps
--	
+-	Yeabsira: Design and program the functions that execute the independent features of the final project / Collaborate with Bennet to make sure they have similar style and no overlaps
+
 **13. How will you ensure that everybody participates meaningfully? How will you make sure that everyone's contribution is valued?**
 
 - Make sure to not underrate each other's work 
@@ -132,7 +132,7 @@ Test Suites and writing of the proposal are a shared responsibility of all team 
 
 All team members are...
 
-- Expected to spend enough time and effort to finish the designated jobs before the next meeting
+- Expected to spend enough time and effort to finish the designated jobs before the next meeting (Time to spend per week will vary by member)
 - Ask each other for help if any unfixable error arises
 - Try to provide solutions for each other if one asks for help
 - Use the first 20 minutes of every meeting for each other's code review 
