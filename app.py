@@ -21,7 +21,8 @@ def listCompaniesInState():
 
     # Verify the two features the program supports at the moment
     if state is None and minInitApproval is None:
-        return "Sorry, Address not Found. Please check your variable name one more time!"
+        error = "Sorry, Address not Found. Please check your variable name one more time. (No Quotation Marks Please!)"
+        return bad_request(error)
 
     # Get list for minInitApproval
     if state is None:
