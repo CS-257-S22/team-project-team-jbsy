@@ -12,7 +12,7 @@ def homePage():
     return render_template('home.html', title='H-1B Data Hub')
 
 @app.route('/companies/search', methods=['GET'])
-def listCompaniesInState():
+def listCompanies():
     """Give a list of Companies"""
 
     args = request.args
