@@ -39,8 +39,8 @@ H-1B Employer Data Hub Files | USCIS. 8 Jan. 2021, https://www.uscis.gov/tools/r
 1. Input a name of a state as a variable and get an output of the list of all companies in the input state.
 2. Input a name of a company as a variable and get an output of the list of all statistics(Fiscal Year, Initial Approval, Initial Denials, Continuing Approvals, Continuing Denials, NAICS, Tax ID, State, City, ZIP) related to the input company.
 3. Input a number of approvals as a variable and get an output of the list of all companies with a minimum, maximum, initial, and current approvals of the input number.
-4. List of top 10 companies and state with the highest percentage of visa approval.
-5. A map that shows list of companies in the state when clicking on the map.
+4. List the top 10 companies and states with the highest percentage of visa approval.
+5. A map that shows a list of companies in the state when clicking on the map.
 
 ## Team Contract
 
@@ -53,31 +53,31 @@ H-1B Employer Data Hub Files | USCIS. 8 Jan. 2021, https://www.uscis.gov/tools/r
 
 Each team member has his or her strengths that we are confident in bringing to the project.
 
-- Joshua : Excellent listener / Has good time management skills / Confident in finding answers to problems very efficiently through wide online searches
-- Sunny :  Responsible for the work she is assigned / Good communicator
-- Bennet : An excellent communicator / Has some experience with HTML and CSS
-- Yeabsira : Solid background in programming and manipulating Unix terminals 
+- Joshua: Excellent listener / Has good time management skills / Confident in finding answers to problems very efficiently through wide online searches
+- Sunny:  Responsible for the work she is assigned / Good communicator
+- Bennet: An excellent communicator / Has some experience with HTML and CSS
+- Yeabsira: Solid background in programming and manipulating Unix terminals 
 
 **3. How will we capitalize on the strengths of each member?**
 
-- Joshua : Plan group meetings, based on the requirement for each week / Internet search when nobody in the team knows an answer to a question or bug
-- Sunny :  Make sure everyone is on track / Send check-in slack messages to everyone to keep track of the progress 
-- Bennet : Send check-in slack messages to everyone to keep track of the progress / Help other teammates with HTML/CSS when stuck
-- Yeabsira : Use the coding experience to focus on coding / Write the Usage statement
+- Joshua: Plan group meetings, based on the requirement for each week / Internet search when nobody in the team knows an answer to a question or bug
+- Sunny:  Make sure everyone is on track / Send check-in slack messages to everyone to keep track of the progress 
+- Bennet: Send check-in slack messages to everyone to keep track of the progress / Help other teammates with HTML/CSS when stuck
+- Yeabsira: Use the coding experience to lead the group's direction on coding / Writing the Usage statement
 
 **4. When will your team meet? What time, how often, for how long, where?**
 
 - Meeting time : Saturday 11:30am ~ 2:00pm / Sunday 11:30am ~ 2:00pm
-- Meeting location : Olin 310 (Olin Lab)
+- Meeting location: Olin 310 (Olin Lab)
 
-* Meetings may be scheduled additionally and cancelled depending on the needs of the project.
+* Meetings may be scheduled additionally and canceled depending on the needs of the project.
 
 **5. What roles will members take on in your meetings? Is someone responsible for setting agendas, taking notes, facilitating discussions, etc?** 
 
-- Joshua : Note Taker, Take notes about what came up during the meeting
-- Sunny : Discussion Leader, Lead discussions during the meetings
-- Bennet : Facilitator, Involve every member of the group in group discussions
-- Yeabsira : Agenda Setter, Set agenda for group meetings and assign tasks equally for everyone
+- Joshua: Note Taker, Take notes about what came up during the meeting
+- Sunny: Discussion Leader, Lead discussions during the meetings
+- Bennet: Facilitator, Involve every member of the group in group discussions
+- Yeabsira: Agenda Setter, Set agenda for group meetings and assign tasks equally for everyone
 
 Test Suites and writing of the proposal are a shared responsibility of all team members.
 
@@ -88,16 +88,16 @@ Test Suites and writing of the proposal are a shared responsibility of all team 
 
 **7. How does your team define "Respectful"?**
 
-- Show consideration and regard for teammates, always talk in positive attitude, do not underrate each other's work, and stay open-minded when discussing about the project.
+- Show consideration and regard for teammates, always talk with a positive attitude, do not underrate each other's work, and stay open-minded when discussing the project.
 - This includes refraining from the use of words that are racist, sexist, homophobic, and generally offensive to other team members or any other outside group.
 
 **8. How will you make sure communication stays respectful?**
 
 - Make sure to use "respectful" language when communicating. 
-- Put ourselves in each other's shoes and consider all arguments in different perspectives. 
+- Put ourselves in each other's shoes and consider all arguments from different perspectives. 
 - Make sure to listen to each other and not interrupt when a teammate is talking. 
-- Make sure to leave emojis on each other's message to let other know that they read the message.
-- Turn on slack notification during work hours for a better team communication
+- Make sure to leave emojis on each other's messages to let others know that they read the message.
+- Turn on slack notifications during work hours for a better team communication
 
 **9. What are the rules for dealing with a teammate who hasn't been communicating? How frequently should team members communicate / check in?**
 
@@ -118,11 +118,11 @@ Test Suites and writing of the proposal are a shared responsibility of all team 
 
 **12. How will you divide the work?**
 
-- Joshua : Design and program the helper functions for the independent features / Design the Object-Oriented structure of the program.
--	Sunny : Design and program the data parser, verification of user input, and command line arguments.
--	Bennet : Design and program additional independent features / Leading discussions about HTML and CSS / Collaborate with Yeabsira to make sure they have similar style and no overlaps
--	Yeabsira : Design and program the functions that execute the independent features of our final project / Collaborate with Bennet to make sure they have similar style and no overlaps
-
+- Joshua: Design and program the helper functions for the independent features / Design the Object-Oriented structure of the program.
+-	Sunny: Design and program the data parser, verification of user input, and command-line arguments.
+-	Bennet: Design and program additional independent features / Leading discussions about HTML and CSS / Collaborate with Yeabsira to make sure they have similar styles and no overlaps
+-	Yeabsira: Design and program the functions that execute the independent features of our final project / Collaborate with Bennet to make sure they have similar style and no overlaps
+-	
 **13. How will you ensure that everybody participates meaningfully? How will you make sure that everyone's contribution is valued?**
 
 - Make sure to not underrate each other's work 
@@ -142,13 +142,13 @@ All team members are...
 
 - Talk about concerns during the meetings 
 - Weekly code review for each other's code / provide necessary solutions to possible flaws
-- If conflict arises, ask Anya for help
+- If a conflict arises, ask Anya for help
 
 **16. How will you address conflict or deal with disagreements within the team?**
 
 - Use the first 10 minutes of the meetings to make sure everyone is following the progress
-- Each provide arguments to each side of the conflict and find a resolution that satisfies both sides
-- If conflict continues, ask Anya for help
+- Each provides arguments to each side of the conflict and finds a resolution that satisfies both sides
+- If the conflict continues, ask Anya for help
 
  
  
