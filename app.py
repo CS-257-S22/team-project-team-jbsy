@@ -11,6 +11,7 @@ def homePage():
     """Home Page for the Program"""
     return render_template('home.html', title='H-1B Data Hub')
 
+
 @app.route('/companies/search', methods=['GET'])
 def listCompanies():
     """Give a list of Companies"""
@@ -62,15 +63,14 @@ def listCompanies():
 
 def bad_request(errorMessage = "Your client has issued an invalid request.\n"):
     """Display 400 Error"""
+    
     errorType = "400 Error"
     return render_template('error.html', errorTitle = errorType, errorMessage = errorMessage)
 
 @app.errorhandler(400)
 def bad_request_Handler(e):
     """Display 400 Error"""
-    errorType = "400 Error"
     return bad_request()
-
 
 @app.errorhandler(404)
 def page_not_found(e):
