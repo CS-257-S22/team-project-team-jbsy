@@ -1,5 +1,7 @@
+from flask import *
 from app import *
 import unittest
+
 
 class TestError(unittest.TestCase):
     """Test Error Page"""
@@ -14,9 +16,69 @@ class TestError(unittest.TestCase):
         print("Not necessary to make test for 500 error yet")
         pass
 
+class Test_Unit_Route(unittest.TestCase):
+    """Unit Test for Feature"""
 
-class TestFeature(unittest.TestCase):
-    """Test for Feature"""
+    def test_emptyArg_listCompanies(self):
+        """Test Empty Query Parameters (400 Error)"""
+
+        # When there are no query parameters
+        with app.test_request_context('/companies/search'):
+            errorResult = listCompanies()
+            self.assertIn("400 Error", errorResult)
+            self.assertIn("Sorry, Address not Found. Please check your variable name one more time. (No Quotation Marks Please!)", errorResult)
+
+    def test_invalidNum_minInitApproval_listCompanies(self):
+        """Test Invalid Value for MinInitApproval (400 Error)"""
+
+        # When string is put in instead of number
+        with app.test_request_context('/companies/search?minInitApproval=hello'):
+            errorResult = listCompanies()
+            self.assertIn("400 Error", errorResult)
+            self.assertIn("hello is not a number. Please input a valid number", errorResult)
+
+    def test_minInitApproval_listCompanies(self):
+        """Test listCompanies for minInitApproval"""
+
+        # MinInitApproval is 15
+        with app.test_request_context('/companies/search?minInitApproval=15'):
+            listOfCompanies = listCompanies()
+            self.assertIn("List of Employers with at least 15 Minimum Initial Approval(s) for 2020:", listOfCompanies)
+            self.assertIn("Companies:", listOfCompanies)
+            self.assertIn("STATE OF CA SECY OF STATE S OFFICE", listOfCompanies)
+            self.assertIn("EMERALD HEALTH PHARMACEUTICALS INC", listOfCompanies)
+
+    def test_invalidString_state_listCompanies(self):
+        """Test Invalid Value for State (400 Error)"""
+
+        # When invalid value is put in instead of state
+        with app.test_request_context('/companies/search?state=3'):
+            errorResult = listCompanies()
+            self.assertIn("400 Error", errorResult)
+            self.assertIn("3 is not a state. Please input a valid state", errorResult)
+
+    def test_state_listCompanies(self):
+        """Test listCompanies for state"""
+
+        # State is AZ
+        with app.test_request_context('/companies/search?state=AZ'):
+            listOfCompanies = listCompanies()
+            self.assertIn("List of Employers in AZ for 2020:", listOfCompanies)
+            self.assertIn("Companies:", listOfCompanies)
+            self.assertIn("REDDY GI ASSOCIATES", listOfCompanies)
+            self.assertIn("ADMIRAL INSTRUMENTS LLC", listOfCompanies)
+
+    def test_bad_request(self):
+        """Test for bad request error function"""
+
+        # Create context for render_template
+        with app.app_context():
+            testResult = bad_request()
+            self.assertIn("400 Error", testResult)
+            self.assertIn("Your client has issued an invalid request.\n", testResult)
+
+class Test_Integration_Route(unittest.TestCase):
+    """Integration Test for Feature"""
 
     def test_home1(self):
         """Test the second way to access homePage: /"""
