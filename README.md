@@ -111,7 +111,7 @@ CANCER TREATMENT CTRS OF AMERICA G
 
 -----------------------------
 
-## 3. Using Test suite to check individual functions
+## 4. Using Test suite to check individual functions
 
 ### Syntax: 
 
@@ -125,6 +125,14 @@ $  python3 test.py
 Ran 36 tests in 0.007s
 
 OK
+
+-----------------------------
+
+## 5. Check Usage.txt via Command Line
+
+### Syntax:
+
+* python3 main.py dummyData.csv --usage
 
 -----------------------------
 
