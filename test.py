@@ -642,7 +642,7 @@ class IntegrationTestVerification(unittest.TestCase):
                 self.assertIn(expectedValue1, fake_out.getvalue())
                 self.assertIn(expectedValue2, fake_out.getvalue())
                 self.assertIn(expectedValue3, fake_out.getvalue())
- 
+
 
 def main():
     # unittest.main(verbosity=2)
