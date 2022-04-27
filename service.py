@@ -1,10 +1,10 @@
 from helper import printCompaniesInState, printCompany, printMinInitApproval, printUsage
 
-def getCompaniesByState(arguments):
+def getCompaniesByState(userInput):
    """Get a list of companies within the input state
 
     Arguments:
-    arguments -- dict for function arguments (dict)
+    userInput -- dict for function getCompaniesByState (dict)
         target -- state put in via command line (string)
         visaData -- all the statistics of companies (dict)
         mostRecentYear -- the fiscal year to find data in (string)
@@ -12,14 +12,14 @@ def getCompaniesByState(arguments):
     Returns:
     list -- a list that has all the companies (dict) that are within the state
     """
-   if "target" not in arguments or "visaData" not in arguments or "mostRecentYear" not in arguments:
+   if "target" not in userInput or "visaData" not in userInput or "mostRecentYear" not in userInput:
         print("Need all the data in argument")
         # raise ValueError
         return []
 
-   state = arguments["target"] 
-   visaData = arguments["visaData"]
-   mostRecentYear = arguments["mostRecentYear"]
+   state = userInput["target"] 
+   visaData = userInput["visaData"]
+   mostRecentYear = userInput["mostRecentYear"]
 
    companyList = []
 
@@ -30,31 +30,31 @@ def getCompaniesByState(arguments):
             
    return companyList  
         
-def getStatByCompany(arguments):
+def getStatByCompany(userInput):
     """Get a company that matches the given name
 
     Arguments:
-    arguments -- dict for function arguments (dict)
+    userInput -- dict for function getStatByCompany (dict)
         target -- state put in via command line (string)
         visaData -- all the statistics of companies (dict)
 
     Returns:
     dict -- data of company
     """
-    company = arguments["target"]
-    visaData = arguments["visaData"]
+    company = userInput["target"]
+    visaData = userInput["visaData"]
 
     # Find and return company with the matching name
     if company in visaData:
-        return {"companyName": company, "data": visaData[company]}
+        return {"companyName": company, "statistic": visaData[company]}
     else:
         return {}
 
-def getCompaniesByMinInitApproval(arguments):
+def getCompaniesByMinInitApproval(userInput):
     """Get companies with a minimum threshold initial approval
 
     Arguments:
-    arguments -- dict for function arguments (dict)
+    userInput -- dict for function getCompaniesByMinInitApproval (dict)
         target -- state put in via command line (string)
         visaData -- all the statistics of companies (dict)
         mostRecentYear -- the fiscal year to find data in (string)
@@ -63,36 +63,36 @@ def getCompaniesByMinInitApproval(arguments):
     list -- a list that has all the companies (dict) that have at least certain number of minimum initial approvals
     """
 
-    if "target" not in arguments or "visaData" not in arguments or "mostRecentYear" not in arguments:
+    if "target" not in userInput or "visaData" not in userInput or "mostRecentYear" not in userInput:
         print("Need all the data in argument")
         # raise ValueError
         return []
         
-    initApproval  = arguments["target"]
-    visaData = arguments["visaData"]
-    mostRecentYear = arguments["mostRecentYear"]
+    initApproval  = userInput["target"]
+    visaData = userInput["visaData"]
+    mostRecentYear = userInput["mostRecentYear"]
 
     companyList = []
     for j in visaData:
         if(int(visaData[j][mostRecentYear]["Initial Approvals"]) >= int(initApproval)):
-            companyList.append({"companyName": j, "data": visaData[j][mostRecentYear]})        
+            companyList.append({"companyName": j, "statistic": visaData[j][mostRecentYear]})        
     return companyList;      
 
-def initiateCommand(argument):
+def initiateCommand(userInput):
     """General function that interprets command and initates relevant function
 
     Arguments:
-    arguments -- dict for function arguments (dict)
+    userInput -- dict for function initiateCommand (dict)
         command -- command line keyword user put in (string)
         target -- state put in via command line (string)
         visaData -- all the statistics of companies (dict)
         mostRecentYear -- the fiscal year to find data in (string)
     """
 
-    command = argument["command"]
-    visaData = argument["visaData"]
-    target = argument["target"]
-    mostRecentYear = argument["mostRecentYear"]
+    command = userInput["command"]
+    visaData = userInput["visaData"]
+    target = userInput["target"]
+    mostRecentYear = userInput["mostRecentYear"]
     
     # Give stat for a company
     if "company" in command:

@@ -66,23 +66,23 @@ def printUsage():
    usageText = open("usage.txt","r")
    print(usageText.read())
 
-def printMinInitApproval(data):
+def printMinInitApproval(companiesList):
     """Prints list of companies with initial approval above a certian threshold
 
     Arguments:
-    data -- list of companies (list)
+    companiesList -- list of companies (list)
     """
-    companiesList = data["companiesList"]
-    initApproval = data["target"]
-    # mostRecentYear = data["mostRecentYear"]
+    targetCompanies = companiesList["companiesList"]
+    initApproval = companiesList["target"]
+    # mostRecentYear = companiesList["mostRecentYear"]
 
-    if len(companiesList) == 0:
+    if len(targetCompanies) == 0:
         print("No companies exist with Initial Approval above " + initApproval)
     else:     
         print("\nCompanies with Minimum Initial Approval of " + initApproval +":\n")
 
         companiesName = ""
-        for name in companiesList:
+        for name in targetCompanies:
             companiesName += name["companyName"] + "\n"
         
         print(companiesName)
@@ -120,7 +120,7 @@ def printCompany(companyData):
         print("\nStatistic for " +companyData["companyName"]+": \n")
 
         statsForCompany = ""
-        companyStat = companyData["data"]
+        companyStat = companyData["statistic"]
 
         for year in companyStat:
             statsForCompany = statsForCompany + "Fiscal Year => " + companyStat[year]["Fiscal Year"]  + "\n"
@@ -137,6 +137,14 @@ def printCompany(companyData):
         
         print(statsForCompany)
 
+def openFile(filePath):
+    try:
+        with open(filePath, 'r') as file:
+            return True
+    except:
+        print("Please input a valid file")
+        return False
+
 def readFile(filePath):
     """Reads a csv file and organizes data
 
@@ -152,38 +160,34 @@ def readFile(filePath):
     # open file
         with open(filePath, 'r') as file:
             reader = csv.reader(file)
-            lineCount = 0
             mostRecentYear = "2018"
 
             # Dictionary for Overall Data
             visaData = {}
 
+            # Skip First line in csv file
+            next(reader)
+
             for line in reader:
-                # Skip First line in csv file
-                if lineCount == 0:
-                # column = line.split(",")
-                    lineCount+=1
+                companyName = line[1]
+                fiscalYear = line[0]
+
+                if int(mostRecentYear) < int(fiscalYear):
+                    mostRecentYear = fiscalYear
+
+                companyData = createDataByYear(line)
+
+                # If no data, continue
+                if len(companyData) == 0:
+                    continue 
+
+                fiscalYear = companyData[0]
+                companyDataByYear = companyData[1]
+
+                if companyName not in visaData:
+                    visaData[companyName] = {fiscalYear: companyDataByYear}
                 else:
-                    lineCount+=1
-                    companyName = line[1]
-                    fiscalYear = line[0]
-
-                    if int(mostRecentYear) < int(fiscalYear):
-                        mostRecentYear = fiscalYear
-
-                    companyData = createDataByYear(line)
-
-                    # If no data, continue
-                    if len(companyData) == 0:
-                        continue 
-
-                    fiscalYear = companyData[0]
-                    companyDataByYear = companyData[1]
-
-                    if companyName not in visaData:
-                        visaData[companyName] = {fiscalYear: companyDataByYear}
-                    else:
-                        visaData[companyName][fiscalYear] = companyDataByYear
+                    visaData[companyName][fiscalYear] = companyDataByYear
 
             return [visaData, mostRecentYear]
     except:

@@ -10,17 +10,6 @@ Parameters:
 
 * "state" can be replaced by the user to obtain information about H1b-visas for all companies within that state
 
-Example:
----------------------------------
-$ python3 main.py dummyData.csv --state DC    
-
-Companies located in DC:
-
-DISTRICT OF COLUMBIA PUBLC SCHOOLS
-PULMONICS PLUS PLLC
-
------------------------------
-
 2. Getting a detailed H1b-Visa Information for a specific Company
 
 Syntax: 
@@ -33,46 +22,6 @@ Parameters
 
 * "comapany name" can be replaced by the user with a specific company name to obtain information about H1b-visa for that comp
 
-### Example:
----------------------------------
-$python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
-
-Statistic for PULMONICS PLUS PLLC:
-
-Fiscal Year => 2018
-Initial Approvals => 1
-Initial Denials => 0
-Continuing Approvals => 0
-Continuing Denials => 0
-NAICS => 62
-Tax ID =>
-State => DC
-City => WASHINGTON
-ZIP => 20036
-
-Fiscal Year => 2019
-Initial Approvals => 1
-Initial Denials => 0
-Continuing Approvals => 0
-Continuing Denials => 0
-NAICS => 65
-Tax ID =>
-State => DC
-City => WASHINGTON
-ZIP => 20036
-
-Fiscal Year => 2020
-Initial Approvals => 1
-Initial Denials => 0
-Continuing Approvals => 0
-Continuing Denials => 0
-NAICS => 52
-Tax ID =>
-State => DC
-City => WASHINGTON
-ZIP => 20036
-
------------------------------
 
 3. Getting list of companies with H1b initial approval greater than some specified number
 
@@ -84,43 +33,7 @@ Syntax:
 
 * "minimumInitApproval" can be replaced by the user with a number to obtain company lists with an equal or greater initial approvals than the number specified
 
-Example:
----------------------------------
-$ python3 main.py dummyData.csv --minInitAppro
-val 3
-
-Companies with minimum Initial Approval of 3:
-
-REDDY GI ASSOCIATES
-PAYSAFE PARTNERS LP
-STATE OF CA SECY OF STATE S OFFICE
-EMERALD HEALTH PHARMACEUTICALS INC
-CANCER TREATMENT CTRS OF AMERICA G
-
------------------------------
 
 Errors:
 
-When incorrect arguments are used when executing the program, then an error message would pop up
-like the examples below
-
-Example-1: When an incorrect feature identifier is used
-
------------------------------------------------------
-$python3 main.py dummyData.csv --someIncorrectFeature
-Invalid Command : command is not in column
-------------------------------------------------------
-
-Example-2: When an incorrect datafile is referenced
-
-------------------------------------------------------
-$python3 main.py incorrectDataFile.csv --state "MN"
-Please input a valid file
------------------------------------------------------
-
-Example-3: When an incorrect python file is referenced
-
----------------------------------------------------------
-$python3 incorrectPythonFile.py dummmyData.csv --usage
-python3: can't open file 'incorrectPythonFile.py': [Errno 2] No such file or directory
-----------------------------------------------------------
+When incorrect arguments are used when executing the program, then an error message will show.
