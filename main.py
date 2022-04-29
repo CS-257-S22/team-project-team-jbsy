@@ -1,5 +1,5 @@
 import sys
-from helper import readFile 
+from helper import printUsage, readFile 
 from service import initiateCommand
 from verification import columnExist, companyExist, commandLen, inputValid
 
@@ -12,13 +12,23 @@ def readCommandLine():
 
     # Check if the command includes enough arguments
     if not commandLen(arg):
-        # command line to run test
-        if len(arg) == 1:
+        # Prints Usage then return
+        if "--usage" in arg:
+            printUsage()
+            return
+        # Return to Test
+        elif "test.py" in arg:
             return
         else:
-            print("Invalid Command : Need more arguments")
-            return
+            print("Command Line Error, Please check if your command is in a correct format.\n")
+            print("Command for running tests => python3 test.py")
+            print("Command for displaying usage => python3 main.py --usage")
+            print("Example Command for Company Search => python3 main.py dummyData.csv --company PULMONICS PLUS PLLC")
+            print("Example Command for Company State Search => python3 main.py dummyData.csv --state CA")
+            print("Example Command for minInitApproval Search => python3 main.py dummyData.csv --minInitApproval 2")
 
+            print("\nFor more information, please check our README!\n")
+            return
 
     fileData = readFile(arg[1])
     if fileData == False:
@@ -57,4 +67,4 @@ readCommandLine()
 # python3 main.py dummyData.csv --company PULMONICS PLUS PLLC
 # python3 main.py dummyData.csv --state CA
 # python3 main.py dummyData.csv --minInitApproval 2
-# python3 main.py dummyData.csv --usage
+# python3 main.py --usage

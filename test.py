@@ -212,19 +212,6 @@ class UnitTestHelper(unittest.TestCase):
             self.assertIn("St.Olaf", fake_out2.getvalue())
             self.assertIn("Companies located in MN:", fake_out2.getvalue())
 
-    def test_fileError_testReadFile(self):
-        """Test File error in testReadFile"""
-
-        dummyData = "dummyData.csv"
-
-        # Edge Case: Check if the function prints an error and returns
-        with patch('sys.stdout', new = StringIO()) as fake_out1:
-            result = helper.readFile(dummyData[::-1])
-
-            # Check if it prints the wanted result
-            self.assertEqual("Please input a valid file\n", fake_out1.getvalue())
-            self.assertFalse(result)
-
     def test_return_Format_testReadFile(self):
         """Test return format testReadFile"""
 
@@ -266,16 +253,6 @@ class UnitTestService(unittest.TestCase):
     """Unit Test for Service Functions"""
 
     """Unit tests for GetCompaniesByState function"""
-    def test_emptyList_getCompaniesByState(self):
-        """Test empty list for getCompaniesByState"""
-
-        with patch('sys.stdout', new = StringIO()) as fake_out:
-            # Edge Case: return an empty list if all the data in arguments are not passed in
-            self.assertEqual(getCompaniesByState({}), [])
-
-            # Check if it prints the wanted result
-            self.assertIn("Need all the data in argument\n", fake_out.getvalue())
-
     def test_returnList_getCompaniesByState(self):
         """Test return list for getCompaniesByState"""
 
@@ -389,16 +366,6 @@ class UnitTestService(unittest.TestCase):
 
 
     """Unit Tests for GetCompaniesByMinInitApproval"""
-    def test_emptyList_GetCompaniesByMinInitApproval(self):
-        """Test empty list for GetCompaniesByMinInitApproval"""
-
-        with patch('sys.stdout', new = StringIO()) as fake_out:
-            # Edge Case: return an empty list if all the data in arguments are not passed in
-            self.assertEqual(getCompaniesByMinInitApproval({}), [])
-
-            # Check if it prints the wanted result
-            self.assertIn("Need all the data in argument", fake_out.getvalue())
-            
     def test_returnList_GetCompaniesByMinInitApproval(self):
         """Test return list for GetCompaniesByMinInitApproval"""
 
@@ -566,7 +533,7 @@ class IntegrationTestVerification(unittest.TestCase):
                 readCommandLine()
                 
                 # Check if it prints an error
-                self.assertEqual("Invalid Command : Need more arguments\n", fake_out.getvalue())
+                self.assertIn("Please check if your command is in a correct format.\n", fake_out.getvalue())
 
     def test_Verification_IntegrationTestCompany(self):
         """Integration Test for --Company & Verification to check if results are printed out correctly"""

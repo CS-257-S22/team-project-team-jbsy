@@ -12,10 +12,6 @@ def getCompaniesByState(userInput):
     Returns:
     list -- a list that has all the companies (dict) that are within the state
     """
-   if "target" not in userInput or "visaData" not in userInput or "mostRecentYear" not in userInput:
-        print("Need all the data in argument")
-        # raise ValueError
-        return []
 
    state = userInput["target"] 
    visaData = userInput["visaData"]
@@ -62,11 +58,6 @@ def getCompaniesByMinInitApproval(userInput):
     Returns:
     list -- a list that has all the companies (dict) that have at least certain number of minimum initial approvals
     """
-
-    if "target" not in userInput or "visaData" not in userInput or "mostRecentYear" not in userInput:
-        print("Need all the data in argument")
-        # raise ValueError
-        return []
         
     initApproval  = userInput["target"]
     visaData = userInput["visaData"]
@@ -107,10 +98,6 @@ def initiateCommand(userInput):
     elif "minInitApproval" in command:
         result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
         printMinInitApproval({"companiesList":result, "target": target, "mostRecentYear": mostRecentYear})
-    
-    elif "usage" in command:
-        printUsage()
-
     else:
         print("Please input a command that is valid\n")
 
