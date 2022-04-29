@@ -128,7 +128,7 @@ OK
 
 -----------------------------
 
-## 5. Check Usage.txt via Command Line
+## 5. Check Usage via Command Line
 
 ### Syntax:
 
