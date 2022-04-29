@@ -137,14 +137,6 @@ def printCompany(companyData):
         
         print(statsForCompany)
 
-def openFile(filePath):
-    try:
-        with open(filePath, 'r') as file:
-            return True
-    except:
-        print("Please input a valid file")
-        return False
-
 def readFile(filePath):
     """Reads a csv file and organizes data
 
@@ -155,10 +147,8 @@ def readFile(filePath):
     list -- a list that has visa data as first element (dict) and the most recent year as second element (string)
     """
     
-    # Catch possible file open error
-    try:
-    # open file
-        with open(filePath, 'r') as file:
+
+    with open(filePath, 'r') as file:
             reader = csv.reader(file)
             mostRecentYear = "2018"
 
@@ -190,9 +180,7 @@ def readFile(filePath):
                     visaData[companyName][fiscalYear] = companyDataByYear
 
             return [visaData, mostRecentYear]
-    except:
-        print("Please input a valid file")
-        return False
+
 
 
 
