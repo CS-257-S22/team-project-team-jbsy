@@ -132,7 +132,7 @@ OK
 
 ### Syntax:
 
-* python3 main.py dummyData.csv --usage
+* python3 main.py --usage
 
 -----------------------------
 
