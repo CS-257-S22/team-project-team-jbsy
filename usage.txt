@@ -1,39 +1,26 @@
-1. Getting H1b-Visa Information for All Companies Within a Specified State
 
-Syntax: 
+*************************************************************************
+                               USAGE 
+*************************************************************************
 
- *python3 main.py dummyData.csv --state "state"
+  1. --state [state name]: Use this command to get H1b*Visa Information 
+                 for all companies in a specified state.
 
-Parameters:
+                              Example: 
+              *python3 main.py dummyData.csv --state CA
 
-* dummyData.csv is the database the contains all the H1-b visa information that is used by the program
+  2. --company [company name]: Use this command to get a detailed H-1B Visa 
+                  information for a specific company.
 
-* "state" can be replaced by the user to obtain information about H1b-visas for all companies within that state
+                              Example: 
+       * python3 main.py dummyData.csv --company FUNKTRONIC LABS
 
-2. Getting a detailed H1b-Visa Information for a specific Company
+  3. --minInitApproval [threshold]: Use this command to get a list of 
+  companies with H*1B initial approval greater than some specified number.
 
-Syntax: 
+                              Example: 
+          * python3 main.py dummyData.csv --minInitApproval 2
 
-* python3 main.py dummyData.csv --company "comapny name"
+*************************************************************************   
 
-Parameters
-
-* dummyData.csv is the database the contains all the H1-b visa information that is used by the program
-
-* "comapany name" can be replaced by the user with a specific company name to obtain information about H1b-visa for that comp
-
-
-3. Getting list of companies with H1b initial approval greater than some specified number
-
-Syntax: 
-
-* python3 main.py dummyData.csv --minInitApproval "minimumInitApproval"
-  Parameters:
-* dummyData.csv is the database the contains all the H1-b visa information that is used by the program
-
-* "minimumInitApproval" can be replaced by the user with a number to obtain company lists with an equal or greater initial approvals than the number specified
-
-
-Errors:
-
-When incorrect arguments are used when executing the program, then an error message will show.
+ 
