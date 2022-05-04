@@ -1,5 +1,5 @@
 import sys
-from helper import printUsage, readFile 
+from helper import printCLIGuide, printUsage, readFile
 from service import initiateCommand
 from verification import columnExist, companyExist, commandLen, inputValid
 
@@ -19,22 +19,16 @@ def readCommandLine():
         # Return to Test
         elif "test.py" in arg:
             return
+        # Print Guideline to User
         else:
-            print("Command Line Error, Please check if your command is in a correct format.\n")
-            print("Command for running tests => python3 test.py")
-            print("Command for displaying usage => python3 main.py --usage")
-            print("Example Command for Company Search => python3 main.py dummyData.csv --company PULMONICS PLUS PLLC")
-            print("Example Command for Company State Search => python3 main.py dummyData.csv --state CA")
-            print("Example Command for minInitApproval Search => python3 main.py dummyData.csv --minInitApproval 2")
-
-            print("\nFor more information, please check our README!\n")
+            printCLIGuide()
             return
 
     fileData = readFile(arg[1])
     if fileData == False:
         return
 
-    # all the H-1B data of company 
+    # all the H-1B data of company
     visaData = fileData[0]
     mostRecentYear = fileData[1]
     command = arg[2]
@@ -51,14 +45,16 @@ def readCommandLine():
     if not columnExist(command[2:], visaData):
         print("Invalid Command : command is not in column")
         return
-    
+
     # when searching for company, if the company does not exist, print error message
     if ("company" in command):
         if not companyExist(target, arg[1]):
             print("Invalid Company : Input company does not exist")
             return
 
-    initiateCommand({"command": command, "visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
+    initiateCommand({"command": command, "visaData": visaData,
+                    "target": target, "mostRecentYear": mostRecentYear})
+
 
 readCommandLine()
 

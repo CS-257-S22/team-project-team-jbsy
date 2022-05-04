@@ -1,31 +1,33 @@
-from helper import printCompaniesInState, printCompany, printMinInitApproval, printUsage
+from helper import printCompaniesInState, printCompany, printMinInitApproval
+
 
 def getCompaniesByState(userInput):
-   """Get a list of companies within the input state
+    """Get a list of companies within the input state
 
-    Arguments:
-    userInput -- dict for function getCompaniesByState (dict)
-        target -- state put in via command line (string)
-        visaData -- all the statistics of companies (dict)
-        mostRecentYear -- the fiscal year to find data in (string)
+     Arguments:
+     userInput -- dict for function getCompaniesByState (dict)
+         target -- state put in via command line (string)
+         visaData -- all the statistics of companies (dict)
+         mostRecentYear -- the fiscal year to find data in (string)
 
-    Returns:
-    list -- a list that has all the companies (dict) that are within the state
-    """
+     Returns:
+     list -- a list that has all the companies (dict) that are within the state
+     """
 
-   state = userInput["target"] 
-   visaData = userInput["visaData"]
-   mostRecentYear = userInput["mostRecentYear"]
+    state = userInput["target"]
+    visaData = userInput["visaData"]
+    mostRecentYear = userInput["mostRecentYear"]
 
-   companyList = []
+    companyList = []
 
-   # add companies in a state to a list
-   for j in visaData:
-        if(visaData[j][mostRecentYear]["State"]==state):
+    # add companies in a state to a list
+    for j in visaData:
+        if(visaData[j][mostRecentYear]["State"] == state):
             companyList.append({"companyName": j, "data": visaData[j]})
-            
-   return companyList  
-        
+
+    return companyList
+
+
 def getStatByCompany(userInput):
     """Get a company that matches the given name
 
@@ -46,6 +48,7 @@ def getStatByCompany(userInput):
     else:
         return {}
 
+
 def getCompaniesByMinInitApproval(userInput):
     """Get companies with a minimum threshold initial approval
 
@@ -58,16 +61,18 @@ def getCompaniesByMinInitApproval(userInput):
     Returns:
     list -- a list that has all the companies (dict) that have at least certain number of minimum initial approvals
     """
-        
-    initApproval  = userInput["target"]
+
+    initApproval = userInput["target"]
     visaData = userInput["visaData"]
     mostRecentYear = userInput["mostRecentYear"]
 
     companyList = []
     for j in visaData:
         if(int(visaData[j][mostRecentYear]["Initial Approvals"]) >= int(initApproval)):
-            companyList.append({"companyName": j, "statistic": visaData[j][mostRecentYear]})        
-    return companyList;      
+            companyList.append(
+                {"companyName": j, "statistic": visaData[j][mostRecentYear]})
+    return companyList
+
 
 def initiateCommand(userInput):
     """General function that interprets command and initates relevant function
@@ -84,7 +89,7 @@ def initiateCommand(userInput):
     visaData = userInput["visaData"]
     target = userInput["target"]
     mostRecentYear = userInput["mostRecentYear"]
-    
+
     # Give stat for a company
     if "company" in command:
         company = getStatByCompany({"visaData": visaData, "target": target})
@@ -92,13 +97,14 @@ def initiateCommand(userInput):
 
     # Give companies in a state
     elif "state" in command:
-        companyList = getCompaniesByState({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
+        companyList = getCompaniesByState(
+            {"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
         printCompaniesInState(companyList, target)
-    
+
     elif "minInitApproval" in command:
-        result = getCompaniesByMinInitApproval({"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
-        printMinInitApproval({"companiesList":result, "target": target, "mostRecentYear": mostRecentYear})
+        result = getCompaniesByMinInitApproval(
+            {"visaData": visaData, "target": target, "mostRecentYear": mostRecentYear})
+        printMinInitApproval(
+            {"companiesList": result, "target": target, "mostRecentYear": mostRecentYear})
     else:
         print("Please input a command that is valid\n")
-
-
