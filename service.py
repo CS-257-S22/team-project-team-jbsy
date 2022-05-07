@@ -54,7 +54,7 @@ def getCompaniesByMinInitApproval(userInput):
 
     Arguments:
     userInput -- dict for function getCompaniesByMinInitApproval (dict)
-        target -- state put in via command line (string)
+        target -- minInitApproval put in via command line (string)
         visaData -- all the statistics of companies (dict)
         mostRecentYear -- the fiscal year to find data in (string)
 

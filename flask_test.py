@@ -10,8 +10,8 @@ class TestError(unittest.TestCase):
         self.app = app.test_client()
         response = self.app.get('/notExist', follow_redirects=True)
         self.assertIn(b"404 Error", response.data)
-        self.assertIn(b"Page not found: the requested URL was not found.\n", response.data)
-
+        self.assertIn(b"Page not found: the requested URL was not found.", response.data)
+        
     def test_500(self):
         print("Not necessary to make test for 500 error yet")
         pass
@@ -26,7 +26,7 @@ class Test_Unit_Route(unittest.TestCase):
         with app.test_request_context('/companies/search'):
             errorResult = listCompanies()
             self.assertIn("400 Error", errorResult)
-            self.assertIn("Sorry, Address not Found. Please check your variable name one more time. (No Quotation Marks Please!)", errorResult)
+            self.assertIn("Sorry, please put in either state or minInitApproval or check your variable name one more time!", errorResult)
 
     def test_invalidNum_minInitApproval_listCompanies(self):
         """Test Invalid Value for MinInitApproval (400 Error)"""
