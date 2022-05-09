@@ -12,7 +12,7 @@ This program allows users to gather information about H1b-Visa administered by t
 1) For assignments before frontEnd, please refer to the flask folder. 
 
 **main.py** is the file for command line interface. 
-**flask_app.py** is the file for flask assignment.
+<br>**flask_app.py** is the file for flask assignment.
 
 2) For the frontEnd assignment, please refer to the frontEnd folder. 
 
