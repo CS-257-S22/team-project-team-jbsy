@@ -17,6 +17,8 @@ This program allows users to gather information about H1b-Visa administered by t
 2) For the frontEnd assignment, please refer to the frontEnd folder. 
 
 **flask_app.py** is the file for the frontEnd assignment. 
+<br>
+<br> The features we have at the moment are company search via search bar and using some filter options for search. 
 
 _The reason for dividing the files by assignment is because the code changed as search features caused the code to change majorly._
 
