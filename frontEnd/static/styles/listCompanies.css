@@ -165,6 +165,7 @@ body {
     float: left;
     box-sizing: border-box;
     width: 36%;
+    height: 60%;
     background-color: #FFD498;
     margin-right: 0.5em;
   }
