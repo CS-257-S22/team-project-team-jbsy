@@ -1,5 +1,9 @@
 <html>
     <head>
+        <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='styles/error.css') }}"
+        />
         <title>Error</title>
         <h1>{{errorTitle}}</h1>
         <p>{{ errorMessage}}</p>
