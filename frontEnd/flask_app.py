@@ -44,6 +44,21 @@ def listCompanies():
 
     return render_template('frontend_listCompanies.html', companiesList=companiesInfo[0], year=companiesInfo[1])
 
+@app.route('/about', methods=['GET'])
+def display_about():
+
+    """Displays info about our website when the user click the about hyperlink"""
+
+    return render_template('about.html')  
+
+@app.route('/contact', methods=['GET'])
+def display_contact():
+
+    """Displays contact info of our team when the user click the contact hyperlink"""
+    
+    return render_template('contact.html')  
+
+
 
 def bad_request(errorMessage="Your client has issued an invalid request.\n"):
     """Displays 400 Error in Page
