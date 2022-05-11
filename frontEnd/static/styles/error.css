@@ -1,7 +1,7 @@
 h1 {
     color: #047C51;
     text-align: center;
-    padding: 300px;
+    padding: 200px;
     margin: auto;
     width: 50%;
     font-family: Verdana, Geneva, sans-serif; 
@@ -20,6 +20,5 @@ p {
 
 html {
     background-color: #ffffff;
-    /* text-align: center; */
     border: 30px solid #047C51;
 }
