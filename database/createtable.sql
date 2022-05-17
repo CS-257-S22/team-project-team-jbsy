@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS companies;
 CREATE TABLE companies (
-  fiscalYear real,
+  fiscalYear integer,
   company text,
-  initialApprovals real,
-  initialDenials real,
-  continuingApprovals real,
-  continuingDenials real,
+  initialApprovals integer,
+  initialDenials integer,
+  continuingApprovals integer,
+  continuingDenials integer,
   companyState text,
   companyCity text,
-  companyZIP real
+  companyZIP text
 );
