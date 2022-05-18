@@ -1,8 +1,6 @@
-
-
 class Verification:
-
-    # Check if command only includes an integer
+    """Class that has methods for data verification"""
+    
     def containsNum(self, value):
         """Check if command includes string integer when necessary
 
