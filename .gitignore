@@ -1,3 +1,3 @@
 *.pyc
-psqlConfig.py
+config.py
 __pycache__
