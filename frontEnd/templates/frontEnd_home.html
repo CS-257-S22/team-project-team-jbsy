@@ -22,7 +22,6 @@
         </button>
         <div class="dropdown-content">
           <a href="/companies/search">COMPANY SEARCH</a>
-          <a href="/ranking">TOP 10 RANKING</a>
         </div>
       </div>
       <a href="/contact">CONTACT</a>
@@ -34,6 +33,9 @@
         This program allows the users to gather information about H-1B Visa
         administered by the US government.
       </p>
+      <p>
+        Search by Company Name or Minimum Initial Approval!
+      </p>
     </div>
 
     <div id="searchSection">
@@ -43,7 +45,20 @@
           name="company"
           value=""
           required
-          placeholder="Enter a company you want to search for!"
+          placeholder="Enter a company name you want to search for!"
+        />
+        <input type="submit" value="Search Company" />
+      </form>
+    </div>
+
+    <div id="searchSection">
+      <form action="companies/search">
+        <input
+          type="text"
+          name="minInitApproval"
+          value=""
+          required
+          placeholder="Search Companies by Minimum Initial Approval!"
         />
         <input type="submit" value="Search Company" />
       </form>
