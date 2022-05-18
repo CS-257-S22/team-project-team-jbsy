@@ -20,22 +20,27 @@ class DataSource:
             exit()
         return connection
 
-    def getlistOfCompanies(self, whereQuery):
-        """Method to Select Companies in given state and year"""
+    def executeQuery(self, query):
+
         try:
             #set up a cursor
             cursor = self.connection.cursor()
             
-            finalQuery = Datasource_helper().formatQueryForGetList(whereQuery)
-                    
-            cursor.execute(finalQuery)
-            companiesList = cursor.fetchall()
+            cursor.execute(query)
+            resultList = cursor.fetchall()
             
-            return companiesList if companiesList != None else []
-           
+            return resultList if resultList != None else []
+            
         except Exception as e:
             print ("Something went wrong when executing the query: ", e)
             return None
+
+    def getlistOfCompanies(self, whereQuery):
+        """Method to Select Companies in given state and year"""
+
+        finalQuery = Datasource_helper().formatQueryForGetList(whereQuery)
+        companiesList = self.executeQuery(finalQuery)   
+        return companiesList      
 
 if __name__ == '__main__':
     my_source = DataSource()
