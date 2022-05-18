@@ -1,9 +1,10 @@
 from verification import Verification
 
 class ControllerHelper:
+    """Class for Helper Methods of Flask App Controller"""
 
     def validateQueryString(self,queryArgs):
-        """Check if inputValue is apporpriate for query type
+        """Check if inputValue is appropriate for query type
 
         Arguments:
             queryArgs -- dict of queries passed in from URL

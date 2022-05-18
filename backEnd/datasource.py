@@ -11,7 +11,11 @@ class DataSource:
         self.connection = self.connect()
 
     def connect(self):
-        """Connect to database based on the information in config file"""
+        """Connect to database based on the information in config file
+        
+        Returns:
+            connection -- connection to the designated database
+        """
         
         try:
             connection = psycopg2.connect(database=config.database, user=config.user, password=config.password, host="localhost")
@@ -21,6 +25,14 @@ class DataSource:
         return connection
 
     def executeQuery(self, query):
+        """Method to Execute the given SQL Query
+        
+        Arguments:
+            query (str) --  Formatted SQL Query
+
+        Returns:
+            resultList (tuple) -- tuple that contains wanted results from the database
+        """
 
         try:
             #set up a cursor
@@ -36,7 +48,14 @@ class DataSource:
             return None
 
     def getlistOfCompanies(self, whereQuery):
-        """Method to Select Companies in given state and year"""
+        """Method to Select Companies in given state and year
+        
+        Arguments:
+            whereQuery (dict) --  User input value for company search
+
+        Returns:
+            companiesList (tuple) -- tuple of companies that satisfied the input conditions
+        """
 
         finalQuery = Datasource_helper().formatQueryForGetList(whereQuery)
         companiesList = self.executeQuery(finalQuery)   
