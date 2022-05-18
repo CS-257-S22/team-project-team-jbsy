@@ -1,18 +1,24 @@
 h1 {
     padding-top: 1em;
     padding-bottom: 0.5em;
-    color: #047C51;
+    color: white;
     text-align: center;
     padding-left: 2em;
     padding-right: 2em;
     font-family: Verdana, Geneva, sans-serif; 
 }
 
+header {
+  background-color: #047C51;
+}
+
 body {
     font-family: Verdana, Geneva, sans-serif; 
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-left: 0em;
+    margin-right: 0em;
+    background-color: #daf6ec;
   }
+
 
  p {
      font-family: Verdana, Geneva, sans-serif;
@@ -115,7 +121,7 @@ body {
   }
   
   input[type=text]:focus {
-    border: 3px solid #555;
+    border: 3px solid #047C51;
   }
 
   input[type=submit] {
