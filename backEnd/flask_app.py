@@ -78,7 +78,7 @@ def getTop10Companies(year):
     "GLOBAL TAX NETWORK ATLANTIC LLC",
     "BOEHRINGER INGELHEIM PHARMA"]
     
-    return render_template('top10Companies.html', title='Top 10 Ranking', year = year, mockDataApprovals = mockDataApprovals, mockDataDenials = mockDataDenials)
+    return render_template('ranking.html', title='Top 10 Ranking', year = year, mockDataApprovals = mockDataApprovals, mockDataDenials = mockDataDenials)
 
 @app.route('/about', methods=['GET'])
 def display_about():
