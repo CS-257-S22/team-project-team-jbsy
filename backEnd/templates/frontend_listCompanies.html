@@ -156,8 +156,8 @@
             <ul>
                 {% for company in companiesList: %}
                 <li class="generalInfo">
-                    <div class="companyName">{{company[1]}}</div>
-                    <div class="companyLocation">{{company[7]}}, {{company[6]}}</div>
+                    <div class="companyName">{{company.name}}</div>
+                    <div class="companyLocation">{{company.companyCity}}, {{company.companyState}}, {{company.companyZIP}}</div>
                 </li>
 	              {% endfor %}
             </ul>

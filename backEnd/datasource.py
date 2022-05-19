@@ -2,6 +2,22 @@ import psycopg2
 import config as config
 from datasource_Helper import *
 
+class CompanyInfo:
+    """Class that converts read data from DB to readable data"""
+    
+    def __init__(self, companyStat):
+        """Constructor for CompanyInfo Class"""
+        
+        self.fiscalYear = companyStat[0]
+        self.name = companyStat[1]
+        self.initialApprovals = companyStat[2]
+        self.initialDenials = companyStat[3]
+        self.continuingApprovals = companyStat[4]
+        self.continuingDenials = companyStat[5]
+        self.companyState = companyStat[6]
+        self.companyCity = companyStat[7]
+        self.companyZIP = companyStat[8] 
+
 class DataSource:
     """Class that has methods regarding database connection and CRUD"""
         
@@ -47,19 +63,26 @@ class DataSource:
             print ("Something went wrong when executing the query: ", e)
             return None
 
-    def getlistOfCompanies(self, whereQuery):
-        """Method to Select Companies in given state and year
+    def getCompaniesStatistics(self, whereQuery):
+        """Method to Select Companies based on the input user query
         
         Arguments:
             whereQuery (dict) --  User input value for company search
 
         Returns:
-            companiesList (tuple) -- tuple of companies that satisfied the input conditions
+            companiesResult (tuple) -- tuple of companies that satisfied the input conditions
         """
 
         finalQuery = Datasource_helper().formatQueryForGetList(whereQuery)
-        companiesList = self.executeQuery(finalQuery)   
-        return companiesList      
+        companiesResult = self.executeQuery(finalQuery)   
+        
+        companiesList = []
+        
+        # Format read data from DB
+        for companyStat in companiesResult:
+            companiesList.append(CompanyInfo(companyStat))
+        
+        return companiesList
 
 if __name__ == '__main__':
     my_source = DataSource()

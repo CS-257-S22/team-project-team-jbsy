@@ -41,7 +41,7 @@ def listCompanies():
     whereQuery = controllerHelper.processQuery(args)
     
     # Fetch Data with whereQuery
-    companiesInfo = DataSource().getlistOfCompanies(whereQuery)
+    companiesInfo = DataSource().getCompaniesStatistics(whereQuery)
     
     fiscalYear = whereQuery["fiscalYear"]
 
