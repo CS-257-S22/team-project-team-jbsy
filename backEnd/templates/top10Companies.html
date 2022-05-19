@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/top10Companies.css') }}">
+        <title>Top 10 Companies </title>
+    </head>
+    <body>
+        <h1><b>H-1B Visa Data Hub </b></h1>
+        <div class="topnav">
+            <a class="active" href="/">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Feature
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/companysearch">Company Search</a>
+                    <a href="/ranking/2018">Top 10 Ranking</a>
+                </div>
+            </div>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+        <div class="sidebar">
+
+            <a href="/top10companies/2018">2018</a>
+            <a href="/top10companies/2019">2019</a>
+            <a href="/top10companies/2020">2020</a>
+            <a href="/top10companies/2021">2021</a>
+            <a href="/top10companies/2022">2022</a>
+        </div>
+        
+        <div class="content">
+            <h3> Top 10 Approvals for {{year}}</h3>
+            <ol>
+                {% for company in mockDataApprovals: %}
+                    <li>{{ company }}</li>
+                {% endfor %}
+            </ol>
+
+            <h3> Top 10 Denials for {{year}}</h3>
+            <ol>
+                {% for company in mockDataDenials: %}
+                    <li>{{ company }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </body>
+</html>
