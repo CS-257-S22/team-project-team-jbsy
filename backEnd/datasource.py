@@ -70,10 +70,10 @@ class DataSource:
             whereQuery (dict) --  User input value for company search
 
         Returns:
-            companiesResult (tuple) -- tuple of companies that satisfied the input conditions
+            companiesList (list) -- list of companies that satisfied the input conditions
         """
 
-        finalQuery = Datasource_helper().formatQueryForGetList(whereQuery)
+        finalQuery = Datasource_helper().formatQueryForGetCompanies(whereQuery)
         companiesResult = self.executeQuery(finalQuery)   
         
         companiesList = []
@@ -83,6 +83,32 @@ class DataSource:
             companiesList.append(CompanyInfo(companyStat))
         
         return companiesList
+
+    def getCompaniesForRanking(self, rankingCategory, fiscalYear):
+        """Method to Select top 10 companies for categories based on the given fiscal year
+        
+        Arguments:
+            rankingCategory (str) -- Column/category to use to get top 10 companies from
+            fiscalYear (str) --  User selected value for fiscalYear
+
+        Returns:
+            companiesList (list) -- list of companies that fall in the top 10 ranking
+        """
+        
+        
+        queryForCategory = Datasource_helper().formatQueryForRanking(rankingCategory, fiscalYear)
+        companiesResult = self.executeQuery(queryForCategory)   
+        
+        companiesList = []
+        
+        # Format read data from DB
+        for companyStat in companiesResult:
+            companiesList.append(CompanyInfo(companyStat))
+        
+        return companiesList
+        
+        
+        
 
 if __name__ == '__main__':
     my_source = DataSource()

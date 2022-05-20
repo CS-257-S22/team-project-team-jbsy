@@ -8,6 +8,10 @@ h1 {
   font-family: Verdana, Geneva, sans-serif; 
 }
 
+li {
+  margin-bottom: 0.3em;
+}
+
 body {
   font-family: Verdana, Geneva, sans-serif; 
   margin-left: 2em;

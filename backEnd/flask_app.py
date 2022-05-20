@@ -18,7 +18,7 @@ def homePage():
     return render_template('frontEnd_home.html')
 
 @app.route('/companies/search', methods=['GET'])
-def listCompanies():
+def getListCompaniesByYear():
     """Get a list of companies that satisfy user specified conditions
 
     Arguments:
@@ -47,38 +47,23 @@ def listCompanies():
 
     return render_template('frontend_listCompanies.html', companiesList=companiesInfo, year=fiscalYear)
 
-@app.route('/ranking/<year>')
-def getTop10Companies(year):
+@app.route('/ranking/year/<year>')
+def getTop10CompaniesByYear(year):
     '''
     The page which prints out the top 10 companies with approvals and denials for all five years
     
     arguement : 
     year - year which the user wants to search for (int)
     '''
+    dataSource = DataSource()
     
-    mockDataApprovals = ["REDDY GI ASSOCIATES", 
-    "A T KEARNEY", 
-    "LIN ZHI INTERNATIONAL INC", 
-    "PAYSAFE PARTNERS LP", 
-    "STATE OF CA SECY OF STATE S OFFICE", 
-    "EMERALD HEALTH PHARMACEUTICALS INC", 
-    "CANCER TREATMENT CTRS OF AMERICA G",
-    "THE BELPORT COMPANY INC",
-    "FUNKTRONIC LABS",
-    "AMERI INFO INC"]
+    # Get Top 10 Ranking for Each Category
+    companiesForInitialApprovals = dataSource.getCompaniesForRanking("initialApprovals", year)
+    companiesForInitialDenials = dataSource.getCompaniesForRanking("initialDenials", year)
+    companiesForContinuingApprovals = dataSource.getCompaniesForRanking("continuingApprovals", year)
+    companiesForContinuingDenials = dataSource.getCompaniesForRanking("continuingDenials", year)
     
-    mockDataDenials = ["SAN JOSE STATE UNIVERSISTY", 
-    "DISTRICT OF COLUMBIA PUBLC SCHOOLS", 
-    "CALLAWAY GOLF SALES COMPANY", 
-    "ADMIRAL INSTRUMENTS LLC", 
-    "PULMONICS PLUS PLLC", 
-    "AIRPORT SHERPA LLC", 
-    "ELM EAST LLC",
-    "GONSALVES & SANTUCCI INC DBA THE C",
-    "GLOBAL TAX NETWORK ATLANTIC LLC",
-    "BOEHRINGER INGELHEIM PHARMA"]
-    
-    return render_template('ranking.html', title='Top 10 Ranking', year = year, mockDataApprovals = mockDataApprovals, mockDataDenials = mockDataDenials)
+    return render_template('ranking.html', title='Top 10 Ranking', year = year, initialApprovalsRanking = companiesForInitialApprovals, initialDenialsRanking = companiesForInitialDenials, continuingApprovalsRanking = companiesForContinuingApprovals, continuingDenialsRanking = companiesForContinuingDenials)
 
 @app.route('/about', methods=['GET'])
 def display_about():
