@@ -22,7 +22,7 @@
         </button>
         <div class="dropdown-content">
           <a href="/companies/search">COMPANY SEARCH</a>
-          <a href="/ranking/2018">TOP 10 RANKING</a>
+          <a href="/ranking/year/2022">TOP 10 RANKING</a>
         </div>
       </div>
       <a href="/help">HELP</a>
@@ -151,13 +151,27 @@
         </div>
 
         <div id="companiesList">
-            <div id = "listTotal">{{companiesList|length}} result(s)</div>
+
+          <div id = "listTotal">
+              <strong><span>{{year}}</span></strong>
+              <span>{{companiesList|length}} result(s)</span>
+          </div>
+
+          <div>
             {% if companiesList|length != 0: %}
             <ul>
                 {% for company in companiesList: %}
                 <li class="generalInfo">
-                    <div class="companyName">{{company[1]}}</div>
-                    <div class="companyLocation">{{company[7]}}, {{company[6]}}</div>
+                  <div class="companyGeneral">
+                    <span class="companyName">{{company.name}}</span>
+                    <span class="companyLocation">{{company.companyCity}}, {{company.companyState}} {{company.companyZIP}}</span>
+                  </div>
+                  <div class="companyStat">
+                    {{company.initialApprovals}} Initial Approvals
+                    <br>{{company.initialDenials}} Initial Denials
+                    <br>{{company.continuingApprovals}} Continuing Approvals
+                    <br>{{company.continuingDenials}} Continuing Denials
+                  </div>
                 </li>
 	              {% endfor %}
             </ul>
@@ -168,6 +182,8 @@
               </li>
             </ul>
             {% endif %}
+          </div>
+          
         </div>
 
     </div>
