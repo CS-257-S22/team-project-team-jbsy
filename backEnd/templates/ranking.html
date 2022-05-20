@@ -39,7 +39,7 @@
             <h3> Top 10 Companies with Initial Approvals for {{year}}</h3>
             <ol>
                 {% for company in initialApprovalsRanking: %}
-                    <li><a href="/companies/search?company="><strong>{{ company.name }}</a></strong> => {{company.initialApprovals}} Initial Approvals</li>
+                    <li><strong>{{ company.name }}</strong> => {{company.initialApprovals}} Initial Approvals</li>
                 {% endfor %}
             </ol>
 
