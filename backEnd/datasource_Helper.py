@@ -5,10 +5,10 @@ class Datasource_helper:
         """Format category name to relevant column name 
 
         Arguments:
-            category (str) -- Column/category to use
+            category -- Column/category to use (str)
 
         Returns:
-            columnName (string) -- Category converted to relevant column name in DB
+            columnName -- Category converted to relevant column name in DB (string)
         """
         
         return "SUM("+category+")"
@@ -17,7 +17,7 @@ class Datasource_helper:
         """Get basic SELECT part of Query
 
         Returns:
-            selectQuery (string) -- SELECT part of a basic query
+            selectQuery -- SELECT part of a basic query (string)
         """
         
         # basic select query
@@ -29,7 +29,7 @@ class Datasource_helper:
         """Get basic GROUP BY part of Query
 
         Returns:
-            groupByQuery (string) -- GROUP BY part of a basic query
+            groupByQuery -- GROUP BY part of a basic query (string)
         """
         
         # basic group by query
@@ -41,10 +41,10 @@ class Datasource_helper:
         """Get basic GROUP BY part of Query
         
         Argument:
-            fiscalYear (str) -- User input value for fiscal year
+            fiscalYear -- User input value for fiscal year (str)
 
         Returns:
-            whereQuery (string) -- WHERE part of a basic query including fiscal year
+            whereQuery -- WHERE part of a basic query including fiscal year (str)
         """
         
         # basic where query with fiscal year
@@ -56,11 +56,11 @@ class Datasource_helper:
         """Get basic ORDER BY part of Query
         
         Arguments:
-            category (str) -- Column/category to use to get top 10 companies from
-            order (str) --  Order of order by, ASC or DESC
+            category -- Column/category to use to get top 10 companies from (str)
+            order --  Order of order by, ASC or DESC (str)
 
         Returns:
-            orderByQuery (string) -- ORDER BY part of a basic query
+            orderByQuery -- ORDER BY part of a basic query (str)
         """     
         
         # basic orderBy query with fiscal year
@@ -72,10 +72,10 @@ class Datasource_helper:
         """Get LIMIT part of Query
         
         Arguments:
-            limitNum (int) -- Number of records to get from DB
+            limitNum -- Number of records to get from DB (int)
 
         Returns:
-            limitQuery (string) -- LIMIT part of a basic query
+            limitQuery -- LIMIT part of a basic query (str)
         """
         
         # limit query
@@ -87,10 +87,10 @@ class Datasource_helper:
         """Create Query based on user input for get companies
 
         Arguments:
-            whereQuery (dict) --  User input value for company search
+            whereQuery --  User input value for company search (dict)
 
         Returns:
-            finalQuery (string) -- Formated SQL query for company search
+            finalQuery -- Formated SQL query for company search (str)
         """
         # List of Query Parameters
         minInitApproval = whereQuery["minInitApproval"] if "minInitApproval" in whereQuery else None
@@ -123,11 +123,11 @@ class Datasource_helper:
         """Create Query based on fiscal year for ranking search
 
         Arguments:
-            rankingCategory (str) -- Column/category to use to get top 10 companies from
-            fiscalYear (str) --  User selected value for fiscalYear
+            rankingCategory -- Column/category to use to get top 10 companies from (str)
+            fiscalYear --  User selected value for fiscalYear (str)
 
         Returns:
-            finalQuery (string) -- Formated SQL query for ranking search
+            finalQuery -- Formated SQL query for ranking search (str)
         """
     
         # Create Basic where Query
