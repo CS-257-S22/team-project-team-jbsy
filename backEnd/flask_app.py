@@ -18,7 +18,7 @@ def homePage():
     return render_template('frontEnd_home.html')
 
 @app.route('/companies/search', methods=['GET'])
-def getListCompaniesByYear():
+def search_Companies():
     """Get a list of companies that satisfy user specified conditions
 
     Arguments:
@@ -26,7 +26,7 @@ def getListCompaniesByYear():
         state -- the state the company is located in (str)
 
     Returns:
-        page (html) -- rendered html that contains a list of companies
+        page -- rendered html that contains a list of companies (html)
     """
 
     args = request.args
@@ -48,7 +48,7 @@ def getListCompaniesByYear():
     return render_template('frontend_listCompanies.html', companiesList=companiesInfo, year=fiscalYear)
 
 @app.route('/ranking/year/<year>')
-def getTop10CompaniesByYear(year):
+def search_Top10CompaniesByYear(year):
     '''
     The page which prints out the top 10 companies with approvals and denials for all five years
     

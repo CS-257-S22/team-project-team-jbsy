@@ -67,10 +67,10 @@ class DataSource:
         """Method to Select Companies based on the input user query
         
         Arguments:
-            whereQuery (dict) --  User input value for company search
+            whereQuery --  User input value for company search (dict)
 
         Returns:
-            companiesList (list) -- list of companies that satisfied the input conditions
+            companiesList -- list of companies that satisfied the input conditions (list)
         """
 
         finalQuery = Datasource_helper().formatQueryForGetCompanies(whereQuery)
@@ -84,15 +84,15 @@ class DataSource:
         
         return companiesList
 
-    def getCompaniesForRanking(self, rankingCategory, fiscalYear):
+    def getCompaniesByRanking(self, rankingCategory, fiscalYear):
         """Method to Select top 10 companies for categories based on the given fiscal year
         
         Arguments:
-            rankingCategory (str) -- Column/category to use to get top 10 companies from
-            fiscalYear (str) --  User selected value for fiscalYear
+            rankingCategory -- Column/category to use to get top 10 companies from (str)
+            fiscalYear --  User selected value for fiscalYear (str)
 
         Returns:
-            companiesList (list) -- list of companies that fall in the top 10 ranking
+            companiesList -- list of companies that fall in the top 10 ranking (list)
         """
         
         

@@ -98,7 +98,7 @@ a:hover, .dropdown:hover .dropbtn {
   width: 200px;
   background-color: #f1f1f1;
   position: fixed;
-  height: 30%;
+  height: 33%;
   overflow: auto;
 }
 
