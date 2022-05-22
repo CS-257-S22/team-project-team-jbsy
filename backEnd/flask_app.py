@@ -58,10 +58,10 @@ def search_Top10CompaniesByYear(year):
     dataSource = DataSource()
     
     # Get Top 10 Ranking for Each Category
-    companiesForInitialApprovals = dataSource.getCompaniesForRanking("initialApprovals", year)
-    companiesForInitialDenials = dataSource.getCompaniesForRanking("initialDenials", year)
-    companiesForContinuingApprovals = dataSource.getCompaniesForRanking("continuingApprovals", year)
-    companiesForContinuingDenials = dataSource.getCompaniesForRanking("continuingDenials", year)
+    companiesForInitialApprovals = dataSource.getCompaniesByRanking("initialApprovals", year)
+    companiesForInitialDenials = dataSource.getCompaniesByRanking("initialDenials", year)
+    companiesForContinuingApprovals = dataSource.getCompaniesByRanking("continuingApprovals", year)
+    companiesForContinuingDenials = dataSource.getCompaniesByRanking("continuingDenials", year)
     
     return render_template('ranking.html', title='Top 10 Ranking', year = year, initialApprovalsRanking = companiesForInitialApprovals, initialDenialsRanking = companiesForInitialDenials, continuingApprovalsRanking = companiesForContinuingApprovals, continuingDenialsRanking = companiesForContinuingDenials)
 
