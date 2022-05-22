@@ -94,6 +94,9 @@ class Datasource_helper:
         """
         # List of Query Parameters
         minInitApproval = whereQuery["minInitApproval"] if "minInitApproval" in whereQuery else None
+        minInitDenial = whereQuery["minInitDenial"] if "minInitDenial" in whereQuery else None
+        minContApproval = whereQuery["minContApproval"] if "minContApproval" in whereQuery else None
+        minContDenial = whereQuery["minContDenial"] if "minContDenial" in whereQuery else None
         fiscalYear = whereQuery["fiscalYear"] if "fiscalYear" in whereQuery else None
         company = whereQuery["name"] if "name" in whereQuery else None
         state = whereQuery["companyState"] if "companyState" in whereQuery else None
@@ -107,9 +110,35 @@ class Datasource_helper:
         # When minInitApproval is passed in
         if minInitApproval != None:
             havingQuery = " HAVING SUM(initialApprovals) >= " + minInitApproval
+            
+        # When minInitDenial is passed in    
+        if minInitDenial != None:
+            # No other minimum threshold
+            if len(havingQuery) == 0:
+                havingQuery = " HAVING SUM(initialDenials) >= " + minInitDenial
+            else:
+                havingQuery = havingQuery + " AND SUM(initialDenials) >= " + minInitDenial
+                
+        # When minContApproval is passed in  
+        if minContApproval != None:
+            # No other minimum threshold
+            if len(havingQuery) == 0:
+                havingQuery = " HAVING SUM(continuingApprovals) >= " + minContApproval
+            else:
+                havingQuery = havingQuery + " AND SUM(continuingApprovals) >= " + minContApproval
+                
+        # When minContDenial is passed in
+        if minContDenial != None:
+            # No other minimum threshold
+            if len(havingQuery) == 0:
+                havingQuery = " HAVING SUM(continuingDenials) >= " + minContDenial
+            else:
+                havingQuery = havingQuery + " AND SUM(continuingDenials) >= " + minContDenial
+        
         # When state is passed in
         if state != None:
             whereQuery = whereQuery + " AND companyState = " + "'" + state + "'"
+            
         # When company is passed in
         if company != None:
             whereQuery = whereQuery + " AND company LIKE " + "'%" + company + "%'"           

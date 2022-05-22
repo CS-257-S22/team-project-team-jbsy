@@ -23,6 +23,9 @@ def search_Companies():
 
     Arguments:
         minInitApproval -- the minimum threshold initial approval (str)
+        minInitDenial -- the minimum threshold initial denial (str)
+        minCurrApproval -- the minimum threshold current approval (str)
+        minCurrDenial -- the minimum threshold current denial (str)
         state -- the state the company is located in (str)
 
     Returns:
