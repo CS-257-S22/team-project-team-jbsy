@@ -6,6 +6,7 @@
       rel="stylesheet"
       href="{{url_for('static',filename='styles/listCompanies.css')}}"
     />
+    <script type="text/javascript" src="../static/js/organizeURL.js"></script>
     <!-- The title is mandatory. If you use tabs, the title appears in the page's tab in your browser.-->
     <title>H-1B Data Hub</title>
   </head>
@@ -30,10 +31,11 @@
 
     <div id="companySearch">
         <div id="filterBar">
-            <form action="/companies/search">
+            <form action="/companies/search" onsubmit="disableEmptyInputs(this)">
               <div class="formCategory">
                 <label for="company">Company Name</label>
                 <input
+                  id="companyForm"
                   type="text"
                   name="company"
                   value=""
@@ -53,6 +55,7 @@
                 <div class="formCategory">
                 <label for="minInitApproval">Minimum Initial Approval</label>
                 <input
+                  id="minInitApprovalForm"
                   type="text"
                   name="minInitApproval"
                   value=""
@@ -61,28 +64,28 @@
                 <div class="formCategory">
                 <label for="minInitDenial">Minimum Initial Denial</label>
                 <input
+                  id="minInitDenialForm"
                   type="text"
                   name="minInitDenial"
                   value=""
-                  disabled
                 />
                 </div>
                 <div class="formCategory">
                 <label for="minContApproval">Minimum Continuing Approval</label>
                 <input
+                  id="minContApprovalForm"
                   type="text"
                   name="minContApproval"
                   value=""
-                  disabled
                 />
                 </div>
                 <div class="formCategory">
                 <label for="minContDenial">Minimum Continuing Denial</label>
                 <input
+                  id="minContDenialForm"
                   type="text"
                   name="minContDenial"
                   value=""
-                  disabled
                 />
                 </div>
                 <div class="formCategory">
@@ -154,10 +157,9 @@
 
           <div id = "listTotal">
               <strong><span>{{year}}</span></strong>
-              <span>{{companiesList|length}} result(s)</span>
+              <span>{{ companiesCount }} result(s)</span>
           </div>
 
-          <div>
             {% if companiesList|length != 0: %}
             <ul>
                 {% for company in companiesList: %}
@@ -182,11 +184,11 @@
               </li>
             </ul>
             {% endif %}
-          </div>
           
         </div>
-
-    </div>
-
+      </div>
+      <div id="paginationSection"></div>
+    <script type="text/javascript" src="../static/js/fillFilterBar.js"></script>
+    <script id="pagination" data-results="{{companiesCount}}" type="text/javascript" src="../static/js/pagination.js"></script>
   </body>
 </html>
