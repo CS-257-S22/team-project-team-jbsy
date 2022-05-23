@@ -107,6 +107,22 @@ class DataSource:
         
         return companiesList
         
+    def getCompaniesCount(self, whereQuery):
+        """Method to Select Companies based on the input user query
+        
+        Arguments:
+            whereQuery --  User input value for company search (dict)
+
+        Returns:
+            companiesCount -- number of companies that satisfied the input conditions (list)
+        """
+
+        finalQuery = Datasource_helper().formatQueryForGetCompanies(whereQuery, True)
+        companiesResult = self.executeQuery(finalQuery)   
+        companiesCount = len(companiesResult)
+        
+        
+        return companiesCount
         
         
 

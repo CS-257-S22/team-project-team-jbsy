@@ -6,7 +6,7 @@
       rel="stylesheet"
       href="{{url_for('static',filename='styles/listCompanies.css')}}"
     />
-    <script type="text/javascript" src="../static/js/beforeLoad.js"></script>
+    <script type="text/javascript" src="../static/js/organizeURL.js"></script>
     <!-- The title is mandatory. If you use tabs, the title appears in the page's tab in your browser.-->
     <title>H-1B Data Hub</title>
   </head>
@@ -157,10 +157,9 @@
 
           <div id = "listTotal">
               <strong><span>{{year}}</span></strong>
-              <span>{{companiesList|length}} result(s)</span>
+              <span>{{ companiesCount }} result(s)</span>
           </div>
 
-          <div>
             {% if companiesList|length != 0: %}
             <ul>
                 {% for company in companiesList: %}
@@ -185,10 +184,11 @@
               </li>
             </ul>
             {% endif %}
-          </div>
           
         </div>
-    </div>
-    <script type="text/javascript" src="../static/js/afterLoad.js"></script>
+      </div>
+      <div id="paginationSection"></div>
+    <script type="text/javascript" src="../static/js/fillFilterBar.js"></script>
+    <script id="pagination" data-results="{{companiesCount}}" type="text/javascript" src="../static/js/pagination.js"></script>
   </body>
 </html>

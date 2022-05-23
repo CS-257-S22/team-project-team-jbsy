@@ -1,5 +1,4 @@
 let urlSearchStr = window.location.search;
-let filterBar = document.getElementById("filterBar")
 let urlParams = new URLSearchParams(urlSearchStr);
 
 

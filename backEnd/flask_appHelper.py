@@ -63,9 +63,13 @@ class ControllerHelper:
         fiscalYear = queryArgs.get('year', type=str) or "2022"
         company = queryArgs.get('company', type=str) or ""
         state = queryArgs.get('state', type=str) or ""
+        page = queryArgs.get('page', type=str) or ""
 
         whereQuery= {"fiscalYear": fiscalYear}
 
+        # If page is valid
+        if page:
+            whereQuery["page"] = page
         # If minInitApproval is valid
         if minInitApproval:
             whereQuery["minInitApproval"] = minInitApproval

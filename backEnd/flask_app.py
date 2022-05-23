@@ -27,6 +27,7 @@ def search_Companies():
         minCurrApproval -- the minimum threshold current approval (str)
         minCurrDenial -- the minimum threshold current denial (str)
         state -- the state the company is located in (str)
+        page (optional) -- the page number (str)
 
     Returns:
         page -- rendered html that contains a list of companies (html)
@@ -46,9 +47,11 @@ def search_Companies():
     # Fetch Data with whereQuery
     companiesInfo = DataSource().getCompaniesStatistics(whereQuery)
     
+    companiesCount = DataSource().getCompaniesCount(whereQuery)
+    
     fiscalYear = whereQuery["fiscalYear"]
 
-    return render_template('frontend_listCompanies.html', companiesList=companiesInfo, year=fiscalYear)
+    return render_template('frontend_listCompanies.html', companiesCount = companiesCount, companiesList=companiesInfo, year=fiscalYear)
 
 @app.route('/ranking/year/<year>')
 def search_Top10CompaniesByYear(year):
