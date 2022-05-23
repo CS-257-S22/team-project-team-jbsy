@@ -33,7 +33,6 @@ if (page > 0){
     nextButton.onclick = () => {
         urlParams.set("page", String(Number(page) + 1))
         let newNextURL = `/companies/search?${urlParams}`;
-        console.log(newNextURL)
         window.location.href=newNextURL
     };
 
