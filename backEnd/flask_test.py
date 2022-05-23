@@ -19,38 +19,38 @@ class TestError(unittest.TestCase):
 class Test_Unit_Route(unittest.TestCase):
     """Unit Test for Feature"""
 
-    def test_invalidNum_minInitApproval_listCompanies(self):
+    def test_invalidNum_minInitApproval_search_Companies(self):
         """Test Invalid Value for MinInitApproval (400 Error)"""
 
         # When string is put in instead of number
         with app.test_request_context('/companies/search?minInitApproval=hello'):
-            errorResult = listCompanies()
+            errorResult = search_Companies()
             self.assertIn("400 Error", errorResult)
             self.assertIn("hello is not a number. Please input a valid number", errorResult)
 
-    def test_minInitApproval_listCompanies(self):
-        """Test listCompanies for minInitApproval"""
+    def test_minInitApproval_search_Companies(self):
+        """Test search_Companies for minInitApproval"""
 
         # MinInitApproval is 500
         with app.test_request_context('/companies/search?minInitApproval=500'):
-            listOfCompanies = listCompanies()
+            listOfCompanies = search_Companies()
             self.assertIn("TATA CONSULTANCY SVCS LTD", listOfCompanies)
  
-    def test_invalidString_state_listCompanies(self):
+    def test_invalidString_state_search_Companies(self):
         """Test Invalid Value for State (400 Error)"""
 
         # When invalid value is put in instead of state
         with app.test_request_context('/companies/search?state=3'):
-            errorResult = listCompanies()
+            errorResult = search_Companies()
             self.assertIn("400 Error", errorResult)
             self.assertIn("3 is not a state. Please input a valid state", errorResult)
 
-    def test_state_listCompanies(self):
-        """Test listCompanies for state"""
+    def test_state_search_Companies(self):
+        """Test search_Companies for state"""
 
         # State is DC
         with app.test_request_context('/companies/search?state=DC'):
-            listOfCompanies = listCompanies()
+            listOfCompanies = search_Companies()
             self.assertIn("155 result(s)", listOfCompanies)
             self.assertIn("ROBOTICS SERVICES INC", listOfCompanies)
             self.assertIn("TELLIGEN INFOTECH INC DBA TRINE IN", listOfCompanies)
@@ -95,7 +95,7 @@ class Test_Integration_Route(unittest.TestCase):
         # Check Company Search Function
         self.assertIn(b'COMPANY SEARCH', response.data)
     
-    def test_invalidState_listCompaniesInState(self):
+    def test_invalidState_search_CompaniesInState(self):
         """Test for inputting invalid state"""
 
         self.app = app.test_client()
@@ -104,7 +104,7 @@ class Test_Integration_Route(unittest.TestCase):
         # Check error message
         self.assertIn(b'1 is not a state. Please input a valid state', response.data)
 
-    def test_listCompaniesInState(self):
+    def test_search_CompaniesInState(self):
         """Test for listing companies in state"""
 
         self.app = app.test_client()
@@ -114,7 +114,7 @@ class Test_Integration_Route(unittest.TestCase):
         self.assertIn(b"ROBOTICS SERVICES INC", response.data)
         self.assertIn(b"TELLIGEN INFOTECH INC DBA TRINE IN", response.data)
 
-    def test_invalidData_listCompaniesWithMinInitApproval(self):
+    def test_invalidData_search_CompaniesWithMinInitApproval(self):
         """Test for inputting invalid minInitApproval"""
 
         self.app = app.test_client()
@@ -123,7 +123,7 @@ class Test_Integration_Route(unittest.TestCase):
         # Check error message
         self.assertIn(b'hi is not a number. Please input a valid number!', response.data)
 
-    def test_listCompaniesWithMinInitApproval(self):
+    def test_search_CompaniesWithMinInitApproval(self):
         """Test for listing companies with minInitApproval"""
 
         self.app = app.test_client()
