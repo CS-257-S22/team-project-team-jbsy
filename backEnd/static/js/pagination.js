@@ -21,26 +21,34 @@ if (page === "0" && Number(resultLength) > 20) {
 // other pages of pagination
 if (page > 0){ 
 
-    // other page of pagination
-    let nextButton = document.createElement("button");
-    nextButton.textContent = "Next";
-    nextButton.setAttribute("class", "pageButton");
+
+    // receive page and compare with count to see if it's the last page
+    if ( Number(resultLength) - Number(page)*20 > 20 ) {
+
+        // other page of pagination
+        let nextButton = document.createElement("button");
+        nextButton.textContent = "Next";
+        nextButton.setAttribute("class", "pageButton");
+
+
+        nextButton.onclick = () => {
+            urlParams.set("page", String(Number(page) + 1))
+            let newNextURL = `/companies/search?${urlParams}`;
+            window.location.href=newNextURL
+        };
+
+        buttonLocation.appendChild(nextButton);
+    }
 
     let prevButton = document.createElement("button");
     prevButton.textContent = "Prev";
     prevButton.setAttribute("class", "pageButton");
-
-    nextButton.onclick = () => {
-        urlParams.set("page", String(Number(page) + 1))
-        let newNextURL = `/companies/search?${urlParams}`;
-        window.location.href=newNextURL
-    };
 
     prevButton.onclick = () => {
         urlParams.set("page", String(Number(page) - 1))
         let newPrevURL = `/companies/search?${urlParams}`;
         window.location.href=newPrevURL
     };
-    buttonLocation.appendChild(nextButton);
+
     buttonLocation.appendChild(prevButton);
 }

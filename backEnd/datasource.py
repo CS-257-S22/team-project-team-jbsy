@@ -73,7 +73,7 @@ class DataSource:
             companiesList -- list of companies that satisfied the input conditions (list)
         """
 
-        finalQuery = Datasource_helper().formatQueryForGetCompanies(whereQuery)
+        finalQuery = formatQueryForGetCompanies(whereQuery)
         companiesResult = self.executeQuery(finalQuery)   
         
         companiesList = []
@@ -96,7 +96,7 @@ class DataSource:
         """
         
         
-        queryForCategory = Datasource_helper().formatQueryForRanking(rankingCategory, fiscalYear)
+        queryForCategory = formatQueryForRanking(rankingCategory, fiscalYear)
         companiesResult = self.executeQuery(queryForCategory)   
         
         companiesList = []
@@ -117,7 +117,7 @@ class DataSource:
             companiesCount -- number of companies that satisfied the input conditions (list)
         """
 
-        finalQuery = Datasource_helper().formatQueryForGetCompanies(whereQuery, True)
+        finalQuery = formatQueryForGetCompanies(whereQuery, True)
         companiesResult = self.executeQuery(finalQuery)   
         companiesCount = len(companiesResult)
         

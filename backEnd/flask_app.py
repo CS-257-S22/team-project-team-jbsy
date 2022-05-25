@@ -34,20 +34,21 @@ def search_Companies():
     """
 
     args = request.args
-    controllerHelper = ControllerHelper()
 
     # Check whether the query value was passed in as appropriate form
-    errorMsg = controllerHelper.validateQueryString(args)
+    errorMsg = validateQueryString(args)
     if errorMsg and len(errorMsg):
         return bad_request(errorMsg)
 
     # Get conditions for Reading Data from DB
-    whereQuery = controllerHelper.processQuery(args)
+    whereQuery = processQuery(args)
+    
+    dataSource = DataSource()
     
     # Fetch Data with whereQuery
-    companiesInfo = DataSource().getCompaniesStatistics(whereQuery)
+    companiesInfo = dataSource.getCompaniesStatistics(whereQuery)
     
-    companiesCount = DataSource().getCompaniesCount(whereQuery)
+    companiesCount = dataSource.getCompaniesCount(whereQuery)
     
     fiscalYear = whereQuery["fiscalYear"]
 
