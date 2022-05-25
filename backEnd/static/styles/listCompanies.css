@@ -239,14 +239,14 @@ body {
     cursor: pointer;
     background-color: white; 
     color: black; 
-    border: 2px solid #4CAF50;
+    border: 2px solid #047C51;
     float: right;
     margin-bottom: 2em;
     margin-left: 1em;
   }
 
   .pageButton:hover {
-    background-color: #4CAF50;
+    background-color: #047C51;
     color: white;
   }
 
