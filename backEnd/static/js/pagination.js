@@ -11,6 +11,12 @@ if (page === "0" && Number(resultLength) > 20) {
     
     let newURL = '/companies/search?' + urlParams + "&page=1";
 
+    // update page number if query param already has page
+    if (urlParams.has("page")) {
+        urlParams.set("page", String(Number(page) + 1))
+        newURL = `/companies/search?${urlParams}`;
+    }
+
     nextButton.onclick = () => {
         window.location.href=newURL
     };
@@ -21,7 +27,6 @@ if (page === "0" && Number(resultLength) > 20) {
 // other pages of pagination
 if (page > 0){ 
 
-
     // receive page and compare with count to see if it's the last page
     if ( Number(resultLength) - Number(page)*20 > 20 ) {
 
@@ -29,7 +34,6 @@ if (page > 0){
         let nextButton = document.createElement("button");
         nextButton.textContent = "Next";
         nextButton.setAttribute("class", "pageButton");
-
 
         nextButton.onclick = () => {
             urlParams.set("page", String(Number(page) + 1))
@@ -40,6 +44,7 @@ if (page > 0){
         buttonLocation.appendChild(nextButton);
     }
 
+    // Make Previous Button
     let prevButton = document.createElement("button");
     prevButton.textContent = "Prev";
     prevButton.setAttribute("class", "pageButton");
