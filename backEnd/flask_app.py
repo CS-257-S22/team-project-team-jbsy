@@ -144,5 +144,5 @@ def python_bug(e):
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=81)
-    app.run("localhost", port=5219, debug=True)
+    app.run(host='0.0.0.0', port=5219, debug = False)
+    # app.run("localhost", port=5219, debug=True)
