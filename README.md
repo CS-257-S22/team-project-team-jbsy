@@ -1,4 +1,4 @@
-# Team-F-Project - H-1B Employer Data Hub
+# H-1B Employer Data Hub
 
 
 Team-project-F created by GitHub Classroom
